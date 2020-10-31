@@ -22,8 +22,8 @@ function App() {
             <Link to='/'>Premium wheels</Link>
           </div>
           <div className="header-links">
-            <a href="#">Cart</a>
-            <a href="#">Sign-in</a>
+            <a href="/">Cart</a>
+            <a href="/">Sign-in</a>
           </div>
         </header>
 
@@ -31,8 +31,8 @@ function App() {
           <h3>Shopping Categories</h3>
           <button className="sidebar-close-button" onClick={closeMenu}>x</button>
           <ul>
-            <li><a href="#">Pants</a></li>
-            <li><a href="#">Shirts</a></li>
+            <li><a href="/">Pants</a></li>
+            <li><a href="/">Shirts</a></li>
           </ul>
         </aside>
 
