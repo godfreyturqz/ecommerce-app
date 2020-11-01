@@ -1,47 +1,22 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Link } from "react-router-dom";
-// import data from "./../Data";
 import './../App.css';
-// import axios from "axios";
 import { useSelector, useDispatch } from 'react-redux';
-import { listProducts } from '../actions/productActions';
+import { listProducts } from '../redux/productActions';
 
-function HomeScreen(props) {
-    // const [products, setProducts] = useState([])
+function HomeScreen() {
     const productList = useSelector(state => state.productList)
     const { products, loading, error } = productList
     const dispatch = useDispatch()
 
-    // useEffect(() => {
-    //     const fetchData = async ()=> {
-    //         const {data} = await axios.get('/api/products')
-    //         setProducts(data)
-    //     }
-    //     fetchData()
-    //     return () => {
-    //         //
-    //     }
-    // }, [])
     useEffect(() => {
         dispatch(listProducts())
-        return () => {
-            //
-        }
     }, [])
 
-    // useEffect(()=> {
-    //     axios.get(`/api/products`)
-    //     .then(res => {
-    //         setProducts(res.data)
-    //     })
-    //     .catch(err => {
-    //         console.log(err)
-    //     })
-    // }, [])
-
-return ( loading ? <div>Loading...</div> : error ? <div>{error}</div> :
+    return ( 
+        loading ? <div>Loading...</div> : 
+        error ? <div>{error}</div> :
         <ul className="products">
-            {/* { data.products.map(product => */}
             { products.map(product =>
                 <li key={product.id}>
                     <div className="product">

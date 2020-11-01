@@ -1,5 +1,5 @@
 import './App.css';
-// import src from "./images/bike.png";
+
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import HomeScreen from "./Screens/HomeScreen";
 import ProductScreen from "./Screens/ProductScreen";
@@ -43,7 +43,6 @@ function App() {
               <Route path="/" exact={true} component={HomeScreen}/>
               <Route path="/product/:id" exact={true} component={ProductScreen}/>
             </Switch>
-            
           </div>
         </main>
 

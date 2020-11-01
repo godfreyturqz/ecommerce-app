@@ -1,7 +1,8 @@
 const express = require('express')
-const data = require('./Data')
 
 const app = express()
+
+const data = require('./Data')
 
 app.get('/api/products', (req, res)=>{
     res.send(data.products)

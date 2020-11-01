@@ -15,17 +15,17 @@ const data = {
             category: 'Mountain',
             image: './../images/bike.png',
             price: 60,
-            rating: 4.5,
-            numReviews: 10
+            rating: 3,
+            numReviews: 20
         },
         {
             id: '3',
             name: 'Trail Bike',
             category: 'Trail',
             image: './../images/bike.png',
-            price: 80,
-            rating: 4.5,
-            numReviews: 11
+            price: 90,
+            rating: 5,
+            numReviews: 101
         }
     ]
 }
