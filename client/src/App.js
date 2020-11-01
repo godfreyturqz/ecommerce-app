@@ -1,8 +1,7 @@
 import './App.css';
-
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
-import HomeScreen from "./Screens/HomeScreen";
-import ProductScreen from "./Screens/ProductScreen";
+import Home from "./pages/Home";
+import ProductDetails from "./pages/ProductDetails";
 
 function App() {
 
@@ -40,8 +39,8 @@ function App() {
         <main className="main">
           <div className="content">
             <Switch>
-              <Route path="/" exact={true} component={HomeScreen}/>
-              <Route path="/product/:id" exact={true} component={ProductScreen}/>
+              <Route path="/" exact={true} component={Home}/>
+              <Route path="/product/:id" exact={true} component={ProductDetails}/>
             </Switch>
           </div>
         </main>

@@ -4,9 +4,8 @@ import './../App.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { listProducts } from '../redux/productActions';
 
-function HomeScreen() {
-    const productList = useSelector(state => state.productList)
-    const { products, loading, error } = productList
+function Home() {
+    const {loading, products, error} = useSelector(state => state.productList)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -36,4 +35,4 @@ function HomeScreen() {
     )
 }
 
-export default HomeScreen
+export default Home
