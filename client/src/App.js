@@ -2,6 +2,8 @@ import './App.css';
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import ProductDetails from "./pages/ProductDetails";
+import Cart from './pages/Cart';
+import Form from './pages/Form';
 
 function App() {
 
@@ -21,7 +23,8 @@ function App() {
             <Link to='/'>Premium wheels</Link>
           </div>
           <div className="header-links">
-            <a href="/">Cart</a>
+            <Link to='/form'>Form</Link>
+            <Link to='/cart'>Cart</Link>
             <a href="/">Sign-in</a>
           </div>
         </header>
@@ -40,7 +43,9 @@ function App() {
           <div className="content">
             <Switch>
               <Route path="/" exact={true} component={Home}/>
-              <Route path="/product/:id" exact={true} component={ProductDetails}/>
+              <Route path="/form" component={Form}/>
+              <Route path="/product/:id" component={ProductDetails}/>
+              <Route path="/cart/:id?" component={Cart}/>
             </Switch>
           </div>
         </main>

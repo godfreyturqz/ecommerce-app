@@ -1,6 +1,9 @@
-import { createStore, applyMiddleware } from "redux";
-import { rootReducer } from "./rootReducer";
+import { createStore, applyMiddleware, compose } from "redux";
 import thunk from 'redux-thunk'
+import { rootReducer } from "./rootReducer";
+import Cookie from 'js-cookie'
 
-const store = createStore(rootReducer, applyMiddleware(thunk))
+const cartItems = Cookie.getJSON('cartItems') || []
+const initialState = {cart: {cartItems}}
+const store = createStore(rootReducer, initialState, compose(applyMiddleware(thunk)))
 export default store
