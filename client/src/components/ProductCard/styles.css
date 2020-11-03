@@ -1,0 +1,34 @@
+.product-container {
+    width: 380px;
+    padding: 12px;
+}
+.product-image {
+    width: 100%;
+}
+/* if screen reached 740px */
+@media screen and (min-width: 768px) {
+    .product-container {
+        width: 600px;
+    }
+}
+.product-name a {
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #1b1c1e;
+}
+.product-name a:hover {
+    color: #e63946;
+}
+.product-description {
+    color: #303030;
+    font-size: 10px;
+}
+.product-price {
+    color: #e63946;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 12px;
+}
+
+

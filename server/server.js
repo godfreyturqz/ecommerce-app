@@ -6,7 +6,8 @@ require('dotenv/config')
 
 const app = express()
 
-app.use(bodyParser.json())
+app.use(bodyParser.json({limit: "30mb"}))
+// app.use(bodyParser.urlencoded({limit: "30mb", extended: true}))
 app.use(cors())
 app.use('/api/products', require('./routes/products'))
 
@@ -18,5 +19,3 @@ mongoose.connect(process.env.DB_CONNECTION, {
 })
 .then(app.listen(PORT, () => console.log(`Server running on port ${PORT}`)))
 .catch(error => console.log(error.message))
-
-

@@ -1,0 +1,23 @@
+nav {
+    background-color: #102030;
+    color: #FFF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+.brand {
+    font-size: 2rem;
+}
+.brand a{
+    text-decoration: none;
+    color: #FFF;
+    font-weight: bold;
+}
+.header-links a{
+    color: #FFF;
+    text-decoration: none;
+}
+.header-links a:hover{
+    color: #ff8000;
+}

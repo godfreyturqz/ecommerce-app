@@ -4,13 +4,11 @@ const ProductModel = require('./../models/Product')
 
 router.get('/', async (req, res)=>{
     try {
-        const products = await ProductModel.find()
-        res.status(200).json(products)
+        const data = await ProductModel.find()
+        res.status(200).json(data)
     } catch (error) {
         res.status(404).json({message: error.message})
     }
-    // ProductModel.find({})
-    // .then(data => res.json(data))
 })
 router.get('/:id', (req, res)=>{
     ProductModel.find({_id: req.params.id})

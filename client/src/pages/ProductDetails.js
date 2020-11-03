@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { getProductDetails } from '../redux/productActions';
+// import { getProductDetails } from '../redux/product/productActions';
 import './../App.css';
 
 function ProductDetails(props) {
     const [qty, setQty] = useState(1)
     const {loading, data, error} = useSelector(state => state.productDetails)
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(getProductDetails(props.match.params.id))
-    }, [dispatch, props.match.params.id])
+    // useEffect(() => {
+    //     dispatch(getProductDetails(props.match.params.id))
+    // }, [dispatch, props.match.params.id])
 
     const handleAddtoCart = () => {
         props.history.push("/cart/" + props.match.params.id + "?qty=" + qty)
