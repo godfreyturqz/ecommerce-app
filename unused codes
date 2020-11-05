@@ -67,3 +67,5 @@ axios.get('/api/products/' + productId)
 ProductModel.create(req.body)
     .then(data => res.send(data))
     .catch(error => res.send(error))
+
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION = false yarn install --prefix client && yarn build --prefix client"
