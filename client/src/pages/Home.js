@@ -9,26 +9,29 @@ import { getProductList } from '../redux/product/productActions';
 import Loading from '../components/Loading';
 import ProductCard from '../components/ProductCard';
 
+
 function Home() {
-    const {loading, products, error} = useSelector(state => state.productListReducer)
+    const {loading, data, error} = useSelector(state => state.productListReducer)
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(getProductList())
     }, [dispatch])
-
+    console.log(data)
     return ( 
         // LOADING AND ERROR
         loading ? <Loading/> : 
         error ? <div>{error}</div> :
-        products ? 
+        data ? 
         <div className="products">
-            { products.map(product =>
+            { data.map(product =>
                 <ProductCard
                 key={product._id}
-                to={'/product/' + product._id}
+                to={'/product/details/' + product._id}
                 image={product.image}
                 name={product.name}
+                mainCategory={product.mainCategory}
+                subCategory={product.subCategory}
                 brand={product.brand}
                 price={product.price}
                 />

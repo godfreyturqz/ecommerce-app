@@ -62,3 +62,8 @@ axios.get('/api/products/' + productId)
     .catch(error => {
         dispatch(productDetailsFail(error.message))
     })
+
+// server post request
+ProductModel.create(req.body)
+    .then(data => res.send(data))
+    .catch(error => res.send(error))

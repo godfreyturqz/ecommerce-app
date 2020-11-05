@@ -1,0 +1,106 @@
+.header-container{
+    display: flex;
+    justify-content: center;
+}
+.header-wrapper{
+    border-top: 2px solid #457b9d;
+    border-bottom: 2px solid #457b9d;
+    padding: 10px 0px;
+}
+h4{
+    color: #457b9d;
+    font-weight: bold;
+    width: 100vw;
+    padding-left: 40px;
+}
+.cart-empty{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    font-weight: bold;
+}
+.cart-container{
+    margin: 15px 12px;
+    padding: 12px 12px 50px 12px;
+    position: relative;
+    border-bottom: 1px solid #bebebe;
+}
+.cart-grid {
+    display: grid;
+    grid-template-areas: 
+        "image data"
+        "price price" 
+        ;
+    padding: 12px;
+}
+@media screen and (min-width: 768px) {
+    .cart-grid {
+        display: grid;
+        justify-content: space-evenly;
+        grid-template-areas: "image data price price price price price price";
+        align-items: center;
+        width: 80vw;
+    }
+    .cart-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid #bebebe;
+    }
+}
+
+.cart-image{
+    grid-area: image;
+    width: 200px;
+}
+.cart-image img{
+    width: 100%;
+}
+.cart-data{
+    grid-area: data;
+    color: #777777;
+    font-size: 12px;
+}
+.cart-data-name{
+    font-size: 20px;
+    color: #1b1c1e;
+    font-weight: bold;
+}
+.cart-price{
+    grid-area: price;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+}
+.cart-price span{
+    color: #777777;
+    font-size: 75%;
+    margin-right: 10px;
+}
+.button-wrapper button{
+    background: #457b9d;
+    margin-bottom: 10px;
+    float: right;
+}
+.button-wrapper button:hover{
+    background: #1d3557;
+}
+.cart-checkout{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 25px;
+}
+.cart-checkout p {
+    color: #1d3557;
+    font-weight: bold;
+    font-size: 25px;
+    padding-bottom: 25px;
+}
+.cart-checkout p span{
+    color: #1d3557;
+    font-weight: 600;
+}
+
+

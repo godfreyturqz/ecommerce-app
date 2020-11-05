@@ -6,6 +6,7 @@ import { rootReducer } from "./rootReducer";
 // const cartItems = Cookie.getJSON('cartItems') || []
 // const userInfo = Cookie.getJSON('userInfo') || null
 // const initialState = {cart: {cartItems}, userSignIn: {userInfo}}
+// const initialState = {cart: {cartItems}}
 // const store = createStore(rootReducer, initialState, compose(applyMiddleware(thunk)))
 const store = createStore(rootReducer, compose(applyMiddleware(thunk)))
 

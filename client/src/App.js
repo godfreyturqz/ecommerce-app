@@ -2,9 +2,9 @@ import './App.css';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 //pages
 import Home from "./pages/Home";
-import ProductDetails from "./pages/ProductDetails";
+import ProductDetails from './pages/ProductDetails';
 import Cart from './pages/Cart';
-import Form from './pages/Form';
+import CreateProduct from './pages/CreateProduct';
 import SignIn from './pages/SignIn';
 //components
 import Footer from './components/Footer';
@@ -28,8 +28,8 @@ function App() {
         <main className="main">
             <Switch>
               <Route path="/" exact={true} component={Home}/>
-              <Route path="/form" component={Form}/>
-              <Route path="/product/:id" component={ProductDetails}/>
+              <Route path="/createProduct" component={CreateProduct}/>
+              <Route path="/product/details/:id" component={ProductDetails}/>
               <Route path="/cart/:id?" component={Cart}/>
               <Route path="/signin" component={SignIn}/>
             </Switch>

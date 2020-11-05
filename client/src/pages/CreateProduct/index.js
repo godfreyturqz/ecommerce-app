@@ -1,37 +1,52 @@
 import React, {useState} from 'react'
+//styles
+import './styles.css'
 //image
 import Filebase from "react-file-base64";
 //redux
-import { useDispatch } from "react-redux";
-// import { createProduct } from '../redux/product/productActions';
+import { useDispatch, useSelector } from "react-redux";
+import { createProduct } from '../../redux/product/productActions';
 
-function Form() {
+function CreateProduct() {
     const [productData, setProductData] = useState({
-        main: '',
-        sub: '',
+        mainCategory: '',
+        subCategory: '',
+        brand: '',
         name: '',
+        description: '',
         image: '',
         price: '',
         stockCount: ''
     })
+    const {loading, data, error} = useSelector(state => state.createProductReducer)
     const dispatch = useDispatch()
 
     function handleSubmit(e) {
         e.preventDefault()
-        // dispatch(createProduct(productData))
+        dispatch(createProduct(productData))
+        setProductData({})
     }
 
     return (
+        loading ? <div>loading</div> :
+        error ? <div>{error}</div> :
+        data ? 
         <div>
             <form onSubmit={handleSubmit}>
                 <label>main category</label>
-                <input type="text" value={productData.main} onChange={e => setProductData({...productData, main: e.target.value})}/>
+                <input type="text" value={productData.mainCategory} onChange={e => setProductData({...productData, mainCategory: e.target.value})}/>
 
                 <label>sub category</label>
-                <input type="text" value={productData.sub} onChange={e => setProductData({...productData, sub: e.target.value})}/>
+                <input type="text" value={productData.subCategory} onChange={e => setProductData({...productData, subCategory: e.target.value})}/>
+
+                <label>brand</label>
+                <input type="text" value={productData.brand} onChange={e => setProductData({...productData, brand: e.target.value})}/>
 
                 <label>name</label>
                 <input type="text" value={productData.name} onChange={e => setProductData({...productData, name: e.target.value})}/>
+
+                <label>description</label>
+                <input type="text" value={productData.description} onChange={e => setProductData({...productData, description: e.target.value})}/>
                 
                 <label>price</label>
                 <input type="text" value={productData.price} onChange={e => setProductData({...productData, price: e.target.value})}/>
@@ -47,8 +62,8 @@ function Form() {
                 </div>
                 <button type="submit">Submit</button>
             </form>
-        </div>
+        </div> : <div>There's an error on the data</div>
     )
 }
 
-export default Form
+export default CreateProduct
