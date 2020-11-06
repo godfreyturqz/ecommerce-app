@@ -28,7 +28,7 @@ function Cart(props) {
         dispatch(removeFromCart(productId))
     }
     const checkoutHandler = () => {
-        props.history.push("/signin?redirect=shipping")
+        props.history.push("/signin")
     }
     
     return (

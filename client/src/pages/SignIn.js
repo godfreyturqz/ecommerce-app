@@ -1,30 +1,30 @@
-import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from 'react'
+// import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { signIn } from '../redux/user/userActions';
+// import { signIn } from '../redux/user/userActions';
 import './../App.css';
 
 function SignIn(props) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const {loading, userInfo, error} = useSelector(state => state.userInfo)
-    const dispatch = useDispatch()
+    // const {loading, userInfo, error} = useSelector(state => state.userInfo)
+    // const dispatch = useDispatch()
 
-    useEffect(() => {
-        if(userInfo){
-            props.history.push('/')
-        }
-    }, [userInfo, props.history])
+    // useEffect(() => {
+    //     if(userInfo){
+    //         props.history.push('/')
+    //     }
+    // }, [userInfo, props.history])
 
     function submitHandler(e){
         e.preventDefault()
-        dispatch(signIn(email, password))
+        // dispatch(signIn(email, password))
     }
 
 
     return (
-            loading ? <div>Loading...</div> :
-            error ? <div>{error}</div> :
+            // loading ? <div>Loading...</div> :
+            // error ? <div>{error}</div> :
             <div className="form">
                 <form onSubmit={submitHandler}>
                     <ul className="form-container">

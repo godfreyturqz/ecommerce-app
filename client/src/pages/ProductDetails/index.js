@@ -9,7 +9,7 @@ import { FaCartArrowDown } from 'react-icons/fa';
 //redux
 import { useSelector, useDispatch } from "react-redux";
 import { getProductDetails } from '../../redux/product/productActions';
-import Counter from '../../components/Counter';
+// import Counter from '../../components/Counter';
 
 
 function ProductDetails(props) {

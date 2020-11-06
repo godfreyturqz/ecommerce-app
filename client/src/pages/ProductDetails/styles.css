@@ -67,3 +67,26 @@ button:hover{
     background: #e71e2f;
     transition: all 0.5s ease;
 }
+.counter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+.counter button{
+    background: #FFF;
+    color: #1b1c1e;
+    padding: 5px 10px;
+}
+.counter button:hover{
+    background: #a8dadc;
+    color: #1b1c1e;
+}
+.counter p{
+    padding: 0px 10px;
+    font-weight: 600;
+}
+.counter span{
+    color: #777777;
+    font-size: 80%;
+}
