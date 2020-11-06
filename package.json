@@ -5,7 +5,9 @@
   "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js",
-    "heroku-postbuild": "yarn install --prefix client && yarn build --prefix client"
+    "build": "cd client && yarn build",
+    "install-client": "cd client && yarn install",
+    "heroku-postbuild": "yarn install-client && yarn build"
   },
   "license": "MIT",
   "dependencies": {
