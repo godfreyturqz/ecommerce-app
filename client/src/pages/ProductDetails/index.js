@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react'
 //styles
 import './styles.css'
 //components
-import { Link } from "react-router-dom";
 import Loading from "../../components/Loading";
 import { FaCartArrowDown } from 'react-icons/fa';
 //redux
@@ -34,15 +33,12 @@ function ProductDetails(props) {
     return (
         productDetailsReducer.loading ? <Loading /> :
         productDetailsReducer.error ? <div>{productDetailsReducer.error}</div> :
-        <div className="details">
-            <div className="container-link">
-                <Link to="/">&larr; Back to Home</Link>
-            </div>
+        <div className="container-details">
             <div className="container-image">
                 <img src={productDetailsReducer.data.image} alt="bike"/>
             </div>
-            <div className="container-details">
-                <h2 className="product-name">{productDetailsReducer.data.name}</h2>
+            <div className="container-text">
+                <p className="product-name">{productDetailsReducer.data.name}</p>
                 <div className="product-description">
                     <p className="text-secondary">Category: {productDetailsReducer.data.mainCategory} - {productDetailsReducer.data.subCategory}</p>
                     <br/>

@@ -27,7 +27,6 @@ function PlaceOrder(props) {
                 <p>Address: {cart.shippingData.address}</p>
                 <h1>Payment</h1>
                 <p>Method: {cart.paymentMethod}</p>
-                <h1>Order Items</h1>
             </div>
             {   cart.data.length === 0
                 ? <div className="cart-empty">Cart is empty</div> 

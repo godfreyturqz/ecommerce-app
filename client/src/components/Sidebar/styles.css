@@ -19,20 +19,21 @@
 
 .sidebar-close-button {
     cursor: pointer;
-    float: right;
     color: #FFF;
     font-weight: bold;
+    font-size: 40px;
+    display: flex;
+    flex-direction: row-reverse;
 }
 .sidebar-close-button:hover {
     color: #a8dadc;
     transition: all 0.3s ease-in-out;
 }
-h3{
+.sidebar h3{
     color: #f1faee;
     margin-top: 5px;
     margin-bottom: 25px;
     padding-bottom: 25px;
-    font-weight: 400;
     border-bottom: 1px solid #777777;
 }
 .sidebar p{
