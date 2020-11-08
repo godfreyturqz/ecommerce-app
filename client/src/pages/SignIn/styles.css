@@ -1,0 +1,16 @@
+form {
+    display: flex;
+    flex-direction: column;
+}
+form h2{
+    padding-bottom: 20px;
+}
+form p{
+    padding-top: 20px;
+}
+form a{
+    color: #457b9d;
+}
+form a:hover{
+    color: #457b9d;
+}

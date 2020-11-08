@@ -7,12 +7,12 @@ function Sidebar(props) {
         <div className="sidebar">
           <h2 className="sidebar-close-button" onClick={props.closeMenu}>&times;</h2>
           <h3>Categories</h3>
-          <p><Link to="/">Mountain</Link></p>
-          <p><Link to="/">Road</Link></p>
-          <p><Link to="/">Country</Link></p>
-          <p><Link to="/">E-bike</Link></p>
+          <p><Link to="/" onClick={props.closeMenu}>Mountain</Link></p>
+          <p><Link to="/" onClick={props.closeMenu}>Road</Link></p>
+          <p><Link to="/" onClick={props.closeMenu}>Country</Link></p>
+          <p><Link to="/" onClick={props.closeMenu}>E-bike</Link></p>
           <br/><br/><br/><br/><br/>
-          <p><Link to='/createProduct'>Create product</Link></p>
+          <p><Link to='/createProduct' onClick={props.closeMenu}>Product Management</Link></p>
         </div>
     )
 }

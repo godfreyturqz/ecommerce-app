@@ -4,7 +4,7 @@ import './styles.css'
 
 function Loading() {
     return (
-        <div className="container">
+        <div className="container-loading">
             <img src={loading} alt="loading..."/>
         </div>
     )

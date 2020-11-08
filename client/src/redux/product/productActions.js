@@ -1,17 +1,5 @@
 import axios from "axios"
 
-//getProductList
-export const getProductList = () => async (dispatch) => {
-    dispatch({type: 'PRODUCT_LIST_REQUEST'})
-    try {
-        const {data} = await axios.get('/api/products/')
-        dispatch({type: 'PRODUCT_LIST_SUCCESS', payload: data})
-    }
-    catch (error) {
-        dispatch({type: 'PRODUCT_LIST_FAIL', payload: error.message})
-    }
-}
-
 //createProduct
 export const createProduct = (productData) => async (dispatch) => {
     dispatch({type: 'CREATE_PRODUCT_REQUEST'})
@@ -21,6 +9,19 @@ export const createProduct = (productData) => async (dispatch) => {
     }
     catch (error) {
         dispatch({type: 'CREATE_PRODUCT_FAIL', payload: error.message})
+    }
+}
+
+//getProductList
+export const getProductList = () => async (dispatch) => {
+    dispatch({type: 'PRODUCT_LIST_REQUEST'})
+    try {
+        //request to backend ./routes/api folder
+        const {data} = await axios.get('/api/products/')
+        dispatch({type: 'PRODUCT_LIST_SUCCESS', payload: data})
+    }
+    catch (error) {
+        dispatch({type: 'PRODUCT_LIST_FAIL', payload: error.message})
     }
 }
 

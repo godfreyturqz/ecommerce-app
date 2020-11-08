@@ -2,8 +2,8 @@
 import React, { useEffect } from 'react'
 //styles
 import './styles.css'
-// components
-// import { Link } from "react-router-dom";
+//components
+import Loading from "../../components/Loading";
 //redux
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart } from '../../redux/cart/cartActions'
@@ -13,32 +13,32 @@ function Cart(props) {
     
     const productId = props.match.params.id
     const quantity = props.location.search ? Number(props.location.search.split("=")[1]) : 1
-    const dispatch = useDispatch()
-    console.log(quantity)
 
-    console.log(data)
+    const dispatch = useDispatch()
 
     useEffect(() => {
+
         if(productId){
             dispatch(addToCart(productId, quantity))
         }
+
     }, [dispatch, productId, quantity])
 
     const removeFromCartHandler = (productId) => {
         dispatch(removeFromCart(productId))
     }
     const checkoutHandler = () => {
-        props.history.push("/signin")
+        props.history.push("/shipping")
     }
     
     return (
-        loading ? <div>Loading...</div>
+        loading ? <Loading />
         : error ? <div>{error}</div>
         :
         <div >
             <div className="header-container">
                 <div className="header-wrapper">
-                    <h4>Shopping Cart</h4>
+                    <h2>Shopping Cart</h2>
                 </div>
             </div>
             {   data.length === 0
@@ -72,7 +72,6 @@ function Cart(props) {
                     <button onClick={checkoutHandler}>Proceed to checkout</button>
                 </div>
             }
-            
         </div>
     )
 }

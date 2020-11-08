@@ -5,7 +5,7 @@
     justify-content: center;
 }
 .container-image, .container-details{
-    width: 380px;
+    width: 350px;
 }
 .container-image img{
     width: 100%;

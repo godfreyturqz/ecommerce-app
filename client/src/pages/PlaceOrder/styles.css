@@ -1,0 +1,13 @@
+.order-header{
+    padding: 16px;
+    border-bottom: 1px solid #777777;
+    margin: 0px 12px;
+}
+.order-header h1{
+    color: #1b1c1e;
+    padding-bottom: 25px;
+}
+.order-header p{
+    color: #303030;
+    padding-bottom: 25px;
+}

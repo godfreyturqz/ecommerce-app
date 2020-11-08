@@ -1,15 +1,20 @@
+//styles
 import './App.css';
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-//pages
-import Home from "./pages/Home";
-import ProductDetails from './pages/ProductDetails';
-import Cart from './pages/Cart';
-import CreateProduct from './pages/CreateProduct';
-import SignIn from './pages/SignIn';
 //components
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
+//router dependencies
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+//pages
+import Cart from './pages/Cart';
+import CreateProduct from './pages/CreateProduct';
+import Home from "./pages/Home";
+import PlaceOrder from './pages/PlaceOrder';
+import OrderStatus from './pages/OrderStatus';
+import ProductDetails from './pages/ProductDetails';
+import Shipping from './pages/Shipping';
+import SignIn from './pages/SignIn';
 
 function App() {
 
@@ -31,6 +36,9 @@ function App() {
               <Route path="/createProduct" component={CreateProduct}/>
               <Route path="/product/details/:id" component={ProductDetails}/>
               <Route path="/cart/:id?" component={Cart}/>
+              <Route path="/shipping" component={Shipping}/>
+              <Route path="/placeorder" component={PlaceOrder}/>
+              <Route path="/orderStatus" component={OrderStatus}/>
               <Route path="/signin" component={SignIn}/>
             </Switch>
         </main>

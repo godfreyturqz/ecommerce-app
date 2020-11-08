@@ -1,30 +1,33 @@
 //styles
-import './../App.css';
+import './styles.css';
 //react
 import React, { useEffect } from 'react'
 //redux and action creators
 import { useSelector, useDispatch } from 'react-redux';
-import { getProductList } from '../redux/product/productActions';
+import { getProductList } from '../../redux/product/productActions';
 //components
-import Loading from '../components/Loading';
-import ProductCard from '../components/ProductCard';
+import Loading from '../../components/Loading';
+import ProductCard from '../../components/ProductCard';
 
 
 function Home() {
-    const {loading, data, error} = useSelector(state => state.productListReducer)
+    const productListReducer = useSelector(state => state.productListReducer)
     const dispatch = useDispatch()
 
     useEffect(() => {
+
         dispatch(getProductList())
+
     }, [dispatch])
-    console.log(data)
+    
+
     return ( 
         // LOADING AND ERROR
-        loading ? <Loading/> : 
-        error ? <div>{error}</div> :
-        data ? 
-        <div className="products">
-            { data.map(product =>
+        productListReducer.loading ? <Loading/> : 
+        productListReducer.error ? <div>{productListReducer.error}</div> :
+        productListReducer.data && productListReducer.data.length !== 0 ? 
+        <div className="products-container">
+            { productListReducer.data.map(product =>
                 <ProductCard
                 key={product._id}
                 to={'/product/details/' + product._id}

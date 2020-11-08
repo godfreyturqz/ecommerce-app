@@ -1,0 +1,13 @@
+form h1 {
+    padding-bottom: 25px;
+    color: #1b1c1e;
+}
+form select{
+    width: 300px;
+    margin-bottom: 50px;
+    padding: 10px;
+}
+.order-header p{
+    color: #303030;
+    padding-bottom: 25px;
+}

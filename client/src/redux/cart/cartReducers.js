@@ -1,4 +1,3 @@
-// export function cartReducer(state= {cartItems: []}, action){
 export function cartReducer(state= { loading: false, data: [], error: '' }, action){
     switch(action.type){
         case 'ADD_TO_CART_REQUEST':
@@ -7,13 +6,6 @@ export function cartReducer(state= { loading: false, data: [], error: '' }, acti
                 loading: true,
             }
         case 'ADD_TO_CART_SUCCESS':
-            // const item = action.payload
-            // const product = state.cartItems.find(x => x.product === item.product)
-            // if(product){
-            //     return {cartItems: state.cartItems.map(x => x.product === product.product ? item : x)}
-            // }else{
-                
-            // }
             return {
                 loading: false,
                 data: [...state.data, action.payload],
@@ -30,6 +22,21 @@ export function cartReducer(state= { loading: false, data: [], error: '' }, acti
                 loading: false,
                 data: state.data.filter(item => item.productId !== action.payload),
                 error: ''
+            }
+        case 'GET_SHIPPING_DATA':
+            return {
+                ...state,
+                shippingData: action.payload
+            }
+        case 'GET_PAYMENT_METHOD':
+            return {
+                ...state,
+                paymentMethod: action.payload
+            }
+        case 'CART_EMPTY':
+            return {
+                ...state,
+                data: []
             }
         default: return state
     }

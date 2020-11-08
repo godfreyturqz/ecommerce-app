@@ -33,25 +33,26 @@ function CreateProduct() {
         data ? 
         <div>
             <form onSubmit={handleSubmit}>
-                <label>main category</label>
+                <h1>Enter Product Information</h1>
+                <div>main category</div>
                 <input type="text" value={productData.mainCategory} onChange={e => setProductData({...productData, mainCategory: e.target.value})}/>
 
-                <label>sub category</label>
+                <div>sub category</div>
                 <input type="text" value={productData.subCategory} onChange={e => setProductData({...productData, subCategory: e.target.value})}/>
 
-                <label>brand</label>
+                <div>brand</div>
                 <input type="text" value={productData.brand} onChange={e => setProductData({...productData, brand: e.target.value})}/>
 
-                <label>name</label>
+                <div>name</div>
                 <input type="text" value={productData.name} onChange={e => setProductData({...productData, name: e.target.value})}/>
 
-                <label>description</label>
+                <div>description</div>
                 <input type="text" value={productData.description} onChange={e => setProductData({...productData, description: e.target.value})}/>
                 
-                <label>price</label>
+                <div>price</div>
                 <input type="text" value={productData.price} onChange={e => setProductData({...productData, price: e.target.value})}/>
 
-                <label>stock count</label>
+                <div>Number of Stocks</div>
                 <input type="text" value={productData.stockCount} onChange={e => setProductData({...productData, stockCount: e.target.value})}/>
                 <div>
                     <Filebase

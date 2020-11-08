@@ -21,7 +21,6 @@ function ProductCard(props) {
                 $ {props.price}
                 <Link to={props.to}><button>Details</button></Link>
             </p>
-            
         </div>
     )
 }
