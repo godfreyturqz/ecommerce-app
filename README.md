@@ -16,7 +16,7 @@ The goal of this project is to imitate an e-commerce platform like Amazon using 
 ## Live Demo
 https://lit-harbor-78554.herokuapp.com
 
-## Technology used
+## Technologies used
 1. Frontend - React JS
 2. Backend - NodeJS
 3. Cloud Database - MongoDB
