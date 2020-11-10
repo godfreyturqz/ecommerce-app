@@ -1,4 +1,4 @@
-### ecommerce-bike-shop
+# ecommerce-bike-shop
 The goal of this project is to imitate an e-commerce platform like Amazon using MERN Stack
 
 ## Features
