@@ -1,0 +1,22 @@
+.table-container {
+    display: flex;
+    justify-content: center;
+}
+.table-container table{
+    min-width: 1000px;
+}
+
+.table-container table thead tr th{
+    background: 1px solid #457b9d;
+    padding: 5px;
+}
+.table-container table tbody tr td{
+    padding: 5px;
+}
+.table-container table tbody tr td button{
+    padding: 5px 10px;
+    background:#457b9d;
+}
+.table-container table tbody tr td button:hover{
+    background:#1d3557;
+}

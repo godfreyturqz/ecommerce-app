@@ -16,7 +16,6 @@ export const createProduct = (productData) => async (dispatch) => {
 export const getProductList = () => async (dispatch) => {
     dispatch({type: 'PRODUCT_LIST_REQUEST'})
     try {
-        //request to backend ./routes/api folder
         const {data} = await axios.get('/api/products/')
         dispatch({type: 'PRODUCT_LIST_SUCCESS', payload: data})
     }
@@ -34,6 +33,18 @@ export const getProductDetails = (paramsId) => async (dispatch) => {
     }
     catch (error) {
         dispatch({type: 'PRODUCT_DETAILS_FAIL', payload: error.message})
+    }
+}
+
+//delete specific product
+export const deleteProduct = (productId) => async (dispatch) => {
+    dispatch({type: 'DELETE_PRODUCT_REQUEST'})
+    try {
+        const {data} = await axios.delete(`/api/products/${productId}`)
+        dispatch({type: 'DELETE_PRODUCT_SUCCESS', payload: data})
+    }
+    catch (error) {
+        dispatch({type: 'DELETE_PRODUCT_FAIL', payload: error.message})
     }
 }
 

@@ -6,6 +6,8 @@ import Filebase from "react-file-base64";
 //redux
 import { useDispatch, useSelector } from "react-redux";
 import { createProduct } from '../../redux/product/productActions';
+//components
+import Loading from '../../components/Loading';
 
 function CreateProduct() {
     const [productData, setProductData] = useState({
@@ -28,7 +30,7 @@ function CreateProduct() {
     }
 
     return (
-        loading ? <div>loading</div> :
+        loading ? <div><Loading/></div> :
         error ? <div>{error}</div> :
         data ? 
         <div>

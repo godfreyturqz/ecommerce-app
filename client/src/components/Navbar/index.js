@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 
 function Navbar(props) {
     const cartItems = useSelector(state => state.cartReducer)
-    console.log(cartItems.data.length)
+
     return (
         <nav>
           <div className="brand">

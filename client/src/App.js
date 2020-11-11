@@ -15,6 +15,7 @@ import OrderStatus from './pages/OrderStatus';
 import ProductDetails from './pages/ProductDetails';
 import Shipping from './pages/Shipping';
 import SignIn from './pages/SignIn';
+import ProductManagement from './pages/ProductManagement';
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
             <Switch>
               <Route path="/" exact={true} component={Home}/>
               <Route path="/createProduct" component={CreateProduct}/>
+              <Route path="/productManagement" component={ProductManagement}/>
               <Route path="/product/details/:id" component={ProductDetails}/>
               <Route path="/cart/:id?" component={Cart}/>
               <Route path="/shipping" component={Shipping}/>
