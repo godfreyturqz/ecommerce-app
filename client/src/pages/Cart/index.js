@@ -9,12 +9,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart } from '../../redux/cart/cartActions'
 
 function Cart(props) {
-    const {loading, data, error} = useSelector(state => state.cartReducer)
+    const { loading, data, error } = useSelector(state => state.cartReducer)
     
+    const dispatch = useDispatch()
+
     const productId = props.match.params.id
     const quantity = props.location.search ? Number(props.location.search.split("=")[1]) : 1
-
-    const dispatch = useDispatch()
 
     useEffect(() => {
 
@@ -24,12 +24,8 @@ function Cart(props) {
 
     }, [dispatch, productId, quantity])
 
-    const removeFromCartHandler = (productId) => {
-        dispatch(removeFromCart(productId))
-    }
-    const checkoutHandler = () => {
-        props.history.push("/shipping")
-    }
+    const removeFromCartHandler = productId => dispatch(removeFromCart(productId))
+    const checkoutHandler = () => props.history.push("/shipping")
     
     return (
         loading ? <Loading />

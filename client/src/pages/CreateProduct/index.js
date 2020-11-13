@@ -1,15 +1,20 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
 //styles
 import './styles.css'
 //image
 import Filebase from "react-file-base64";
 //redux
 import { useDispatch, useSelector } from "react-redux";
-import { createProduct } from '../../redux/product/productActions';
+import { createProduct, getProductDetails, updateProduct } from '../../redux/product/productActions';
+//router-dom
+import { useParams } from "react-router-dom";
 //components
 import Loading from '../../components/Loading';
 
-function CreateProduct() {
+
+function CreateProduct(props) {
+
+    // values of input forms
     const [productData, setProductData] = useState({
         mainCategory: '',
         subCategory: '',
@@ -20,18 +25,42 @@ function CreateProduct() {
         price: '',
         stockCount: ''
     })
+    // fetch url parameters of route: updateProduct/:id
+    const {id: productId} = useParams()
+
+    // current state
     const {loading, data, error} = useSelector(state => state.createProductReducer)
+    const productDetailsReducer = useSelector(state => state.productDetailsReducer)
+    const updateProductReducer = useSelector(state => state.updateProductReducer)
+
     const dispatch = useDispatch()
 
+    useEffect(() => {
+        if(productId){
+            dispatch(getProductDetails(productId))
+            
+            setProductData(productDetailsReducer.data)
+        }
+    }, [])
+
+    //submits or update product information
     function handleSubmit(e) {
         e.preventDefault()
-        dispatch(createProduct(productData))
+
+        if(productId) {
+            dispatch(updateProduct(productId, productData))
+        }
+        else {
+            dispatch(createProduct(productData))
+        }
+        
+        //clears the input fields after submission
         setProductData({})
     }
 
     return (
-        loading ? <div><Loading/></div> :
-        error ? <div>{error}</div> :
+        loading || updateProductReducer.loading ? <div><Loading/></div> :
+        error || updateProductReducer.error ? <div>{error}{updateProductReducer.error}</div> :
         data ? 
         <div>
             <form onSubmit={handleSubmit}>
@@ -61,9 +90,14 @@ function CreateProduct() {
                         type="file"
                         multiple={false}
                         onDone={ ({base64})=> setProductData({...productData, image: base64})}
+                        
                     />
                 </div>
-                <button type="submit">Submit</button>
+                {
+                    productId ? <button type="submit">Update</button>
+                    : <button type="submit">Submit</button>
+                }
+                
             </form>
         </div> : <div>There's an error on the data</div>
     )

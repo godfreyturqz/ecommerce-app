@@ -1,4 +1,4 @@
-//createProduct
+//create reducer
 export function createProductReducer(state= { loading: false, data: {}, error: '' }, action) {
     switch(action.type){
         case 'CREATE_PRODUCT_REQUEST':
@@ -22,7 +22,7 @@ export function createProductReducer(state= { loading: false, data: {}, error: '
     }
 }
 
-//getProductList
+//getProductList reducer
 export function productListReducer(state= { loading: false, data: [], error: '' }, action) {
     switch(action.type){
         case 'PRODUCT_LIST_REQUEST':
@@ -46,7 +46,7 @@ export function productListReducer(state= { loading: false, data: [], error: '' 
     }
 }
 
-//getProductDetails
+//getProductDetails reducer
 export function productDetailsReducer(state= { loading: false, data: {}, error: '' }, action){
     switch(action.type){
         case 'PRODUCT_DETAILS_REQUEST':
@@ -70,7 +70,31 @@ export function productDetailsReducer(state= { loading: false, data: {}, error: 
     }
 }
 
-//getProductDetails
+//update reducer
+export function updateProductReducer(state= { loading: false, data: {}, error: '' }, action){
+    switch(action.type){
+        case 'UPDATE_PRODUCT_REQUEST':
+            return {
+                ...state,
+                loading: true
+            }
+        case 'UPDATE_PRODUCT_SUCCESS':
+            return {
+                loading: false,
+                data: action.payload,
+                error: ''
+            }
+        case 'UPDATE_PRODUCT_FAIL':
+            return {
+                loading: false,
+                data: {},
+                error: action.payload
+            } 
+        default: return state
+    }
+}
+
+//delete reducer
 export function deleteProductReducer(state= { loading: false, data: {}, error: '' }, action){
     switch(action.type){
         case 'DELETE_PRODUCT_REQUEST':

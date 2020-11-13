@@ -13,7 +13,7 @@ import { getProductDetails } from '../../redux/product/productActions';
 function ProductDetails(props) {
     const [quantity, setQuantity] = useState(1)
     const productDetailsReducer = useSelector(state => state.productDetailsReducer)
-
+    
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -21,13 +21,10 @@ function ProductDetails(props) {
         dispatch(getProductDetails(props.match.params.id))
 
     }, [dispatch, props.match.params.id])
+    console.log(productDetailsReducer)
 
-
-    const handleAddtoCart = () => {
-        props.history.push(`/cart/${props.match.params.id}?qty=${quantity}`)
-    }
-
-    const decreaseQuantity = () => { if(quantity > 1) setQuantity(prev => prev - 1) }
+    const handleAddtoCart = () => props.history.push(`/cart/${props.match.params.id}?qty=${quantity}`)
+    const decreaseQuantity = () => (quantity > 1) ? setQuantity(prev => prev - 1) : 1
     const increaseQuantity = () => { if(quantity < productDetailsReducer.data.stockCount) setQuantity(prev => prev + 1) }
 
     return (

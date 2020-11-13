@@ -33,8 +33,9 @@ function App() {
         <Sidebar closeMenu={closeMenu}/>
         <main className="main">
             <Switch>
-              <Route path="/" exact={true} component={Home}/>
+              <Route path="/" component={Home} exact/>
               <Route path="/createProduct" component={CreateProduct}/>
+              <Route path="/updateProduct/:id" component={CreateProduct}/>
               <Route path="/productManagement" component={ProductManagement}/>
               <Route path="/product/details/:id" component={ProductDetails}/>
               <Route path="/cart/:id?" component={Cart}/>

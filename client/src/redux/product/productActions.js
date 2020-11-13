@@ -1,6 +1,6 @@
 import axios from "axios"
 
-//createProduct
+//create action
 export const createProduct = (productData) => async (dispatch) => {
     dispatch({type: 'CREATE_PRODUCT_REQUEST'})
     try {
@@ -12,7 +12,7 @@ export const createProduct = (productData) => async (dispatch) => {
     }
 }
 
-//getProductList
+//getProductList action
 export const getProductList = () => async (dispatch) => {
     dispatch({type: 'PRODUCT_LIST_REQUEST'})
     try {
@@ -24,7 +24,7 @@ export const getProductList = () => async (dispatch) => {
     }
 }
 
-//getProductDetails
+//getProductDetails action
 export const getProductDetails = (paramsId) => async (dispatch) => {
     dispatch({type: 'PRODUCT_DETAILS_REQUEST'})
     try {
@@ -36,7 +36,19 @@ export const getProductDetails = (paramsId) => async (dispatch) => {
     }
 }
 
-//delete specific product
+//update action
+export const updateProduct = (productId, updatedData) => async (dispatch) => {
+    dispatch({type: 'UPDATE_PRODUCT_REQUEST'})
+    try {
+        const data = await axios.put(`/api/products/${productId}`, updatedData)
+        dispatch({type: 'UPDATE_PRODUCT_SUCCESS', payload: data})
+    }
+    catch (error) {
+        dispatch({type: 'UPDATE_PRODUCT_FAIL', payload: error.message})
+    }
+}
+
+//delete action
 export const deleteProduct = (productId) => async (dispatch) => {
     dispatch({type: 'DELETE_PRODUCT_REQUEST'})
     try {

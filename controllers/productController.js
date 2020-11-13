@@ -24,7 +24,7 @@ module.exports.getProductList = async (req, res, next)=>{
 //read @DESC Get specific product details
 module.exports.getProductDetails = async (req, res, next)=>{
     try {
-        const data = await ProductModel.find({_id: req.params.id})
+        const data = await ProductModel.findById(req.params.id)
         res.status(200).json(data)
     } catch (error) {
         res.status(404).json(error)
@@ -34,7 +34,7 @@ module.exports.getProductDetails = async (req, res, next)=>{
 //update
 module.exports.updateProduct = async (req, res, next)=>{
     try {
-        const data = await ProductModel.findByIdAndUpdate(req.params.id, req.body).then(() => ProductModel.find({_id: req.params.id}))
+        const data = await ProductModel.findByIdAndUpdate(req.params.id, req.body).then(() => ProductModel.findById(req.params.id))
         res.status(200).json({message: 'updated successfully', data})
     } catch (error) {
         res.status(404).json(error)

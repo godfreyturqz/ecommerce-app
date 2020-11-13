@@ -7,7 +7,7 @@ import { getProductList, deleteProduct } from "../../redux/product/productAction
 import Loading from '../../components/Loading';
 
 
-function ProductManagement() {
+function ProductManagement(props) {
     const { loading, data, error } = useSelector(state => state.productListReducer)
     const deleteProductReducer = useSelector(state => state.deleteProductReducer)
     const dispatch = useDispatch()
@@ -18,11 +18,13 @@ function ProductManagement() {
         
     }, [dispatch, deleteProductReducer.data])
 
+    const handleEdit = (e) => {
+        props.history.push(`/updateProduct/${e.target.value}`)
+    }
     const handleDelete = (e) => {
-        e.preventDefault()
         dispatch(deleteProduct(e.target.value))
     }
-
+    
     return (
         loading ? <div><Loading/></div> :
         error ? <div>{error}</div> :
@@ -52,7 +54,7 @@ function ProductManagement() {
                             <td>{product.price}</td>
                             <td>{product.stockCount}</td>
                             <td>
-                                <button>Details</button>
+                                <button onClick={handleEdit} value={product._id}>Edit</button>
                             </td>
                             <td>
                                 <button onClick={handleDelete} value={product._id}>Delete</button>
