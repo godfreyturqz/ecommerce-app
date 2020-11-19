@@ -1,93 +1,85 @@
-//model
-// const UserModel = require('../models/UserModel')
-//dependencies
-const bcrypt = require('bcrypt')
+const UserModel = require('../models/UserModel')
+const jwt = require('jsonwebtoken')
 
-// handle errors
-const handleErrors = (err) => {
-    console.log(err.message, err.code)
-    const asd = {email: '', password: ''}
+// #######################################################################
+// USER CONTROLLER
+// #######################################################################
 
-}
+//------------------------------------
+// SIGNUP SIGNUP SIGNUP
+//------------------------------------
+module.exports.userSignup = async (req, res)=> {
+    try {
+        const data = await UserModel.create(req.body)
+        const token = createToken(data._id)
+        res.cookie('jwt', token, { secure: true, httpOnly: true, maxAge: 259200000})
+        res.status(201).json({data: data._id})
 
-//create
-module.exports.userSignup = (req, res)=> {
-    res.json('signup')
-    const {email, password} = req.body
-
-    // try {
-    //     const userInfo = await UserModel.create({email: email, password: password})
-    //     res.status(201).json(userInfo)
-    // } catch (error) {
-    //     const error = handleErrors(error)
-    //     res.status(500).json(error)
-    // }
+    } catch (error) {
+        const errors = handleErrors(error)
+        res.status(400).json({message: 'user not created', errors})
+    }
 } 
 
-//read
-module.exports.userLogin = (req, res)=> {
-    res.json('login')
-    const {email, password} = req.body
+//------------------------------------
+// LOGIN LOGIN LOGIN
+//------------------------------------
+module.exports.userLogin = async (req, res)=> {
+    try {
+        const user = await UserModel.login(req.body)
+        const token = createToken(user._id)
+        res.cookie('jwt', token, { secure: true, httpOnly: true, maxAge: 259200000})
+        res.status(200).json({user: user._id})
 
-    // try {
-    //     const userInfo = await UserModel.find({email: email, password: password})
-    //     res.status(201).json(userInfo)
-    // } catch (error) {
-    //     const error = handleErrors(error)
-    //     res.status(500).json(error)
-    // }
+    } catch (error) {
+        const errors = handleErrors(error)
+        res.status(400).json({message: 'login error', errors})
+    }
+}
+
+// #######################################################################
+// FUNCTIONS
+// #######################################################################
+
+//------------------------------------
+// ERROR HANDLER
+//------------------------------------
+
+const handleErrors = error => {
+    console.log(error.message)
+    let errors = { email: '', password: '' }
+
+    // duplicate error
+    if(error.code === 11000){
+        errors.email = 'Email already exists'
+    }
+
+    // validation errors
+    if(error.message.includes('users validation failed')){
+        Object.values(error.errors).forEach(({properties}) => {
+            errors[properties.path] = properties.message
+        })
+    }
+
+    // login errors
+    if(error.message == 'incorrect email'){
+        errors.email = 'Email is not registered'
+    }
+    if(error.message == 'incorrect password'){
+        errors.password = 'Password is incorrect'
+    }
+
+    return errors
+}
+
+//------------------------------------
+// CREATE TOKENS
+//------------------------------------
+
+const createToken = (id) => {
+    return jwt.sign({id}, process.env.JWT , {
+        expiresIn: 3 * 24 * 60 * 60
+    })
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// module.exports.login_post = (req, res)=> {
-//     const {email, password} = req.body
-// }
-// module.exports.signup_post = async(req, res)=> {
-//     try {
-//         const {name, email, password, isAdmin} = req.body
-//         //validation
-//         if(!email || !password)
-//             return res.status(400).json({message: 'Empty field'})
-//         if(password.length < 6)
-//             return res.status(400).json({message: 'Password must be at least 6 characters'})
-//         const existingUser = await UserModel.find({email: email})
-//         if(existingUser)
-//             return res.json(400).json({message: 'Account already exists'})
-//         if (!name)
-//             return name = email
-        
-//         const salt = await bcrypt.genSalt()
-//         const passwordHash = await bcrypt.hash(password, salt)
-//         console.log(passwordHash)
-//     } catch (error) {
-//         res.status(500).json(error)
-//     }
-// }
