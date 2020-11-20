@@ -10,15 +10,32 @@ function Sidebar(props) {
             <span className="sidebar-close-button" onClick={props.closeMenu}>&times;</span>
             <h3>Categories</h3>
           </div>
-          <p><Link to="/" onClick={props.closeMenu}>Mountain</Link></p>
-          <p><Link to="/" onClick={props.closeMenu}>Road</Link></p>
-          <p><Link to="/" onClick={props.closeMenu}>Country</Link></p>
-          <p><Link to="/" onClick={props.closeMenu}>E-bike</Link></p>
-          <br/><br/><br/><br/><br/>
-          <p><Link to='/orderStatus' onClick={props.closeMenu}>Order Status</Link></p>
-          <p><a href="/createProduct" onClick={props.closeMenu}>Create Product</a></p>
-          {/* <p><Link to='/createProduct' onClick={props.closeMenu}>Create Product</Link></p> */}
-          <p><Link to='/productManagement' onClick={props.closeMenu}>Product Management</Link></p>
+          <div>
+            <Link to="/" onClick={props.closeMenu}>
+              <p>Mountain</p>
+            </Link>
+            <Link to="/" onClick={props.closeMenu}>
+              <p>Road</p>
+            </Link>
+            <Link to="/" onClick={props.closeMenu}>
+              <p>Country</p>
+            </Link>
+            <Link to="/" onClick={props.closeMenu}>
+              <p>E-bike</p>
+            </Link>
+
+            <br/><br/><br/><br/><br/>
+            <h3>Admin Section</h3>
+            <Link to='/orderStatus' onClick={props.closeMenu}>
+              <p>Order Status</p>
+            </Link>
+            <a href="/createProduct" onClick={props.closeMenu}>
+              <p>Create Product</p>
+            </a>
+            <Link to='/productManagement' onClick={props.closeMenu}>
+              <p>Product Management</p>
+            </Link>
+          </div>
         </div>
     )
 }
