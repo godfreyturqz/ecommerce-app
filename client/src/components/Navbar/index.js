@@ -12,7 +12,7 @@ function Navbar(props) {
     return (
         <nav>
           <div className="brand">
-            <FaBars classname="bar" onClick={props.openMenu}/>
+            <FaBars className="bar" onClick={props.openMenu}/>
             <Link to='/'>PremiumBikes</Link>
           </div>
           <div className="nav-links">

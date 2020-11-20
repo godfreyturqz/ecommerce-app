@@ -15,6 +15,7 @@ function Sidebar(props) {
           <p><Link to="/" onClick={props.closeMenu}>Country</Link></p>
           <p><Link to="/" onClick={props.closeMenu}>E-bike</Link></p>
           <br/><br/><br/><br/><br/>
+          <p><Link to='/orderStatus' onClick={props.closeMenu}>Order Status</Link></p>
           <p><a href="/createProduct" onClick={props.closeMenu}>Create Product</a></p>
           {/* <p><Link to='/createProduct' onClick={props.closeMenu}>Create Product</Link></p> */}
           <p><Link to='/productManagement' onClick={props.closeMenu}>Product Management</Link></p>

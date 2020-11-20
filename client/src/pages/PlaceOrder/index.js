@@ -15,10 +15,9 @@ function PlaceOrder(props) {
 
     function placeOrderHandler(e){
         e.preventDefault()
-        const orderDataOnly = cart.data.map(item => delete item["image"]);
         // format of object should be the same with OrderModel in the backend
         dispatch(createOrder({
-            orderItems: orderDataOnly,
+            orderItems: cart.data,
             shippingData: cart.shippingData,
             totalPrice: totalPrice,
             paymentMethod: cart.paymentMethod

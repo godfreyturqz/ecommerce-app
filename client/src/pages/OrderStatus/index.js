@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getOrders } from '../../redux/order/orderActions'
+import OrderRow from "../../components/CardC";
 
 
 function OrderStatus() {
@@ -17,15 +18,17 @@ function OrderStatus() {
         :
         <div>
             {
-                getOrdersReducer.data.map( item => 
-                    item.orderItems.map( item =>
-                        <div>
-                            <p>{item.productId}</p>
-                            <p>{item.name}</p>
-                            <p>{item.price}</p>
-                            <br/>
-                        </div>
-                    )
+                getOrdersReducer.data.map( item =>
+                    <OrderRow
+                    key={item._id}
+                    orderId={item._id}
+                    shippingData={item.shippingData}
+                    paymentStatus={item.paymentStatus}
+                    deliveryStatus={item.deliveryStatus}
+                    orderItems={item.orderItems}
+                    totalPrice={item.totalPrice}
+                    paymentMethod={item.paymentMethod}
+                    />
                 )
             }
         </div>

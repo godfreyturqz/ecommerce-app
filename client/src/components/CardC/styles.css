@@ -1,0 +1,16 @@
+.CardC{
+    width: 100%;
+    background-color: #FFF;
+    padding: 15px 0px;
+    border-radius: 5px;
+    max-width: 500px;
+}
+.CardC-header{
+    padding: 0px 20px 15px 20px;
+    color: var(--color-secondary);
+    border-bottom: 1px solid #cecece;
+}
+.CardC-body{
+    padding: 15px;
+    color: var(--color-secondary);
+}
