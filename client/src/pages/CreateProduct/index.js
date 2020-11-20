@@ -63,7 +63,10 @@ function CreateProduct() {
         data ? 
         <div>
             <form onSubmit={handleSubmit}>
-                <h1>Enter Product Information</h1>
+                {
+                    productId ? <h1>Update Product Information</h1>
+                    : <h1>Enter Product Information</h1>
+                }
                 <div>main category</div>
                 <input type="text" value={productData.mainCategory} onChange={e => setProductData({...productData, mainCategory: e.target.value})}/>
 
@@ -77,7 +80,9 @@ function CreateProduct() {
                 <input type="text" value={productData.name} onChange={e => setProductData({...productData, name: e.target.value})}/>
 
                 <div>description</div>
-                <input type="text" value={productData.description} onChange={e => setProductData({...productData, description: e.target.value})}/>
+                <textarea cols="35" rows="5" value={productData.description} onChange={e => setProductData({...productData, description: e.target.value})}>
+                    
+                </textarea>
                 
                 <div>price</div>
                 <input type="text" value={productData.price} onChange={e => setProductData({...productData, price: e.target.value})}/>
