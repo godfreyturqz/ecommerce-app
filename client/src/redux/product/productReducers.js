@@ -23,20 +23,20 @@ export function createProductReducer(state= { loading: false, data: {}, error: '
 }
 
 //getProductList reducer
-export function productListReducer(state= { loading: false, data: [], error: '' }, action) {
+export function getProductsReducer(state= { loading: false, data: [], error: '' }, action) {
     switch(action.type){
-        case 'PRODUCT_LIST_REQUEST':
+        case 'GET_PRODUCTS_REQUEST':
             return {
                 ...state,
                 loading: true
             }
-        case 'PRODUCT_LIST_SUCCESS':
+        case 'GET_PRODUCTS_SUCCESS':
             return {
                 loading: false,
                 data: action.payload,
                 error: ''
             } 
-        case 'PRODUCT_LIST_FAIL':
+        case 'GET_PRODUCTS_FAIL':
             return {
                 loading: false,
                 data: [],
@@ -47,20 +47,20 @@ export function productListReducer(state= { loading: false, data: [], error: '' 
 }
 
 //getProductDetails reducer
-export function productDetailsReducer(state= { loading: false, data: {}, error: '' }, action){
+export function getProductDetailsReducer(state= { loading: false, data: {}, error: '' }, action){
     switch(action.type){
-        case 'PRODUCT_DETAILS_REQUEST':
+        case 'GET_PRODUCT_DETAILS_REQUEST':
             return {
                 ...state,
                 loading: true
             }
-        case 'PRODUCT_DETAILS_SUCCESS':
+        case 'GET_PRODUCT_DETAILS_SUCCESS':
             return {
                 loading: false,
                 data: action.payload,
                 error: ''
             } 
-        case 'PRODUCT_DETAILS_FAIL':
+        case 'GET_PRODUCT_DETAILS_FAIL':
             return {
                 loading: false,
                 data: {},

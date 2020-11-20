@@ -3,21 +3,15 @@ import React, { useState } from 'react'
 import './styles.css'
 //redux
 import { useDispatch } from "react-redux";
-import { getShippingData } from '../../redux/cart/cartActions';
-import { getPaymentMethod } from "../../redux/cart/cartActions";
+import { getShippingData, getPaymentMethod } from '../../redux/cart/cartActions';
 
 
 function Shipping(props) {
-    const userInfo = true
-    if(!userInfo){
-        props.history.push('/')
-    }
-
     const [shippingData, setShippingData] = useState({
         fullName: 'Godfrey Turqueza',
         address: 'Mabalacat, Pampanga'
     })
-    const [paymentMethod, setPaymentMethod] = useState('Paypal')
+    const [paymentMethod, setPaymentMethod] = useState('Cash on delivery')
 
     const dispatch = useDispatch()
 
@@ -43,6 +37,7 @@ function Shipping(props) {
 
                 <h1>Payment Method</h1>
                 <select onChange={e => setPaymentMethod(e.target.value)}>
+                    <option value="Cash on delivery">Cash on delivery</option>
                     <option value="Paypal">Paypal</option>
                     <option value="Debit Card">Debit Card</option>
                     <option value="Credit Card">Credit Card</option>

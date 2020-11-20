@@ -1,4 +1,4 @@
-export function orderReducer(state= { loading: false, data: {}, error: '' }, action){
+export function createOrderReducer(state= { loading: false, data: {}, error: '' }, action){
     switch(action.type){
         case 'CREATE_ORDER_REQUEST':
             return {
@@ -17,7 +17,29 @@ export function orderReducer(state= { loading: false, data: {}, error: '' }, act
                 data: {},
                 error: action.payload
             }
+        default: return state
+    }
+}
 
+export function getOrdersReducer(state= { loading: false, data:[], error: '' }, action){
+    switch(action.type){
+        case 'GET_ORDER_REQUEST':
+            return {
+                ...state,
+                loading: true
+            }
+        case 'GET_ORDER_SUCCESS':
+            return {
+                loading: false,
+                data: action.payload,
+                error: ''
+            }
+        case 'GET_ORDER_FAIL':
+            return {
+                loading: false,
+                data: [...state.data],
+                error: action.payload
+            }
         default: return state
     }
 }

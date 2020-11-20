@@ -2,19 +2,19 @@ import React, {useEffect} from 'react'
 import './styles.css'
 //redux
 import { useSelector, useDispatch } from "react-redux";
-import { getProductList, deleteProduct } from "../../redux/product/productActions";
+import { getProducts, deleteProduct } from "../../redux/product/productActions";
 //components
 import Loading from '../../components/Loading';
 
 
 function ProductManagement(props) {
-    const { loading, data, error } = useSelector(state => state.productListReducer)
+    const { loading, data, error } = useSelector(state => state.getProductsReducer)
     const deleteProductReducer = useSelector(state => state.deleteProductReducer)
     const dispatch = useDispatch()
 
     useEffect(() => {
 
-        dispatch(getProductList())
+        dispatch(getProducts())
         
     }, [dispatch, deleteProductReducer.data])
 

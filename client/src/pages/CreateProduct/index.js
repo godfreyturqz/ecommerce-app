@@ -12,7 +12,11 @@ import { useParams } from "react-router-dom";
 import Loading from '../../components/Loading';
 
 
-function CreateProduct(props) {
+function CreateProduct() {
+    // current state
+    const {loading, data, error} = useSelector(state => state.createProductReducer)
+    const getProductDetailsReducer = useSelector(state => state.getProductDetailsReducer)
+    const updateProductReducer = useSelector(state => state.updateProductReducer)
 
     // values of input forms
     const [productData, setProductData] = useState({
@@ -25,23 +29,18 @@ function CreateProduct(props) {
         price: '',
         stockCount: ''
     })
+
     // fetch url parameters of route: updateProduct/:id
     const {id: productId} = useParams()
 
-    // current state
-    const {loading, data, error} = useSelector(state => state.createProductReducer)
-    const productDetailsReducer = useSelector(state => state.productDetailsReducer)
-    const updateProductReducer = useSelector(state => state.updateProductReducer)
-
     const dispatch = useDispatch()
-
     useEffect(() => {
         if(productId){
             dispatch(getProductDetails(productId))
             
-            setProductData(productDetailsReducer.data)
+            setProductData(getProductDetailsReducer.data)
         }
-    }, [])
+    }, [dispatch, productId, getProductDetailsReducer.data])
 
     //submits or update product information
     function handleSubmit(e) {

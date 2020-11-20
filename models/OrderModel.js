@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const orderSchema = new Schema({
-    userId : {type: Number, required: true},
+    // userId : {type: Number, required: true},
     orderItems: [{
         productId: {type: String, required: true},
         name: {type: String, required: true},
@@ -12,7 +12,23 @@ const orderSchema = new Schema({
     shippingData: {
         fullName: {type: String, required: true},
         address: {type: String, required: true}
-    }
+    },
+    totalPrice: {
+        type: Number,
+        required: true
+    },
+    paymentMethod: {
+        type: String,
+        required: true
+    },
+    paymentStatus: {
+        type: String,
+        default: 'Pending'
+    },
+    deliveryStatus: {
+        type: String,
+        default: 'On process'
+    },
 })
 
 const OrderModel = mongoose.model('orders', orderSchema)

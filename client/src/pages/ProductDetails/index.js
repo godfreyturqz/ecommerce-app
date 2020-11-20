@@ -4,28 +4,31 @@ import React, { useState, useEffect } from 'react'
 import './styles.css'
 //components
 import Loading from "../../components/Loading";
-import { FaCartArrowDown } from 'react-icons/fa';
+import { FaCartArrowDown, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 //redux
 import { useSelector, useDispatch } from "react-redux";
 import { getProductDetails } from '../../redux/product/productActions';
 
 
 function ProductDetails(props) {
+    // all initial states
     const [quantity, setQuantity] = useState(1)
-    const productDetailsReducer = useSelector(state => state.productDetailsReducer)
+    const productDetailsReducer = useSelector(state => state.getProductDetailsReducer)
     
+    // to initially load the page and update if there's any update
     const dispatch = useDispatch()
 
     useEffect(() => {
-
         dispatch(getProductDetails(props.match.params.id))
 
     }, [dispatch, props.match.params.id])
-    console.log(productDetailsReducer)
 
-    const handleAddtoCart = () => props.history.push(`/cart/${props.match.params.id}?qty=${quantity}`)
+    // counter
     const decreaseQuantity = () => (quantity > 1) ? setQuantity(prev => prev - 1) : 1
     const increaseQuantity = () => { if(quantity < productDetailsReducer.data.stockCount) setQuantity(prev => prev + 1) }
+    
+    // add to cart
+    const handleAddtoCart = () => props.history.push(`/cart/${props.match.params.id}?qty=${quantity}`)
 
     return (
         productDetailsReducer.loading ? <Loading /> :
@@ -44,7 +47,9 @@ function ProductDetails(props) {
                     <p>{productDetailsReducer.data.description}</p>
                     <br/>
                     <p className="text-secondary">Quantity: 
-                        {productDetailsReducer.data.stockCount > 0
+                        {
+
+                            productDetailsReducer.data.stockCount > 0
                             ? <span> {productDetailsReducer.data.stockCount} items available</span>
                             : <span>Out of stock</span>
                         }
@@ -52,17 +57,18 @@ function ProductDetails(props) {
                     <p className="product-price">$ {productDetailsReducer.data.price}</p>
                 </div>
                 <div className="container-action">
-                    {productDetailsReducer.data.stockCount > 0 ?
+                    {
+                        productDetailsReducer.data.stockCount > 0 ?
                         <div>
                             <div className="counter">
                                 <span>Qty: </span>
-                                <button onClick={decreaseQuantity}>&larr;</button>
+                                <button onClick={decreaseQuantity}><FaArrowLeft/></button>
                                 <p>{quantity}</p>
-                                <button onClick={increaseQuantity}>&rarr;</button>
+                                <button onClick={increaseQuantity}><FaArrowRight/></button>
                             </div>
                             <button onClick={handleAddtoCart}><FaCartArrowDown /> Add to Cart</button> 
                         </div>
-                    : <p className="text-secondary">Out of stock</p> 
+                        : <p className="text-secondary">Out of stock</p> 
                     }
                 </div>
             </div>

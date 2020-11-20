@@ -4,19 +4,19 @@ import './styles.css';
 import React, { useEffect } from 'react'
 //redux and action creators
 import { useSelector, useDispatch } from 'react-redux';
-import { getProductList } from '../../redux/product/productActions';
+import { getProducts } from '../../redux/product/productActions';
 //components
 import Loading from '../../components/Loading';
 import ProductCard from '../../components/ProductCard';
 
 
 function Home() {
-    const {loading, data, error} = useSelector(state => state.productListReducer)
+    const {loading, data, error} = useSelector(state => state.getProductsReducer)
     const dispatch = useDispatch()
     
     useEffect(() => {
 
-        dispatch(getProductList())
+        dispatch(getProducts())
 
     }, [dispatch])
     

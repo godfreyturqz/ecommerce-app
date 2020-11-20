@@ -18,12 +18,10 @@ function Cart(props) {
 
     useEffect(() => {
 
-        if(productId){
-            dispatch(addToCart(productId, quantity))
-        }
+        if(productId) dispatch(addToCart(productId, quantity))
 
     }, [dispatch, productId, quantity])
-
+        
     const removeFromCartHandler = productId => dispatch(removeFromCart(productId))
     const checkoutHandler = () => props.history.push("/shipping")
     
@@ -37,7 +35,8 @@ function Cart(props) {
                     <h2>Shopping Cart</h2>
                 </div>
             </div>
-            {   data.length === 0
+            {   
+                data.length === 0
                 ? <div className="cart-empty">Cart is empty</div> 
                 : data.map( item=> 
                     <div className="cart-container" key={item._id}>
@@ -62,7 +61,8 @@ function Cart(props) {
                     </div>
                 )
             }
-            {   data.length !== 0 && 
+            {   
+                data.length !== 0 && 
                 <div className="cart-checkout">
                     <p><span>Total: </span>$ {data.map(item => item.price * item.quantity).reduce((prev, next) => prev + next, 0)}</p>
                     <button onClick={checkoutHandler}>Proceed to checkout</button>

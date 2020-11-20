@@ -37,11 +37,11 @@ function App() {
               <Route path="/createProduct" component={CreateProduct}/>
               <Route path="/updateProduct/:id" component={CreateProduct}/>
               <Route path="/productManagement" component={ProductManagement}/>
+              <Route path="/orderStatus" component={OrderStatus}/>
               <Route path="/product/details/:id" component={ProductDetails}/>
               <Route path="/cart/:id?" component={Cart}/>
               <Route path="/shipping" component={Shipping}/>
               <Route path="/placeorder" component={PlaceOrder}/>
-              <Route path="/orderStatus" component={OrderStatus}/>
               <Route path="/signin" component={SignIn}/>
             </Switch>
         </main>

@@ -37,13 +37,9 @@ export const removeFromCart = (productId) => (dispatch) => {
 //action GET SHIPPING DATA
 export const getShippingData = (shippingData) => (dispatch) => {
     dispatch({type: 'GET_SHIPPING_DATA', payload: shippingData})
-    localStorage.setItem('shippingData', JSON.stringify(shippingData))
+    // localStorage.setItem('shippingData', JSON.stringify(shippingData))
 }
 //action GET_PAYMENT_METHOD
 export const getPaymentMethod = (data) => (dispatch) => {
     dispatch({type: 'GET_PAYMENT_METHOD', payload: data})
 }
-
-
-
-

@@ -13,26 +13,26 @@ export const createProduct = (productData) => async (dispatch) => {
 }
 
 //getProductList action
-export const getProductList = () => async (dispatch) => {
-    dispatch({type: 'PRODUCT_LIST_REQUEST'})
+export const getProducts = () => async (dispatch) => {
+    dispatch({type: 'GET_PRODUCTS_REQUEST'})
     try {
         const {data} = await axios.get('/api/products/')
-        dispatch({type: 'PRODUCT_LIST_SUCCESS', payload: data})
+        dispatch({type: 'GET_PRODUCTS_SUCCESS', payload: data})
     }
     catch (error) {
-        dispatch({type: 'PRODUCT_LIST_FAIL', payload: error.message})
+        dispatch({type: 'GET_PRODUCTS_FAIL', payload: error.message})
     }
 }
 
 //getProductDetails action
 export const getProductDetails = (paramsId) => async (dispatch) => {
-    dispatch({type: 'PRODUCT_DETAILS_REQUEST'})
+    dispatch({type: 'GET_PRODUCT_DETAILS_REQUEST'})
     try {
         const {data} = await axios.get(`/api/products/${paramsId}`)
-        dispatch({type: 'PRODUCT_DETAILS_SUCCESS', payload: data})
+        dispatch({type: 'GET_PRODUCT_DETAILS_SUCCESS', payload: data})
     }
     catch (error) {
-        dispatch({type: 'PRODUCT_DETAILS_FAIL', payload: error.message})
+        dispatch({type: 'GET_PRODUCT_DETAILS_FAIL', payload: error.message})
     }
 }
 
