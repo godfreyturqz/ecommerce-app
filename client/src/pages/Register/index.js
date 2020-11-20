@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Link } from "react-router-dom";
 
 
-function SignIn() {
+function Register() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -13,21 +13,21 @@ function SignIn() {
 
     return (
         <form onSubmit={submitHandler}>
-            <h1>Sign-in</h1>
+            <h1>Create an Account</h1>
             <label>Email</label>
             <input type="email" name="email" value={email} onChange={(e)=> setEmail(e.target.value)} autoComplete="off" required/>
 
             <label>Password</label>
             <input type="password" name="password" value={password} onChange={(e)=> setPassword(e.target.value)} autoComplete="off" required/>
 
-            <button type="submit" className="button primary">Log in</button>
+            <button type="submit" className="button primary">Sign up</button>
 
-            <p>New here?</p>
+            <p>Already have an account?</p>
             <div>
-                <Link to="/register">Create an account</Link>
+                <Link to="/signin">Sign-in here</Link>
             </div>
         </form>
     )
 }
 
-export default SignIn
+export default Register

@@ -15,6 +15,7 @@ import OrderStatus from './pages/OrderStatus';
 import ProductDetails from './pages/ProductDetails';
 import Shipping from './pages/Shipping';
 import SignIn from './pages/SignIn';
+import Register from './pages/Register';
 import ProductManagement from './pages/ProductManagement';
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
               <Route path="/shipping" component={Shipping}/>
               <Route path="/placeorder" component={PlaceOrder}/>
               <Route path="/signin" component={SignIn}/>
+              <Route path="/register" component={Register}/>
             </Switch>
         </main>
         <Footer className="footer"/>

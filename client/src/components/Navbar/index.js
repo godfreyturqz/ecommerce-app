@@ -21,6 +21,7 @@ function Navbar(props) {
               <FaCartArrowDown /> Cart
             </Link>
             <Link to='/signin'>Sign-in</Link>
+            <Link to='/register'>Register</Link>
           </div>
         </nav>
     )
