@@ -1,11 +1,13 @@
-import {useState} from 'react'
+import { useState } from 'react'
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+
 
 function Logic(props) {
     const [user, setUser] = useState({email: '', password: ''})
     const [errors, setErrors] = useState({email: '', password: ''})
     const currentUrl = useLocation()
+
 
     const handleInputs = (e)=>{
         e.preventDefault()
@@ -22,7 +24,7 @@ function Logic(props) {
             axios.post('/api/signup', user)
                 .then(({data}) => {
                     // if success, data returns a userId - check variable in backend authcontroller
-                    console.log(data.userId)
+                    // console.log(data.userId)
                     if(data){
                         setUser({email: '', password:''})
                         props.history.push('/profile')
@@ -39,7 +41,7 @@ function Logic(props) {
             axios.post('/api/login', user)
                 .then(({data}) => {
                     // if success, data returns a userId - check variable in backend authcontroller
-                    console.log(data.userId)
+                    // console.log(data.userId)
                     if(data){
                         setUser({email: '', password:''})
                         props.history.push('/profile')

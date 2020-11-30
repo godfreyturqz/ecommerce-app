@@ -17,7 +17,7 @@ function PageNotFound() {
         <div style={style}>
             <h1>404. Page not found</h1>
             <p>The requested URL could not be found.</p>
-            <a href="/" style={linkStyle}>Go back to homepage.</a>
+            <a href="/" style={linkStyle}>Go back to homepage</a>
         </div>
         
     )
