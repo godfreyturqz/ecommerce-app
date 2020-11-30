@@ -3,9 +3,9 @@ import './styles.css'
 
 function CardC(props) {
     return (
-        <div class="CardC">
-            <div class="CardC-header">Order ID: {props.orderId}</div>
-            <div class="CardC-body">
+        <div className="CardC">
+            <div className="CardC-header">Order ID: {props.orderId}</div>
+            <div className="CardC-body">
                 <p>Customer: {props.shippingData.fullName}</p>
                 <p>Shipping Address: {props.shippingData.address}</p>
                 <br/>
