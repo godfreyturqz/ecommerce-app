@@ -4,6 +4,7 @@ import './App.css';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
+import PageNotFound from './components/404';
 //router dependencies
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 //pages
@@ -16,22 +17,15 @@ import ProductDetails from './pages/ProductDetails';
 import Shipping from './pages/Shipping';
 import Authentication from './pages/Authentication';
 import ProductManagement from './pages/ProductManagement';
-import PageNotFound from './components/404';
+
 
 function App() {
-
-  function openMenu(){
-    document.querySelector('.sidebar').classList.add('open')
-  }
-  function closeMenu(){
-    document.querySelector('.sidebar').classList.remove('open')
-  }
 
   return (
     <BrowserRouter>
       <div className="grid-container">
-        <Navbar className="navbar" openMenu={openMenu}/>
-        <Sidebar closeMenu={closeMenu}/>
+        <Navbar className="navbar" />
+        <Sidebar />
         <main className="main">
             <Switch>
               <Route path="/" component={Home} exact/>

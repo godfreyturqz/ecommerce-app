@@ -6,13 +6,16 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 
-function Navbar(props) {
+function Navbar() {
     const cartItems = useSelector(state => state.cartReducer)
+    function openMenu(){
+      document.querySelector('.sidebar').classList.add('open')
+    }
 
     return (
         <nav>
           <div className="brand">
-            <FaBars className="bar" onClick={props.openMenu}/>
+            <FaBars className="bar" onClick={openMenu}/>
             <Link to='/'>PremiumBikes</Link>
           </div>
           <div className="nav-links">
