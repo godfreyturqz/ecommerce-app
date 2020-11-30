@@ -31,6 +31,7 @@ function App() {
     
   }, [dispatch])
   console.log(authReducer.isAuth)
+  
   return (
     <BrowserRouter>
       <div className="grid-container">
@@ -43,23 +44,13 @@ function App() {
               <Route path="/cart/:id?" component={Cart} exact/>
               <Route path="/shipping" component={Shipping} exact/>
               <Route path="/placeorder" component={PlaceOrder} exact/>
+              <Route path="/createProduct" component={CreateProduct} exact/>
+              <Route path="/updateProduct/:id" component={CreateProduct} exact/>
+              <Route path="/productManagement" component={ProductManagement} exact/>
+              <Route path="/orderStatus" component={OrderStatus} exact/>
+              <Route path="/signin" component={Authentication} exact/>
+              <Route path="/register" component={Authentication} exact/>
               <Route path="/" component={PageNotFound} />
-              {
-                authReducer.isAuth
-                ?
-                <>
-                  <Route path="/createProduct" component={CreateProduct} exact/>
-                  <Route path="/updateProduct/:id" component={CreateProduct} exact/>
-                  <Route path="/productManagement" component={ProductManagement} exact/>
-                  <Route path="/orderStatus" component={OrderStatus} exact/>
-                </>
-                :
-                <>
-                  <Route path="/signin" component={Authentication} exact/>
-                  <Route path="/register" component={Authentication} exact/>
-                </>
-              }
-              
             </Switch>
         </main>
         <Footer className="footer"/>
