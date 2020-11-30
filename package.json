@@ -4,7 +4,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "server": "nodemon server.js",
+    "devStart": "nodemon server.js",
     "build": "cd client && yarn build",
     "install-client": "cd client && yarn install",
     "heroku-postbuild": "yarn install-client && yarn build"

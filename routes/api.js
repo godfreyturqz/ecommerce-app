@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 //controllers
 const productController = require('../controllers/productController')
-const userController = require('../controllers/userController')
+const authController = require('../controllers/authController')
 const orderController = require('../controllers/orderController')
 
 //********************************************************************
@@ -10,7 +10,7 @@ const orderController = require('../controllers/orderController')
 //********************************************************************
 
 //.............................................
-//PRODUCTS RELATED
+// PRODUCTS RELATED
 //.............................................
 router.post('/products', productController.createProduct)
 router.get('/products', productController.getProductList) //Get all products
@@ -19,13 +19,20 @@ router.put('/products/:id', productController.updateProduct)
 router.delete('/products/:id', productController.deleteProduct)
 
 //.............................................
-//USERS RELATED
+// USERS RELATED
 //.............................................
-router.post('/signup', userController.userSignup)
-router.post('/login', userController.userLogin)
+router.get('/signup', authController.getUsers)
+router.post('/signup', authController.createUser)
+router.post('/login', authController.loginUser)
+router.get('/logout', authController.logout)
+
+router.get('/requireAuth', authController.requireAuth)
+
+// for dev purposes
+router.delete('/deleteAll', authController.deleteAllUsers)
 
 //.............................................
-//ORDERS RELATED
+// ORDERS RELATED
 //.............................................
 router.post('/orders', orderController.createOrder)
 router.get('/orders', orderController.getOrderList)
