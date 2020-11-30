@@ -16,6 +16,7 @@ import ProductDetails from './pages/ProductDetails';
 import Shipping from './pages/Shipping';
 import Authentication from './pages/Authentication';
 import ProductManagement from './pages/ProductManagement';
+import PageNotFound from './components/404';
 
 function App() {
 
@@ -34,16 +35,17 @@ function App() {
         <main className="main">
             <Switch>
               <Route path="/" component={Home} exact/>
-              <Route path="/createProduct" component={CreateProduct}/>
-              <Route path="/updateProduct/:id" component={CreateProduct}/>
-              <Route path="/productManagement" component={ProductManagement}/>
-              <Route path="/orderStatus" component={OrderStatus}/>
-              <Route path="/product/details/:id" component={ProductDetails}/>
-              <Route path="/cart/:id?" component={Cart}/>
-              <Route path="/shipping" component={Shipping}/>
-              <Route path="/placeorder" component={PlaceOrder}/>
-              <Route path="/signin" component={Authentication}/>
-              <Route path="/register" component={Authentication}/>
+              <Route path="/createProduct" component={CreateProduct} exact/>
+              <Route path="/updateProduct/:id" component={CreateProduct} exact/>
+              <Route path="/productManagement" component={ProductManagement} exact/>
+              <Route path="/orderStatus" component={OrderStatus} exact/>
+              <Route path="/product/details/:id" component={ProductDetails} exact/>
+              <Route path="/cart/:id?" component={Cart} exact/>
+              <Route path="/shipping" component={Shipping} exact/>
+              <Route path="/placeorder" component={PlaceOrder} exact/>
+              <Route path="/signin" component={Authentication} exact/>
+              <Route path="/register" component={Authentication} exact/>
+              <Route path="/" component={PageNotFound} />
             </Switch>
         </main>
         <Footer className="footer"/>
