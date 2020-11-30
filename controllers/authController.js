@@ -3,7 +3,6 @@ const utils = require('../utils')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
-
 //------------------------------------
 // SIGNUP
 //------------------------------------
@@ -42,7 +41,7 @@ module.exports.loginUser = async (req,res) => {
         const isAuth = await bcrypt.compare(req.body.password, userData.password)
         if(isAuth) {
             const token = utils.createToken(userData._id)
-            res.cookie('jwt', token, { httpOnly:true, maxAge: 3 * 24 * 60 * 60 * 1000})
+            res.cookie('jwt', token, { secure: true, httpOnly:true, maxAge: 3 * 24 * 60 * 60 * 1000})
             res.status(200).json({userId: userData._id}) 
         }
         else {
@@ -74,6 +73,7 @@ module.exports.deleteAllUsers = (req, res) => {
 module.exports.requireAuth = (req,res)=>{
     // const token = req.headers.cookie.split('=')[1]
     const token = req.cookies.jwt
+
     if(token){
         jwt.verify(token, process.env.JWT, (error, decodedToken) => {
             if (error) return res.sendStatus(403)
