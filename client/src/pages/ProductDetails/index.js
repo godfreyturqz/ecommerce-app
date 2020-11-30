@@ -35,7 +35,7 @@ function ProductDetails(props) {
         productDetailsReducer.error ? <div>{productDetailsReducer.error}</div> :
         <div className="container-details">
             <div className="container-image">
-                <img src={productDetailsReducer.data.image} alt="bike"/>
+                <img src={productDetailsReducer.data.image} alt="bike" loading="lazy"/>
             </div>
             <div className="container-text">
                 <p className="product-name">{productDetailsReducer.data.name}</p>

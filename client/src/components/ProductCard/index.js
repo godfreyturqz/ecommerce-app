@@ -7,7 +7,7 @@ function ProductCard(props) {
         <div className="product-container">
             <div>
                 <Link to={props.to}>
-                    <img className="product-image" src={props.image} alt="product"/>
+                    <img className="product-image" src={props.image} alt="product" loading="lazy"/>
                 </Link>
             </div>
             <div className="product-name">
