@@ -1,5 +1,7 @@
 const UserModel = require('../models/UserModel')
 const utils = require('../utils')
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 
 //------------------------------------
@@ -29,16 +31,27 @@ module.exports.getUsers = async (req,res) => {
 //------------------------------------
 // LOGIN
 //------------------------------------
-module.exports.loginUser = async (req, res)=> {
+module.exports.loginUser = async (req,res) => {
+    if(!req.body.email) return res.status(400).json({email: 'Enter an Email'})
+    if(!req.body.password) return res.status(400).json({password: 'Enter a password'})
+
     try {
-        const userData = await UserModel.login(req.body)
-        const token = utils.createToken(userData._id)
-        res.cookie('jwt', token, { secure: true, httpOnly: true, maxAge: 259200000})
-        res.status(200).json({userId: userData._id})
+        const userData = await UserModel.findOne({email: req.body.email})
+        if(userData === null) return res.status(400).json({email: 'Account does not exists'})
+
+        const isAuth = await bcrypt.compare(req.body.password, userData.password)
+        if(isAuth) {
+            const token = utils.createToken(userData._id)
+            res.cookie('jwt', token, { httpOnly:true, maxAge: 3 * 24 * 60 * 60 * 1000})
+            res.status(200).json({userId: userData._id}) 
+        }
+        else {
+            res.status(400).json({password: 'Authentication error'})
+        }
 
     } catch (error) {
-        const errors = utils.handleErrors(error)
-        res.status(400).json({message: 'login error', errors})
+        console.log(error)
+        res.status(400).json({message: 'login failed', error})
     }
 }
 

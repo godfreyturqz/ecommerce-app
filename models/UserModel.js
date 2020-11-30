@@ -35,20 +35,6 @@ userSchema.post('save', (doc, next)=> {
     next()
 })
 
-// custom method of UserModel
-userSchema.statics.login = async function (data) {
-    
-    const user = await this.findOne({email: data.email})
-    
-    if(user){
-        const auth = await bcrypt.compare(data.password, user.password)
-        if(auth){
-            return user
-        }
-        throw Error('incorrect password')
-    }
-    throw Error('incorrect email')
-}
 
 const UserModel = mongoose.model('users', userSchema)
  
