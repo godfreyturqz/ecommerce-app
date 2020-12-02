@@ -15,7 +15,8 @@ const orderSchema = new Schema({
     }],
     shippingData: {
         fullName: {type: String, required: true},
-        address: {type: String, required: true}
+        address: {type: String, required: true},
+        contact: {type: Number, required: true}
     },
     totalPrice: {
         type: Number,
