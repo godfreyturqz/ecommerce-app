@@ -2,12 +2,14 @@ import React from 'react'
 //styles
 import './styles.css'
 //redux
+import { userAuth } from "../../redux/auth/authActions";
 import { createOrder } from "../../redux/order/orderActions";
 import { useDispatch, useSelector } from "react-redux";
 
 
 function PlaceOrder(props) {
     const cart = useSelector(state => state.cartReducer)
+    const authReducer = useSelector(state => state.authReducer)
 
     const totalPrice = cart.data.map(item => item.price * item.quantity).reduce((prev, next) => prev + next, 0)
 
@@ -16,13 +18,22 @@ function PlaceOrder(props) {
     function placeOrderHandler(e){
         e.preventDefault()
         // format of object should be the same with OrderModel in the backend
-        dispatch(createOrder({
-            orderItems: cart.data,
-            shippingData: cart.shippingData,
-            totalPrice: totalPrice,
-            paymentMethod: cart.paymentMethod
-        }))
-        props.history.push('/orderStatus')
+        dispatch(userAuth())
+        if(authReducer.userId){
+            dispatch(createOrder({
+                userId: authReducer.userId,
+                orderItems: cart.data,
+                shippingData: cart.shippingData,
+                totalPrice: totalPrice,
+                paymentMethod: cart.paymentMethod
+            }))
+            props.history.push('/orderStatus')
+        }
+        else{
+            props.history.push('/signin')
+        }
+        
+        
     }
     
     return (

@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getOrders } from '../../redux/order/orderActions'
-import OrderRow from "../../components/CardC";
+import OrderRowCard from "../../components/OrderRowCard";
+import './styles.css'
 
 
 function OrderStatus() {
@@ -16,18 +17,20 @@ function OrderStatus() {
     return (
         getOrdersReducer.data.length === 0 ? <div>There are no orders</div>
         :
-        <div>
+        <div className="order-status-container">
             {
                 getOrdersReducer.data.map( item =>
-                    <OrderRow
+                    <OrderRowCard
                     key={item._id}
                     orderId={item._id}
-                    shippingData={item.shippingData}
                     paymentStatus={item.paymentStatus}
                     deliveryStatus={item.deliveryStatus}
+                    userId={item.userId}
                     orderItems={item.orderItems}
+                    shippingData={item.shippingData}
                     totalPrice={item.totalPrice}
                     paymentMethod={item.paymentMethod}
+                    orderDate={item.orderDate}
                     />
                 )
             }
