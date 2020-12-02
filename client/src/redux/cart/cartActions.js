@@ -23,7 +23,6 @@ function cartAddItem(data, quantity){
             name: data.name,
             image: data.image,
             price: data.price,
-            stockCount: data.stockCount,
             quantity: quantity
         }
     }

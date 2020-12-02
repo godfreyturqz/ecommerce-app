@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const setIsAuth = () => async(dispatch) => {
+export const userAuth = () => async(dispatch) => {
     
         try {
             axios.get('/api/requireAuth')

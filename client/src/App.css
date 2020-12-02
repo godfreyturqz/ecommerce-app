@@ -4,7 +4,7 @@
   box-sizing: border-box;
   font-family: "century gothic";
 }
-/* structure */
+
 .grid-container {
   display: grid;
   grid-template-areas:

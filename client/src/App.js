@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setIsAuth } from "./redux/auth/authActions";
+import { userAuth } from "./redux/auth/authActions";
 //styles
 import './App.css';
 //components
@@ -27,10 +27,9 @@ function App() {
 
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(setIsAuth())
+    dispatch(userAuth())
     
   }, [dispatch])
-  console.log(authReducer.isAuth)
   
   return (
     <BrowserRouter>
