@@ -7,7 +7,7 @@ form select{
     margin-bottom: 50px;
     padding: 10px;
 }
-.order-header p{
-    color: #303030;
-    padding-bottom: 25px;
+form select option{
+    outline: none;
+    border: none;
 }

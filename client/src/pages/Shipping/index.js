@@ -1,46 +1,31 @@
-import React, { useState } from 'react'
-//styles
+import React from 'react'
 import './styles.css'
-//redux
-import { useDispatch } from "react-redux";
-import { getShippingData, getPaymentMethod } from '../../redux/cart/cartActions';
+import ShippingLogic from './ShippingLogic'
 
 
 function Shipping(props) {
-    const [shippingData, setShippingData] = useState({
-        fullName: 'Godfrey Turqueza',
-        address: 'Mabalacat, Pampanga'
-    })
-    const [paymentMethod, setPaymentMethod] = useState('Cash on delivery')
-
-    const dispatch = useDispatch()
-
-    function submitHandler(e){
-        e.preventDefault()
-        if(shippingData.fullName && shippingData.address){
-            dispatch(getShippingData(shippingData))
-            dispatch(getPaymentMethod(paymentMethod))
-            props.history.push('/placeorder')
-        }
-    }
+    const {shippingData, setPaymentMethod, handleInputs, handleSubmit} = ShippingLogic(props)
     
     return (
         <div>
-            <form onSubmit={submitHandler}>
+            <form onSubmit={handleSubmit}>
                 <h1>Shipping Information</h1>
                 
                 <label>Full name</label>
-                <input type="text" value={shippingData.fullName} onChange={e => setShippingData({...shippingData, fullName: e.target.value})} required/>
+                <input type="text" name ="fullName" value={shippingData.fullName} onChange={handleInputs}/>
 
                 <label>Address</label>
-                <input type="text" value={shippingData.address} onChange={e => setShippingData({...shippingData, address: e.target.value})} required/>
+                <input type="text" name ="address" value={shippingData.address} onChange={handleInputs}/>
+                
+                <label>Contact no.</label>
+                <input type="text" name ="contact" value={shippingData.contact} onChange={handleInputs}/>
 
                 <h1>Payment Method</h1>
                 <select onChange={e => setPaymentMethod(e.target.value)}>
                     <option value="Cash on delivery">Cash on delivery</option>
                     <option value="Paypal">Paypal</option>
-                    <option value="Debit Card">Debit Card</option>
-                    <option value="Credit Card">Credit Card</option>
+                    <option value="Debit Card" disabled>Debit Card</option>
+                    <option value="Credit Card" disabled>Credit Card</option>
                 </select>
                 <button type="submit">Continue</button>
             </form>
