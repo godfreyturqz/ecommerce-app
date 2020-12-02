@@ -8,11 +8,13 @@ function OrderRowCard(props) {
                 <h5>Shipping details</h5>
                 <br/>
                 <p>{props.shippingData.fullName}</p>
-                <p>{props.shippingData.contact}</p>
+                <p>+63 {props.shippingData.contact}</p>
                 <p>{props.shippingData.address}</p>
             </div>
             <div className="OrderRowCard-body">
                 <h5>Orders</h5>
+                <br/>
+                <p>Date: {new Date().toUTCString(props.orderDate)}</p>
                 {
                     props.orderItems.map(item => 
                         <div className="orderItems-container" key={item._id}>

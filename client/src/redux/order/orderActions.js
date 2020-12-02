@@ -16,7 +16,7 @@ export const createOrder = (order) => async (dispatch) => {
 export const getOrders = () => async (dispatch) => {
     dispatch({type: 'GET_ORDER_REQUEST'})
     try {
-        const {data} = await axios.get(`/api/orders`)
+        const data = await axios.get(`/api/orders`).then(({data})=> data.reverse())
         dispatch({type: 'GET_ORDER_SUCCESS', payload: data})
     } catch (error) {
         dispatch({type: 'GET_ORDER_FAIL', payload: error})

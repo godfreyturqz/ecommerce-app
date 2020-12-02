@@ -27,7 +27,7 @@ function PlaceOrder(props) {
                 totalPrice: totalPrice,
                 paymentMethod: cart.paymentMethod
             }))
-            props.history.push('/orderStatus')
+            props.history.push('/orderStatus?placeorder=success')
         }
         else{
             props.history.push('/signin')
