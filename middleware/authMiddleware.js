@@ -12,7 +12,7 @@ module.exports.requireAuth = (req, res, next) => {
         jwt.verify(token, process.env.JWT, (error, decodedToken) => {
             if(error){
                 console.log(error.message)
-                res.redirect('/login')
+                return res.status(401).json({message: 'Invalid token'})
             }
             else{
                 console.log(decodedToken)

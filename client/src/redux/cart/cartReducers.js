@@ -6,6 +6,8 @@ export function cartReducer(state= { loading: false, data: [], error: '' }, acti
                 loading: true,
             }
         case 'ADD_TO_CART_SUCCESS':
+            // const item = action.payload
+            // const product = state.data.find(item => item.productId === item.productId)
             return {
                 loading: false,
                 data: [...state.data, action.payload],
