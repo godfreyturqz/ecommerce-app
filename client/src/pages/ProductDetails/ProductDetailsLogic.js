@@ -4,26 +4,38 @@ import { useSelector, useDispatch } from "react-redux";
 import { getProductDetails } from '../../redux/product/productActions';
 
 function ProductDetailsLogic(props) {
-    // all initial states
     const [quantity, setQuantity] = useState(1)
-    const productDetailsReducer = useSelector(state => state.getProductDetailsReducer)
+    const getProductDetailsReducer = useSelector(state => state.getProductDetailsReducer)
 
-    // to initially load the page and update if there's any update
+    const productId = props.match.params.id
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(getProductDetails(props.match.params.id))
+        // dispatches an action to change the state of getProductDetailsReducer
+        dispatch(getProductDetails(productId))
 
-    }, [dispatch, props.match.params.id])
+    }, [dispatch, productId])
 
-    // counter
-    const decreaseQuantity = () => (quantity > 1) ? setQuantity(prev => prev - 1) : 1
-    const increaseQuantity = () => (quantity < productDetailsReducer.data.stockCount) ? setQuantity(prev => prev + 1) : null
+
+    const decreaseQuantity = () => {
+        if (quantity === 1) return
+        setQuantity(prev => prev - 1)
+    }
+    const increaseQuantity = () => {
+        if (quantity >= getProductDetailsReducer.data.stockCount) return
+        setQuantity(prev => prev + 1)
+    }
+    const handleAddtoCart = () => {
+        props.history.push(`/cart/${productId}?qty=${quantity}`)
+    }
     
-    // add to cart
-    const handleAddtoCart = () => props.history.push(`/cart/${props.match.params.id}?qty=${quantity}`)
 
-
-    return {productDetailsReducer, quantity, decreaseQuantity, increaseQuantity, handleAddtoCart}
+    return {
+        getProductDetailsReducer,
+        quantity,
+        decreaseQuantity, 
+        increaseQuantity, 
+        handleAddtoCart
+    }
 }
 
 export default ProductDetailsLogic
