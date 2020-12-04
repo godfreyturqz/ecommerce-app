@@ -1,7 +1,16 @@
 import React from 'react'
 import './styles.css'
+import axios from 'axios'
 
 function OrderRowCard(props) {
+
+    const handlePayment = async () => {
+        const {data} = await axios.post('/api/payment/paypal')
+        console.log(data)
+        window.location.assign(data.approval_url)
+    }
+    
+
     return (
         <div className="OrderRowCard">
             <div className="OrderRowCard-header">
@@ -37,6 +46,7 @@ function OrderRowCard(props) {
                 <p>Status: {props.paymentStatus}</p>
                 <p>Delivery Status: {props.deliveryStatus}</p>
             </div>
+            <button onClick={handlePayment}>Pay thru Paypal</button>
         </div>
     )
 }
