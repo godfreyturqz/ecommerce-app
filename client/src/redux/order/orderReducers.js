@@ -21,6 +21,27 @@ export function createOrderReducer(state= { loading: false, data: {}, error: '' 
     }
 }
 
+export function orderDetailsReducer(state= { shippingData: {}, paymentMethod: {}, totalPrice: {} }, action){
+    switch(action.type){
+        case 'GET_SHIPPING_DATA':
+            return {
+                ...state,
+                shippingData: action.payload
+            }
+        case 'GET_PAYMENT_METHOD':
+            return {
+                ...state,
+                paymentMethod: action.payload
+            }
+        case 'GET_TOTAL_PRICE':
+            return {
+                ...state,
+                totalPrice: action.payload
+            }
+        default: return state
+    }
+}
+
 export function getOrdersReducer(state= { loading: false, data:[], error: '' }, action){
     switch(action.type){
         case 'GET_ORDER_REQUEST':

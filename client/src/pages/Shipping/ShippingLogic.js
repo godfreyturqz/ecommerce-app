@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch } from "react-redux";
-import { getShippingData, getPaymentMethod } from '../../redux/cart/cartActions';
+import { getShippingData, getPaymentMethod } from '../../redux/order/orderActions';
 
 
 function ShippingLogic(props) {

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-//action creator
+
 export const createOrder = (order) => async (dispatch) => {
     dispatch({type: 'CREATE_ORDER_REQUEST'})
     try {
@@ -21,4 +21,16 @@ export const getOrders = () => async (dispatch) => {
     } catch (error) {
         dispatch({type: 'GET_ORDER_FAIL', payload: error})
     }
+}
+
+export const getShippingData = (shippingData) => (dispatch) => {
+    dispatch({type: 'GET_SHIPPING_DATA', payload: shippingData})
+}
+
+export const getPaymentMethod = (paymentMethod) => (dispatch) => {
+    dispatch({type: 'GET_PAYMENT_METHOD', payload: paymentMethod})
+}
+
+export const getTotalPrice = (totalPrice) => (dispatch) => {
+    dispatch({type: 'GET_TOTAL_PRICE', payload: totalPrice})
 }

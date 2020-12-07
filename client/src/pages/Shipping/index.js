@@ -4,7 +4,13 @@ import ShippingLogic from './ShippingLogic'
 
 
 function Shipping(props) {
-    const {shippingData, setPaymentMethod, handleInputs, handleSubmit} = ShippingLogic(props)
+    
+    const {
+        shippingData, 
+        setPaymentMethod, 
+        handleInputs, 
+        handleSubmit
+    } = ShippingLogic(props)
     
     return (
         <div>

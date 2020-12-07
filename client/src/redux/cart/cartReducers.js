@@ -6,8 +6,14 @@ export function cartReducer(state= { loading: false, data: [], error: '' }, acti
                 loading: true,
             }
         case 'ADD_TO_CART_SUCCESS':
-            // const item = action.payload
-            // const product = state.data.find(item => item.productId === item.productId)
+            const product = state.data.find(item => item.productId === action.payload.productId)
+            if(product){
+                return {
+                    loading: false,
+                    data: state.data.map(item => item.productId === product.productId ? {...item, quantity: item.quantity + action.payload.quantity} : item),
+                    error: ''
+                }
+            }
             return {
                 loading: false,
                 data: [...state.data, action.payload],
@@ -21,19 +27,8 @@ export function cartReducer(state= { loading: false, data: [], error: '' }, acti
             }
         case 'REMOVE_FROM_CART':
             return { 
-                loading: false,
+                ...state,
                 data: state.data.filter(item => item.productId !== action.payload),
-                error: ''
-            }
-        case 'GET_SHIPPING_DATA':
-            return {
-                ...state,
-                shippingData: action.payload
-            }
-        case 'GET_PAYMENT_METHOD':
-            return {
-                ...state,
-                paymentMethod: action.payload
             }
         case 'CART_EMPTY':
             return {
