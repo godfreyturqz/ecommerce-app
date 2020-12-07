@@ -2,11 +2,17 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import './styles.css'
 
-function Sidebar() {
+function Sidebar({setFilteredProducts}) {
+
     function closeMenu(){
       document.querySelector('.sidebar').classList.remove('open')
     }
-  
+    
+    const handleLinks = (value) => {
+      setFilteredProducts(value)
+      closeMenu()
+    }
+    
     return (
         <div className="sidebar">
           <div>
@@ -14,16 +20,16 @@ function Sidebar() {
             <h3>Categories</h3>
           </div>
           <div>
-            <Link to="/" onClick={closeMenu}>
+            <Link to="/" onClick={() => handleLinks('Mountain')}>
               <p>Mountain</p>
             </Link>
-            <Link to="/" onClick={closeMenu}>
+            <Link to="/" onClick={() => handleLinks('Road')}>
               <p>Road</p>
             </Link>
-            <Link to="/" onClick={closeMenu}>
+            <Link to="/" onClick={() => handleLinks('Country')}>
               <p>Country</p>
             </Link>
-            <Link to="/" onClick={closeMenu}>
+            <Link to="/" onClick={() => handleLinks('E-bike')}>
               <p>E-bike</p>
             </Link>
 

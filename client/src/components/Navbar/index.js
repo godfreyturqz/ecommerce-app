@@ -8,7 +8,7 @@ import { userLogout } from "../../redux/auth/authActions";
 
 
 
-function Navbar({authReducer}) {
+function Navbar({authReducer, setFilteredProducts}) {
     const cartItems = useSelector(state => state.cartReducer)
     const dispatch = useDispatch()
 
@@ -19,12 +19,16 @@ function Navbar({authReducer}) {
     const handleLogout = ()=>{
       dispatch(userLogout())
     }
+    const handleLinks = () => {
+      setFilteredProducts('')
+    }
+    
 
     return (
         <nav>
           <div className="brand">
             <FaBars className="bar" onClick={openMenu}/>
-            <Link to='/'>PremiumBikes</Link>
+            <Link to='/' onClick={handleLinks}>PremiumBikes</Link>
           </div>
           <div className="nav-links">
             <Link to='/cart' className="cart-icon">

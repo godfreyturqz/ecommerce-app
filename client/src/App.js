@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { userAuth } from "./redux/auth/authActions";
 //styles
@@ -24,6 +24,7 @@ import ProductManagement from './pages/ProductManagement';
 
 function App() {
   const authReducer = useSelector(state => state.authReducer)
+  const [filteredProducts, setFilteredProducts] = useState('')
 
   const dispatch = useDispatch()
   useEffect(() => {
@@ -34,11 +35,13 @@ function App() {
   return (
     <BrowserRouter>
       <div className="grid-container">
-        <Navbar className="navbar" authReducer={authReducer}/>
-        <Sidebar />
+        <Navbar className="navbar" authReducer={authReducer} setFilteredProducts={setFilteredProducts}/>
+        <Sidebar setFilteredProducts={setFilteredProducts}/>
         <main className="main">
             <Switch>
-              <Route path="/" component={Home} exact/>
+              <Route path="/" exact>
+                <Home filteredProducts={filteredProducts}/>
+              </Route>
               <Route path="/product/details/:id" component={ProductDetails} exact/>
               <Route path="/cart/:id?" component={Cart} exact/>
               <Route path="/shipping" component={Shipping} exact/>
