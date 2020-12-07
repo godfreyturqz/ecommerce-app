@@ -23,7 +23,7 @@ module.exports.createUser = async (req, res)=> {
 // GET ALL USERS
 //------------------------------------
 module.exports.getUsers = async (req,res) => {
-    const data = await UserModel.find()
+    const data = await UserModel.find().lean()
     res.json(data)
 }
 

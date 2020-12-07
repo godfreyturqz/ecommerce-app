@@ -1,4 +1,3 @@
-// MODEL
 const ProductModel = require('../models/ProductModel')
 
 
@@ -23,7 +22,7 @@ module.exports.createProduct = async (req, res, next)=>{
 //.................................
 module.exports.getProductList = async (req, res, next)=>{
     try {
-        const data = await ProductModel.find({})
+        const data = await ProductModel.find({}).lean()
         res.status(200).json(data)
     } catch (error) {
         res.status(404).json(error)
@@ -35,7 +34,7 @@ module.exports.getProductList = async (req, res, next)=>{
 //.................................
 module.exports.getProductDetails = async (req, res, next)=>{
     try {
-        const data = await ProductModel.findById(req.params.id)
+        const data = await ProductModel.findById(req.params.id).lean()
         res.status(200).json(data)
     } catch (error) {
         res.status(404).json(error)

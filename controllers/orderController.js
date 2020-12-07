@@ -1,5 +1,5 @@
-//models
 const OrderModel = require('../models/OrderModel')
+
 
 //******************************************************************
 // CREATE CREATE CREATE >>>>> ORDER
@@ -24,7 +24,7 @@ module.exports.createOrder = async (req, res, next)=>{
 //******************************************************************
 module.exports.getOrderList = async (req, res, next)=>{
     try {
-        const data = await OrderModel.find({})
+        const data = await OrderModel.find({}).lean()
         res.status(200).json(data)
 
     }
