@@ -3,10 +3,20 @@ import './styles.css'
 import axios from 'axios'
 
 function OrderRowCard(props) {
-
+    
     const handlePayment = async () => {
-        const {data} = await axios.post('/api/payment/paypal')
-        console.log(data)
+        const orderItems = props.orderItems.map(item => {
+            return {
+                name: item.name,
+                price: String(item.price),
+                quantity: String(item.quantity),
+                sku: "item",
+                currency: "USD"
+            }
+        })
+        const totalPrice = String(props.totalPrice)
+
+        const {data} = await axios.post('/api/payment/paypal', {orderItems, totalPrice})
         window.location.assign(data.approval_url)
     }
     
@@ -45,8 +55,10 @@ function OrderRowCard(props) {
                 <p>Method: {props.paymentMethod}</p>
                 <p>Status: {props.paymentStatus}</p>
                 <p>Delivery Status: {props.deliveryStatus}</p>
+                <br/>
+                <button onClick={handlePayment}>or Pay thru Paypal</button>
             </div>
-            <button onClick={handlePayment}>Pay thru Paypal</button>
+            
         </div>
     )
 }

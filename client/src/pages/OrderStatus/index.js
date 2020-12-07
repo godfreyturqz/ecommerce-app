@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getOrders } from '../../redux/order/orderActions'
-import OrderRowCard from "../../components/OrderRowCard";
+import OrderRowCard from "./OrderRowCard";
 import './styles.css'
 import axios from 'axios';
 
@@ -9,9 +9,10 @@ import axios from 'axios';
 function OrderStatus(props) {
     const getOrdersReducer = useSelector(state => state.getOrdersReducer)
 
-    const query = new URLSearchParams(props.location.search)
-    console.log(query)
+    // need id
+    // 
 
+    const query = new URLSearchParams(props.location.search)
 
     const dispatch = useDispatch()
     useEffect(() => {
