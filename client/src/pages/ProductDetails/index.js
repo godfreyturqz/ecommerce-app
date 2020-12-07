@@ -4,6 +4,7 @@ import ProductDetailsLogic from "./ProductDetailsLogic";
 //components
 import Loading from "../../components/Loading";
 import { FaCartArrowDown, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import PageNotFound from '../../components/404'
 
 
 function ProductDetails(props) {
@@ -20,6 +21,7 @@ function ProductDetails(props) {
     return (
         getProductDetailsReducer.loading ? <Loading /> :
         getProductDetailsReducer.error ? <div>{getProductDetailsReducer.error}</div> :
+        getProductDetailsReducer.data === null ? <PageNotFound/> :
         <div className="container-details">
             <div className="container-image">
                 <img src={getProductDetailsReducer.data.image} alt="bike" loading="lazy"/>

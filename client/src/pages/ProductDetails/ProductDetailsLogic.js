@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 //redux
 import { useSelector, useDispatch } from "react-redux";
 import { getProductDetails } from '../../redux/product/productActions';
+import { addToCart } from '../../redux/cart/cartActions'
 
 function ProductDetailsLogic(props) {
     const [quantity, setQuantity] = useState(1)
@@ -25,7 +26,9 @@ function ProductDetailsLogic(props) {
         setQuantity(prev => prev + 1)
     }
     const handleAddtoCart = () => {
-        props.history.push(`/cart/${productId}?qty=${quantity}`)
+        // props.history.push(`/cart/${productId}?qty=${quantity}`)
+        dispatch(addToCart(productId, quantity))
+        props.history.push('/cart')
     }
     
 
