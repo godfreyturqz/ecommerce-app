@@ -1,34 +1,17 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import './styles.css'
-//redux
-import { useSelector, useDispatch } from "react-redux";
-import { getProducts, deleteProduct } from "../../redux/product/productActions";
+import ProductManagementLogic from './ProductManagementLogic'
 //components
 import Loading from '../../components/Loading';
 
 
 function ProductManagement(props) {
-    const { loading, data, error } = useSelector(state => state.getProductsReducer)
-    const deleteProductReducer = useSelector(state => state.deleteProductReducer)
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-
-        dispatch(getProducts())
-        
-    }, [dispatch, deleteProductReducer.data])
-
-    const handleEdit = (e) => {
-        props.history.push(`/updateProduct/${e.target.value}`)
-    }
-    const handleDelete = (e) => {
-        dispatch(deleteProduct(e.target.value))
-    }
+    const { getProductsReducer, handleEdit, handleDelete } = ProductManagementLogic(props)
     
     return (
-        loading ? <div><Loading/></div> :
-        error ? <div>{error}</div> :
-        data && data.length !== 0 ?
+        getProductsReducer.loading ? <div><Loading/></div> :
+        getProductsReducer.error ? <div>{getProductsReducer.error}</div> :
+        getProductsReducer.data && getProductsReducer.data.length !== 0 ?
         <div className="table-container">
             <table>
                 <thead className="table-header">
@@ -45,7 +28,7 @@ function ProductManagement(props) {
                 </thead>
                 <tbody>
                 {
-                    data.map( product => 
+                    getProductsReducer.data.map( product => 
                         <tr key={product._id}>
                             <td>{product._id}</td>
                             <td>{product.name}</td>
@@ -54,10 +37,10 @@ function ProductManagement(props) {
                             <td>{product.price}</td>
                             <td>{product.stockCount}</td>
                             <td>
-                                <button onClick={handleEdit} value={product._id}>Edit</button>
+                                <button onClick={() => handleEdit(product._id)}>Edit</button>
                             </td>
                             <td>
-                                <button onClick={handleDelete} value={product._id}>Delete</button>
+                                <button onClick={() => handleDelete(product._id)}>Delete</button>
                             </td>
                         </tr>
                     )
