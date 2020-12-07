@@ -1,20 +1,17 @@
 import React from 'react'
 import './styles.css';
-import Logic from "./logic";
+import AuthenticationLogic from "./AuthenticationLogic";
 import { Link } from "react-router-dom";
 
 
 function Authentication(props) {
-    const {user, handleInputs, handleSubmit, errors, currentUrl} = Logic(props)
+    const { user, handleInputs, handleSubmit, errors, currentUrl } = AuthenticationLogic(props)
 
 
     return (
         <form onSubmit={handleSubmit}>
-            {
-                currentUrl.pathname === '/register'
-                ? <h1>Create an Account</h1>
-                : <h1>Sign in to continue</h1>
-            }
+            <h1>{ currentUrl.pathname === '/register' ? 'Create an Account' : 'Sign in to continue' }</h1>
+
             <label>Email</label>
             <input type="text" name="email" value={user.email} onChange={handleInputs} autoComplete="off"/>
             <p className="error-message">{errors.email}</p>

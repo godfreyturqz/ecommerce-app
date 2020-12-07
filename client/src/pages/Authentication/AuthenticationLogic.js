@@ -3,7 +3,7 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 
 
-function Logic(props) {
+function AuthenticationLogic(props) {
     const [user, setUser] = useState({email: '', password: ''})
     const [errors, setErrors] = useState({email: '', password: ''})
     const currentUrl = useLocation()
@@ -59,4 +59,4 @@ function Logic(props) {
     return {user, handleInputs, handleSubmit, errors, currentUrl}
 }
 
-export default Logic
+export default AuthenticationLogic
