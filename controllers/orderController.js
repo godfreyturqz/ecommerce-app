@@ -24,9 +24,8 @@ module.exports.createOrder = async (req, res, next)=>{
 //******************************************************************
 module.exports.getOrderList = async (req, res, next)=>{
     try {
-        const data = await OrderModel.find({}).lean()
+        const data = await OrderModel.find().lean()
         res.status(200).json(data)
-
     }
     catch (error) {
         res.status(404).json({message: error.message})
@@ -41,7 +40,6 @@ module.exports.updateOrder = async(req, res, next)=>{
         const data = await OrderModel.findByIdAndUpdate(req.params.id, req.body)
         .then(()=> OrderModel.findById(req.params.id))
         res.status(200).json({message: 'updated successfully', data: data._id})
-
     } catch (error) {
         res.status(404).json({message: error.message})
     }
@@ -54,7 +52,6 @@ module.exports.deleteOrder = async (req, res, next)=>{
     try {
         const data = await OrderModel.findByIdAndRemove(req.params.id)
         res.status(200).json({message: 'deleted successfully', data: data._id})
-        
     }
     catch (error) {
         res.status(404).json({message: error.message})
