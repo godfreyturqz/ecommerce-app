@@ -1,45 +1,34 @@
-//react
-import React, { useEffect } from 'react'
-//styles
+import React from 'react'
 import './styles.css'
+import CartLogic from './CartLogic'
 //components
-import Loading from "../../components/Loading";
-//redux
-import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removeFromCart } from '../../redux/cart/cartActions'
+import Loading from "../../components/Loading"
+
 
 function Cart(props) {
-    const { loading, data, error } = useSelector(state => state.cartReducer)
+
+    const { 
+        cartReducer, 
+        totalPrice, 
+        handleRemoveFromCart, 
+        handleCheckout 
+    } = CartLogic(props)
     
-    const dispatch = useDispatch()
-
-    const productId = props.match.params.id
-    const quantity = props.location.search ? Number(props.location.search.split("=")[1]) : 1
-
-    useEffect(() => {
-
-        if(productId) dispatch(addToCart(productId, quantity))
-
-    }, [dispatch, productId, quantity])
-        
-    const removeFromCartHandler = productId => dispatch(removeFromCart(productId))
-    const checkoutHandler = () => props.history.push("/shipping")
     
     return (
-        loading ? <Loading />
-        : error ? <div>{error}</div>
-        :
-        <div >
+        cartReducer.loading ? <Loading /> :
+        cartReducer.error ? <div>{cartReducer.error}</div> :
+        <>
             <div className="header-container">
                 <div className="header-wrapper">
                     <h2>Shopping Cart</h2>
                 </div>
             </div>
             {   
-                data.length === 0
+                cartReducer.data.length === 0
                 ? <div className="cart-empty">Cart is empty</div> 
-                : data.map( item=> 
-                    <div className="cart-container" key={item._id}>
+                : cartReducer.data.map( item => 
+                    <div className="cart-container" key={item.productId}>
                         <div className="cart-grid">
                             <div className="cart-image">
                                 <img src={item.image} alt="bike"/>
@@ -56,19 +45,19 @@ function Cart(props) {
                             </div>
                         </div>
                         <div className="button-wrapper">
-                            <button onClick={()=> removeFromCartHandler(item.productId)}>Delete</button>
+                            <button onClick={()=> handleRemoveFromCart(item.productId)}>Delete</button>
                         </div>
                     </div>
                 )
             }
             {   
-                data.length !== 0 && 
+                cartReducer.data.length !== 0 && 
                 <div className="cart-checkout">
-                    <p><span>Total: </span>$ {data.map(item => item.price * item.quantity).reduce((prev, next) => prev + next, 0)}</p>
-                    <button onClick={checkoutHandler}>Proceed to checkout</button>
+                    <p><span>Total: </span>$ {totalPrice}</p>
+                    <button onClick={handleCheckout}>Proceed to checkout</button>
                 </div>
             }
-        </div>
+        </>
     )
 }
 
