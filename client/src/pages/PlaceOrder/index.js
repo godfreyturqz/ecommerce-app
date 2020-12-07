@@ -1,55 +1,27 @@
 import React from 'react'
-//styles
 import './styles.css'
-//redux
-import { userAuth } from "../../redux/auth/authActions";
-import { createOrder } from "../../redux/order/orderActions";
-import { useDispatch, useSelector } from "react-redux";
+import PlaceOrderLogic from './PlaceOrderLogic'
 
 
 function PlaceOrder(props) {
-    const cart = useSelector(state => state.cartReducer)
-    const authReducer = useSelector(state => state.authReducer)
-
-    const totalPrice = cart.data.map(item => item.price * item.quantity).reduce((prev, next) => prev + next, 0)
-
-    const dispatch = useDispatch()
-
-    function placeOrderHandler(e){
-        e.preventDefault()
-        // format of object should be the same with OrderModel in the backend
-        dispatch(userAuth())
-        if(authReducer.userId){
-            dispatch(createOrder({
-                userId: authReducer.userId,
-                orderItems: cart.data,
-                shippingData: cart.shippingData,
-                totalPrice: totalPrice,
-                paymentMethod: cart.paymentMethod
-            }))
-            props.history.push('/orderStatus?placeorder=success')
-        }
-        else{
-            props.history.push('/signin')
-        }
-        
-        
-    }
+    const { cartReducer, orderDetailsReducer, handlePlaceOrder } = PlaceOrderLogic(props)
+    
     
     return (
-        <div>
+        <>
             <div className="order-header">
                 <h1>Shipping Information</h1>
-                <p>Name: {cart.shippingData.fullName}</p>
-                <p>Address: {cart.shippingData.address}</p>
+                <p>Name: {orderDetailsReducer.shippingData.fullName}</p>
+                <p>Contact: {orderDetailsReducer.shippingData.contact}</p>
+                <p>Address: {orderDetailsReducer.shippingData.address}</p>
                 <h1>Payment</h1>
-                <p>Method: {cart.paymentMethod}</p>
+                <p>Method: {orderDetailsReducer.paymentMethod}</p>
             </div>
             {   
-                cart.data.length === 0
+                cartReducer.data.length === 0
                 ? <div className="cart-empty">Cart is empty</div> 
-                : cart.data.map( item => 
-                    <div className="cart-container" key={item._id}>
+                : cartReducer.data.map( item => 
+                    <div className="cart-container" key={item.productId}>
                         <div className="cart-grid">
                             <div className="cart-image">
                                 <img src={item.image} alt="bike"/>
@@ -69,13 +41,13 @@ function PlaceOrder(props) {
                 )
             }
             {   
-                cart.data.length !== 0 && 
+                cartReducer.data.length !== 0 && 
                 <div className="cart-checkout">
-                    <p><span>Total: </span>$ {totalPrice}</p>
-                    <button onClick={placeOrderHandler}>Place Order</button>
+                    <p><span>Total: </span>$ {orderDetailsReducer.totalPrice}</p>
+                    <button onClick={handlePlaceOrder}>Place Order</button>
                 </div>
             }
-        </div>
+        </>
     )
 }
 
