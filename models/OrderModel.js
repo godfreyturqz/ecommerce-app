@@ -26,13 +26,13 @@ const orderSchema = new Schema({
         type: String,
         required: true
     },
-    paymentStatus: {
-        type: String,
-        default: 'Pending'
+    isPaid: {
+        type: Boolean,
+        default: false
     },
-    deliveryStatus: {
-        type: String,
-        default: 'On process'
+    isDelivered: {
+        type: Boolean,
+        default: false
     },
     orderDate : {
         type: Date,
