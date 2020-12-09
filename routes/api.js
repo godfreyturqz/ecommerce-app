@@ -37,6 +37,7 @@ router.delete('/deleteAll', authController.deleteAllUsers)
 //.............................................
 router.post('/orders', orderController.createOrder)
 router.get('/orders', orderController.getOrderList)
+router.get('/orders/:id', orderController.getOrderDetails)
 router.put('/orders/:id', orderController.updateOrder)
 router.delete('/orders/:id', orderController.deleteOrder)
 
@@ -48,31 +49,30 @@ paypal.configure({
     'client_id': process.env.PAYPAL_CLIENT_ID,
     'client_secret': process.env.PAYPAL_CLIENT_SECRET
 })
-router.post('/payment/paypal' , (req, res) => {
+router.post('/payment/paypal/create' , (req, res) => {
+    
+    const orderItems = req.body.orderItems
+    const totalPrice = req.body.totalPrice
+    const orderId = req.body.orderId
+
     const create_payment_json = {
         "intent": "sale",
         "payer": {
             "payment_method": "paypal"
         },
         "redirect_urls": {
-            "return_url": "http://localhost:3000/orderStatus",
+            "return_url": `http://localhost:3000/order/details/${orderId}?totalPrice=${totalPrice}`,
             "cancel_url": "http://localhost:3000/cancel"
         },
         "transactions": [{
             "item_list": {
-                "items": [{
-                    "name": "Mountain bike item",
-                    "sku": "item",
-                    "price": "900.00",
-                    "currency": "USD",
-                    "quantity": 2
-                }]
+                "items": orderItems
             },
             "amount": {
                 "currency": "USD",
-                "total": "100.00"
+                "total": totalPrice
             },
-            "description": "This is the payment description."
+            "description": "Payment for PremiumBikes."
         }]
     }
     paypal.payment.create(create_payment_json, function (error, payment) {
@@ -85,16 +85,18 @@ router.post('/payment/paypal' , (req, res) => {
     });
 })
 
-router.post('/payment/paypalExecute', (req, res) => {
-    const payerId = req.body.PayerID;
-    const paymentId = req.body.paymentId;
+router.post('/payment/paypal/execute', (req, res) => {
+
+    const PayerID = req.body.PayerID
+    const paymentId = req.body.paymentId
+    const totalPrice = req.body.totalPrice
 
     const execute_payment_json = {
-        "payer_id": payerId,
+        "payer_id": PayerID,
         "transactions": [{
             "amount": {
                 "currency": "USD",
-                "total": "100.00"
+                "total": totalPrice
             }
         }]
     }
@@ -103,11 +105,11 @@ router.post('/payment/paypalExecute', (req, res) => {
             console.log(error.response);
             throw error;
         } else {
-            console.log(JSON.stringify(payment));
-            res.send('Success');
+            // console.log(JSON.stringify(payment));
+            console.log('payment success')
+            res.json('Success');
         }
     })
-
 
 })
 
