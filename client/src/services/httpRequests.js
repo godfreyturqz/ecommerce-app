@@ -1,19 +1,26 @@
 import axios from 'axios'
 
-export const httpReqProducts = (httpRequest, id = '', objectData = {}) => {
-    const config = {
-        url: `/api/products/${id}`,
-        method: httpRequest,
-        data: objectData
+export class HttpRequest {
+    constructor(httpRequest, id = '', objectData = {}){
+        this.httpRequest = httpRequest
+        this.id = id
+        this.objectData = objectData
     }
-    return axios(config)
-}
 
-export const httpReqOrders = (httpRequest, id = '', objectData = {}) => {
-    const config = {
-        url: `/api/orders/${id}`,
-        method: httpRequest,
-        data: objectData
+    products(){
+        return axios({
+            url: `/api/products/${this.id}`,
+            method: this.httpRequest,
+            data: this.objectData
+        })
     }
-    return axios(config)
+
+    orders(){
+        return axios({
+            url: `/api/orders/${this.id}`,
+            method: this.httpRequest,
+            data: this.objectData
+        })
+    }
+
 }
