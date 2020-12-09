@@ -1,6 +1,7 @@
 import React from 'react'
 import './styles.css'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 function OrderRowCard(props) {
     
@@ -15,8 +16,9 @@ function OrderRowCard(props) {
             }
         })
         const totalPrice = String(props.totalPrice)
+        const orderId = String(props.orderId)
 
-        const {data} = await axios.post('/api/payment/paypal', {orderItems, totalPrice})
+        const {data} = await axios.post('/api/payment/paypal/create', {orderItems, totalPrice, orderId})
         window.location.assign(data.approval_url)
     }
     
@@ -38,7 +40,9 @@ function OrderRowCard(props) {
                     props.orderItems.map(item => 
                         <div className="orderItems-container" key={item._id}>
                             <div className="imgWrapper">
-                                <img src={item.image} alt="product"/>
+                                <Link to={`/order/details/${props.orderId}`}>
+                                    <img src={item.image} alt="product"/>
+                                </Link>
                             </div>
                             <div>
                                 <h3>{item.name}</h3>
@@ -53,8 +57,8 @@ function OrderRowCard(props) {
                 <br/>
                 <p>Total Price: $ {props.totalPrice}</p>
                 <p>Method: {props.paymentMethod}</p>
-                <p>Status: {props.paymentStatus}</p>
-                <p>Delivery Status: {props.deliveryStatus}</p>
+                <p>Status: {props.isPaid ? 'Paid' : 'Not yet paid'}</p>
+                <p>Delivery Status: {props.isDelivered? 'Done' : 'Processing'}</p>
                 <br/>
                 <button onClick={handlePayment}>or Pay thru Paypal</button>
             </div>

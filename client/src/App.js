@@ -15,7 +15,8 @@ import Cart from './pages/Cart';
 import CreateProduct from './pages/CreateProduct';
 import Home from "./pages/Home";
 import PlaceOrder from './pages/PlaceOrder';
-import OrderStatus from './pages/OrderStatus';
+import Orders from './pages/Orders';
+import OrderDetails from './pages/Orders/OrderDetails'
 import ProductDetails from './pages/ProductDetails';
 import Shipping from './pages/Shipping';
 import Authentication from './pages/Authentication';
@@ -49,7 +50,8 @@ function App() {
               <Route path="/createProduct" component={CreateProduct} exact/>
               <Route path="/updateProduct/:id" component={CreateProduct} exact/>
               <Route path="/productManagement" component={ProductManagement} exact/>
-              <Route path="/orderStatus" component={OrderStatus} exact/>
+              <Route path="/orders" component={Orders} exact/>
+              <Route path="/order/details/:id" component={OrderDetails} exact/>
               <Route path="/signin" component={Authentication} exact/>
               <Route path="/register" component={Authentication} exact/>
               <Route path="/" component={PageNotFound} />

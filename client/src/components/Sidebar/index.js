@@ -35,7 +35,7 @@ function Sidebar({setFilteredProducts}) {
 
             <br/><br/><br/><br/><br/>
             <h3>Admin Section</h3>
-            <Link to='/orderStatus' onClick={closeMenu}>
+            <Link to='/orders' onClick={closeMenu}>
               <p>Order Status</p>
             </Link>
             <a href="/createProduct" onClick={closeMenu}>
