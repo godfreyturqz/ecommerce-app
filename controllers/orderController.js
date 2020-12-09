@@ -4,7 +4,7 @@ const OrderModel = require('../models/OrderModel')
 //******************************************************************
 // CREATE CREATE CREATE >>>>> ORDER
 //******************************************************************
-module.exports.createOrder = async (req, res, next)=>{
+module.exports.createOrder = async (req, res) => {
     if(req.body.orderItems.length === 0){
         res.status(400).json({message: 'Cart is empty'})
     }
@@ -22,7 +22,7 @@ module.exports.createOrder = async (req, res, next)=>{
 //******************************************************************
 // GET GET GET >>>>> ORDER
 //******************************************************************
-module.exports.getOrderList = async (req, res, next)=>{
+module.exports.getOrderList = async (req, res) => {
     try {
         const data = await OrderModel.find().lean()
         res.status(200).json(data)
@@ -32,10 +32,19 @@ module.exports.getOrderList = async (req, res, next)=>{
     }
 }
 
+module.exports.getOrderDetails = async (req, res) => {
+    try {
+        const data = await OrderModel.findById(req.params.id).lean()
+        res.status(200).json(data)
+    } catch (error) {
+        res.status(404).json({message: error.message})
+    }
+}
+
 //******************************************************************
 // UPDATE UPDATE UPDATE >>>>> ORDER
 //******************************************************************
-module.exports.updateOrder = async(req, res, next)=>{
+module.exports.updateOrder = async(req, res) => {
     try {
         const data = await OrderModel.findByIdAndUpdate(req.params.id, req.body)
         .then(()=> OrderModel.findById(req.params.id))
@@ -48,7 +57,7 @@ module.exports.updateOrder = async(req, res, next)=>{
 //******************************************************************
 // DELETE DELETE DELETE >>>>> ORDER
 //******************************************************************
-module.exports.deleteOrder = async (req, res, next)=>{
+module.exports.deleteOrder = async (req, res) => {
     try {
         const data = await OrderModel.findByIdAndRemove(req.params.id)
         res.status(200).json({message: 'deleted successfully', data: data._id})
