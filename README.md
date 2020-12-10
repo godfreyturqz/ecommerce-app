@@ -3,30 +3,30 @@ The goal of this project is to imitate an e-commerce platform like Amazon using 
 
 ## Features
 1. Display list of products saved from cloud database
-2. Create, read, delete and update products(for admins)
-3. Add to cart
-4. Place an order
-5. Fully responsive
-6. Sign-in page
+2. Sort all products by price and filter by category
+3. Create, read, delete and update products(for admins)
+4. Add to cart
+5. Place an order
+6. Fully responsive
 
-## Future Features
+## Newly Added Features
 1. Payment through Paypal
 2. User Authentication
 
 ## Live Demo
-https://lit-harbor-78554.herokuapp.com
+https://premium-bikes.herokuapp.com/
 
 ## Technologies used
-1. Frontend - React JS
-2. Backend - NodeJS
+1. Frontend - React
+2. Backend - Node/Express
 3. Cloud Database - MongoDB
 
 ## Essential Dependencies
 1. axios
-2. react-file-base64
-3. redux
+2. react-router-dom
+3. redux/ redux-thunk
 4. express
 5. mongoose
-
-
-
+6. jsonwebtoken
+7. bcrypt
+8. paypal-rest-sdk
