@@ -4,9 +4,13 @@ import PlaceOrderLogic from './PlaceOrderLogic'
 
 
 function PlaceOrder(props) {
-    const { cartReducer, orderDetailsReducer, handlePlaceOrder } = PlaceOrderLogic(props)
-    
-    
+
+    const { 
+        cartReducer, 
+        orderDetailsReducer, 
+        handlePlaceOrder 
+    } = PlaceOrderLogic(props)
+
     return (
         <>
             <div className="order-header">

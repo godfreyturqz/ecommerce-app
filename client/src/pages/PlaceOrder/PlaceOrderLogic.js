@@ -1,6 +1,7 @@
 import { userAuth } from "../../redux/auth/authActions"
 import { createOrder } from "../../redux/order/orderActions"
 import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from "react"
 
 function PlaceOrderLogic(props) {
     
@@ -10,7 +11,7 @@ function PlaceOrderLogic(props) {
 
     const dispatch = useDispatch()
 
-    function handlePlaceOrder(e){
+    const handlePlaceOrder = (e) => {
         e.preventDefault()
         // format of object should be the same with OrderModel in the backend
         dispatch(userAuth())
@@ -23,12 +24,17 @@ function PlaceOrderLogic(props) {
                 paymentMethod: orderDetailsReducer.paymentMethod
             }))
             props.history.push('/orderStatus?placeorder=success')
-        }
-        else{
+        } else {
             props.history.push('/signin')
         }
     }
-    return { cartReducer, orderDetailsReducer, handlePlaceOrder }
+
+
+    return { 
+        cartReducer, 
+        orderDetailsReducer, 
+        handlePlaceOrder 
+    }
 }
 
 export default PlaceOrderLogic

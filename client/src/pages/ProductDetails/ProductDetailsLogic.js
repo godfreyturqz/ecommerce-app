@@ -26,7 +26,6 @@ function ProductDetailsLogic(props) {
         setQuantity(prev => prev + 1)
     }
     const handleAddtoCart = () => {
-        // props.history.push(`/cart/${productId}?qty=${quantity}`)
         dispatch(addToCart(productId, quantity))
         props.history.push('/cart')
     }
