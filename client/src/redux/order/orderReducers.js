@@ -21,7 +21,7 @@ export function createOrderReducer(state= { loading: false, data: {}, error: '' 
     }
 }
 
-export function orderDetailsReducer(state= { shippingData: {}, paymentMethod: {}, totalPrice: {} }, action){
+export function orderDetailsReducer(state= {}, action){
     switch(action.type){
         case 'GET_SHIPPING_DATA':
             return {
@@ -29,14 +29,14 @@ export function orderDetailsReducer(state= { shippingData: {}, paymentMethod: {}
                 shippingData: action.payload
             }
         case 'GET_PAYMENT_METHOD':
-            return {
+            return { 
                 ...state,
-                paymentMethod: action.payload
+                paymentMethod: action.payload 
             }
         case 'GET_TOTAL_PRICE':
-            return {
+            return { 
                 ...state,
-                totalPrice: action.payload
+                totalPrice: action.payload 
             }
         default: return state
     }
@@ -58,7 +58,30 @@ export function getOrdersReducer(state= { loading: false, data:[], error: '' }, 
         case 'GET_ORDER_FAIL':
             return {
                 loading: false,
-                data: [...state.data],
+                data: [],
+                error: action.payload
+            }
+        default: return state
+    }
+}
+
+export function getOrderDetailsReducer(state= { loading: false, data:{}, error: '' }, action){
+    switch(action.type){
+        case 'GET_ORDER_DETAILS_REQUEST':
+            return {
+                ...state,
+                loading: true
+            }
+        case 'GET_ORDER_DETAILS_SUCCESS':
+            return {
+                loading: false,
+                data: action.payload,
+                error: ''
+            }
+        case 'GET_ORDER_DETAILS_ERROR':
+            return {
+                loading: false,
+                data: {},
                 error: action.payload
             }
         default: return state
