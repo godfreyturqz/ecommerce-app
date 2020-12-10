@@ -7,8 +7,8 @@ function Shipping(props) {
     
     const {
         shippingData, 
-        setPaymentMethod, 
         handleInputs, 
+        handlePaymentMethod, 
         handleSubmit
     } = ShippingLogic(props)
     
@@ -16,7 +16,7 @@ function Shipping(props) {
         <div>
             <form onSubmit={handleSubmit}>
                 <h1>Shipping Information</h1>
-                
+
                 <label>Full name</label>
                 <input type="text" name ="fullName" value={shippingData.fullName} onChange={handleInputs}/>
 
@@ -27,7 +27,7 @@ function Shipping(props) {
                 <input type="text" name ="contact" value={shippingData.contact} onChange={handleInputs}/>
 
                 <h1>Payment Method</h1>
-                <select onChange={e => setPaymentMethod(e.target.value)}>
+                <select onChange={handlePaymentMethod}>
                     <option value="Cash on delivery">Cash on delivery</option>
                     <option value="Paypal">Paypal</option>
                     <option value="Debit Card" disabled>Debit Card</option>
@@ -35,7 +35,6 @@ function Shipping(props) {
                 </select>
                 <button type="submit">Continue</button>
             </form>
-            
         </div>
     )
 }

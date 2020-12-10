@@ -11,7 +11,18 @@ function ShippingLogic(props) {
     })
     const [paymentMethod, setPaymentMethod] = useState('Cash on delivery')
     const dispatch = useDispatch()
+
     
+    const handleInputs = (e) => {
+        setShippingData({
+            ...shippingData,
+            [e.target.name]: e.target.value
+        })
+    }
+    const handlePaymentMethod = (e) => {
+        setPaymentMethod(e.target.value)
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
 
@@ -21,16 +32,14 @@ function ShippingLogic(props) {
             props.history.push('/placeorder')
         }
     }
-    
-    const handleInputs = (e) => {
-        setShippingData({
-            ...shippingData,
-            [e.target.name]: e.target.value
-        })
-    }
 
-    return {shippingData, setPaymentMethod, handleInputs, handleSubmit}
+
+    return {
+        shippingData, 
+        handleInputs, 
+        handlePaymentMethod, 
+        handleSubmit
+    }
 }
 
 export default ShippingLogic
-
