@@ -9,7 +9,7 @@ export const createOrder = (order) => async (dispatch) => {
         dispatch({type: 'CREATE_ORDER_SUCCESS', payload: data})
         dispatch({type: 'CART_EMPTY'})
     } catch (error) {
-        dispatch({type: 'CREATE_ORDER_FAIL', payload: error})
+        dispatch({type: 'CREATE_ORDER_FAIL', payload: error.message})
     }
 }
 
@@ -20,7 +20,7 @@ export const getOrders = () => async (dispatch) => {
         const {data} = await new HttpRequest('GET').orders()
         dispatch({type: 'GET_ORDER_SUCCESS', payload: data})
     } catch (error) {
-        dispatch({type: 'GET_ORDER_FAIL', payload: error})
+        dispatch({type: 'GET_ORDER_FAIL', payload: error.message})
     }
 }
 
@@ -31,7 +31,7 @@ export const getOrderDetails = (orderId) => async (dispatch) => {
         const {data} = await new HttpRequest('GET', orderId).orders()
         dispatch({type: 'GET_ORDER_DETAILS_SUCCESS', payload: data})
     } catch (error) {
-        dispatch({type: 'GET_ORDER_DETAILS_ERROR'})
+        dispatch({type: 'GET_ORDER_DETAILS_ERROR', payload: error.message})
     }
 }
 
