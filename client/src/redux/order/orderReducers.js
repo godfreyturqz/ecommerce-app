@@ -65,7 +65,7 @@ export function getOrdersReducer(state= { loading: false, data:[], error: '' }, 
     }
 }
 
-export function getOrderDetailsReducer(state= { loading: false, data:{}, error: '' }, action){
+export function getOrderDetailsReducer(state= {}, action){
     switch(action.type){
         case 'GET_ORDER_DETAILS_REQUEST':
             return {
@@ -74,14 +74,14 @@ export function getOrderDetailsReducer(state= { loading: false, data:{}, error: 
             }
         case 'GET_ORDER_DETAILS_SUCCESS':
             return {
+                ...state,
                 loading: false,
-                data: action.payload,
-                error: ''
+                data: action.payload
             }
         case 'GET_ORDER_DETAILS_ERROR':
             return {
+                ...state,
                 loading: false,
-                data: {},
                 error: action.payload
             }
         default: return state
