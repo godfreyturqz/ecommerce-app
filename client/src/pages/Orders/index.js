@@ -1,38 +1,22 @@
-import React, {useEffect} from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { getOrders } from '../../redux/order/orderActions'
-import OrderRowCard from "./OrderRowCard";
+import React from 'react'
 import './styles.css'
+import OrdersLogic from './OrdersLogic'
+//components
+import OrderRowCard from "./OrderRowCard"
+import Loading from '../../components/Loading'
 
 
 function Orders() {
-    const getOrdersReducer = useSelector(state => state.getOrdersReducer)
 
-    const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(getOrders())
-
-    }, [dispatch])
+    const { getOrdersReducer } = OrdersLogic()
     
     return (
-        getOrdersReducer.data.length === 0 ? <div>There are no orders</div>
-        :
+        getOrdersReducer.loading ? <Loading /> :
+        getOrdersReducer.error ? <div>{getOrdersReducer.error}</div> :
+        getOrdersReducer.data.length === 0 ? <div>There are no orders</div> :
         <div className="order-status-container">
             {
-                getOrdersReducer.data.map( item =>
-                    <OrderRowCard
-                        key={item._id}
-                        orderId={item._id}
-                        isPaid={item.isPaid}
-                        isDelivered={item.isDelivered}
-                        userId={item.userId}
-                        orderItems={item.orderItems}
-                        shippingData={item.shippingData}
-                        totalPrice={item.totalPrice}
-                        paymentMethod={item.paymentMethod}
-                        orderDate={item.orderDate}
-                    />
-                )
+                getOrdersReducer.data.map(item => <OrderRowCard key={item._id} {...item} />)
             }
         </div>
     )

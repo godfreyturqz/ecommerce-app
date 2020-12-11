@@ -1,35 +1,22 @@
-import React, {useEffect} from 'react'
+import React from 'react'
+import './styles.css'
+import OrderDetailsLogic from './OrderDetailsLogic'
+//components
 import OrderRowCard from '../OrderRowCard'
-import { useSelector, useDispatch } from 'react-redux'
-import { getOrderDetails } from '../../../redux/order/orderActions'
-import { useParams } from 'react-router-dom'
-import axios from 'axios';
+import Loading from '../../../components/Loading'
+
 
 function OrderDetails(props) {
-    const getOrderDetailsReducer = useSelector(state => state.getOrderDetailsReducer)
-    const dispatch = useDispatch()
-    const {id: orderId} = useParams()
-    const query = new URLSearchParams(props.location.search)
 
-    useEffect(() => {
-        dispatch(getOrderDetails(orderId))
-
-        const data = {
-            paymentId: query.get('paymentId'),
-            PayerID: query.get('PayerID'),
-            totalPrice: query.get('totalPrice'),
-            orderId: orderId
-        }
-        if(data.paymentId && data.PayerID && data.totalPrice && data.orderId){
-            axios.post('/api/payment/paypal/execute2', data)
-        }
-
-    }, [dispatch])
-    
+    const { getOrderDetailsReducer } = OrderDetailsLogic(props)
 
     return (
-        <div>
-           {JSON.stringify(getOrderDetailsReducer.data)}
+        getOrderDetailsReducer.loading ? <Loading /> :
+        getOrderDetailsReducer.error ? <div>{getOrderDetailsReducer.error}</div> :
+        getOrderDetailsReducer.data === undefined ? <div>Data undefined</div> :
+        getOrderDetailsReducer.data.length === 0 ? <div>There are no orders</div> :
+        <div className="order-details-container">
+            <OrderRowCard {...getOrderDetailsReducer.data} />
         </div>
     )
 }
