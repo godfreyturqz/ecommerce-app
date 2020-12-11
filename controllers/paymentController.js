@@ -20,7 +20,7 @@ module.exports.createPayment = (req, res) => {
             "payment_method": "paypal"
         },
         "redirect_urls": {
-            "return_url": `http://localhost:3000/order/details/${orderId}?totalPrice=${totalPrice}`,
+            "return_url": `http://localhost:3000/order/payment/${orderId}?totalPrice=${totalPrice}`,
             "cancel_url": "http://localhost:3000/cancel"
         },
         "transactions": [{

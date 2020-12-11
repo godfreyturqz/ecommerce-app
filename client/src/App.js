@@ -21,6 +21,7 @@ import ProductDetails from './pages/ProductDetails';
 import Shipping from './pages/Shipping';
 import Authentication from './pages/Authentication';
 import ProductManagement from './pages/ProductManagement';
+import Payment from "./pages/Payment";
 
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
               <Route path="/productManagement" component={ProductManagement} exact/>
               <Route path="/orders" component={Orders} exact/>
               <Route path="/order/details/:id" component={OrderDetails} exact/>
+              <Route path="/order/payment/:id" component={Payment} exact/>
               <Route path="/signin" component={Authentication} exact/>
               <Route path="/register" component={Authentication} exact/>
               <Route path="/" component={PageNotFound} />
