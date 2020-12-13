@@ -1,4 +1,4 @@
-import { LocalStorage } from '../../services/LocalStorage'
+import { LocalStorage } from '../../services/localStorage'
 
 
 const localStr = new LocalStorage()

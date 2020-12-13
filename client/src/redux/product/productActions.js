@@ -1,5 +1,5 @@
 import { ApiRequest } from '../../services/ApiRequests'
-import { LocalStorage } from '../../services/LocalStorage'
+import { LocalStorage } from '../../services/localStorage'
 
 
 export const createProduct = (productData) => async (dispatch) => {
