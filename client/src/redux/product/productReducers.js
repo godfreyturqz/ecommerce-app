@@ -1,5 +1,4 @@
-//create reducer
-export function createProductReducer(state= { loading: false, data: {}, error: '' }, action) {
+export const createProductReducer = (state= { loading: false, data: {}, error: '' }, action) => {
     switch(action.type){
         case 'CREATE_PRODUCT_REQUEST':
             return {
@@ -22,8 +21,7 @@ export function createProductReducer(state= { loading: false, data: {}, error: '
     }
 }
 
-//getProductList reducer
-export function getProductsReducer(state= { loading: false, data: [], error: '' }, action) {
+export const getProductsReducer = (state= { loading: false, data: [], error: '' }, action) => {
     switch(action.type){
         case 'GET_PRODUCTS_REQUEST':
             return {
@@ -46,8 +44,7 @@ export function getProductsReducer(state= { loading: false, data: [], error: '' 
     }
 }
 
-//getProductDetails reducer
-export function getProductDetailsReducer(state= { loading: false, data: {}, error: '' }, action){
+export const getProductDetailsReducer = (state= { loading: false, data: {}, error: '' }, action) => {
     switch(action.type){
         case 'GET_PRODUCT_DETAILS_REQUEST':
             return {
@@ -70,8 +67,7 @@ export function getProductDetailsReducer(state= { loading: false, data: {}, erro
     }
 }
 
-//update reducer
-export function updateProductReducer(state= { loading: false, data: {}, error: '' }, action){
+export const updateProductReducer = (state= { loading: false, data: {}, error: '' }, action) => {
     switch(action.type){
         case 'UPDATE_PRODUCT_REQUEST':
             return {
@@ -94,8 +90,7 @@ export function updateProductReducer(state= { loading: false, data: {}, error: '
     }
 }
 
-//delete reducer
-export function deleteProductReducer(state= { loading: false, data: {}, error: '' }, action){
+export const deleteProductReducer = (state= { loading: false, data: {}, error: '' }, action) => {
     switch(action.type){
         case 'DELETE_PRODUCT_REQUEST':
             return {
@@ -117,5 +112,3 @@ export function deleteProductReducer(state= { loading: false, data: {}, error: '
         default: return state
     }
 }
-
-

@@ -5,19 +5,20 @@ import CartLogic from './CartLogic'
 import Loading from "../../components/Loading"
 
 
-function Cart(props) {
+const Cart = (props) => {
 
     const { 
-        cartReducer, 
-        totalPrice, 
-        handleRemoveFromCart, 
-        handleCheckout 
+        cartReducer,
+        totalPrice,
+        handleRemoveFromCart,
+        handleCheckout
     } = CartLogic(props)
     
     
     return (
         cartReducer.loading ? <Loading /> :
         cartReducer.error ? <div>{cartReducer.error}</div> :
+        cartReducer.data === undefined ? <div>Data is undefined.</div> :
         <>
             <div className="header-container">
                 <div className="header-wrapper">
