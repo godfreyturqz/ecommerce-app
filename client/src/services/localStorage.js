@@ -1,31 +1,50 @@
-export const isStorageExpired = (key) => {
-	const itemStr = localStorage.getItem(key)
-	if (!itemStr) return null
+export class LocalStorage {
 
-	const item = JSON.parse(itemStr)
-	const now = new Date()
-
-	if (now.getTime() > item.maxAge) {
-		console.log(now.getTime() - item.maxAge)
-		localStorage.removeItem(key)
-		return null
+	isStorageExpired = (key) => {
+		const itemStr = localStorage.getItem(key)
+		if (!itemStr) return null
+	
+		const item = JSON.parse(itemStr)
+		const now = new Date()
+	
+		if (now.getTime() > item.maxAge) {
+			console.log(now.getTime() - item.maxAge)
+			localStorage.removeItem(key)
+			return null
+		}
+	
+		return item.value
 	}
 
-	return item.value
-}
-
-export const setProductStorage = (data) => {
-	const item = {
-		value: data, 
-		maxAge : new Date().getTime() + 86400000
+	setProductStorage = (data) => {
+		const item = {
+			value: data, 
+			maxAge : new Date().getTime() + 86400000
+		}
+	
+		return localStorage.setItem("products", JSON.stringify(item))
 	}
 
-	return localStorage.setItem("products", JSON.stringify(item))
-}
+	getProductStorage = (productId) => {
+		const itemStr = localStorage.getItem("products")
+		if (!itemStr) return null
+	
+		return JSON.parse(itemStr).value.find(product => product._id === productId)
+	}
 
-export const getProductStorage = (productId) => {
-	const itemStr = localStorage.getItem("products")
-	if (!itemStr) return null
+	setCartStorage = (data) => {
+		const item = {
+			value: data,
+			maxAge: new Date().getTime() + 86400000
+		}
+		return localStorage.setItem("cart", JSON.stringify(item))
+	}
 
-	return JSON.parse(itemStr).value.find(product => product._id === productId)
+	getCartStorage = (productId) => {
+		const itemStr = localStorage.getItem("cart")
+		if (!itemStr) return null
+
+		return JSON.parse(itemStr).value.find(product => product._id === productId)
+	}
+
 }
