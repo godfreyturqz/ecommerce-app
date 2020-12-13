@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export class HttpRequest {
+export class ApiRequest {
     constructor(httpRequest, id = '', objectData = {}){
         this.httpRequest = httpRequest
         this.id = id

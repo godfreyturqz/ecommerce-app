@@ -1,11 +1,11 @@
-import { HttpRequest } from '../../services/httpRequests'
-import { isStorageExpired, setProductStorage, getProductStorage } from '../../services/localStorage'
+import { ApiRequest } from '../../services/ApiRequests'
+import { LocalStorage } from '../../services/LocalStorage'
 
 
 export const createProduct = (productData) => async (dispatch) => {
     dispatch({type: 'CREATE_PRODUCT_REQUEST'})
     try {
-        const data = await new HttpRequest('POST', '', productData).products()
+        const data = await new ApiRequest('POST', '', productData).products()
         dispatch({type: 'CREATE_PRODUCT_SUCCESS', payload: data})
     }
     catch (error) {
@@ -16,10 +16,10 @@ export const createProduct = (productData) => async (dispatch) => {
 export const getProducts = () => async (dispatch) => {
     dispatch({type: 'GET_PRODUCTS_REQUEST'})
     try {
-        const data = isStorageExpired('products')
+        const data = new LocalStorage().isStorageExpired('products')
         if (data === null) {
-            const {data} = await new HttpRequest('GET').products()
-            setProductStorage(data)
+            const {data} = await new ApiRequest('GET').products()
+            new LocalStorage().setProductStorage(data)
             dispatch({type: 'GET_PRODUCTS_SUCCESS', payload: data})
         } else {
             dispatch({type: 'GET_PRODUCTS_SUCCESS', payload: data})
@@ -33,9 +33,9 @@ export const getProducts = () => async (dispatch) => {
 export const getProductDetails = (productId) => async (dispatch) => {
     dispatch({type: 'GET_PRODUCT_DETAILS_REQUEST'})
     try {
-        const data = getProductStorage(productId)
+        const data = new LocalStorage().getProductStorage(productId)
         if (data === null) {
-            const {data} = await new HttpRequest('GET', productId).products()
+            const {data} = await new ApiRequest('GET', productId).products()
             dispatch({type: 'GET_PRODUCT_DETAILS_SUCCESS', payload: data})
         } else {
             dispatch({type: 'GET_PRODUCT_DETAILS_SUCCESS', payload: data})
@@ -49,7 +49,7 @@ export const getProductDetails = (productId) => async (dispatch) => {
 export const updateProduct = (productId, updatedData) => async (dispatch) => {
     dispatch({type: 'UPDATE_PRODUCT_REQUEST'})
     try {
-        const data = await new HttpRequest('PUT', productId, updatedData).products()
+        const data = await new ApiRequest('PUT', productId, updatedData).products()
         dispatch({type: 'UPDATE_PRODUCT_SUCCESS', payload: data})
     }
     catch (error) {
@@ -60,7 +60,7 @@ export const updateProduct = (productId, updatedData) => async (dispatch) => {
 export const deleteProduct = (productId) => async (dispatch) => {
     dispatch({type: 'DELETE_PRODUCT_REQUEST'})
     try {
-        const data = await new HttpRequest('DELETE', productId).products()
+        const data = await new ApiRequest('DELETE', productId).products()
         dispatch({type: 'DELETE_PRODUCT_SUCCESS', payload: data})
     }
     catch (error) {

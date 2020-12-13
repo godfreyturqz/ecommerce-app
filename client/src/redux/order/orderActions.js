@@ -1,11 +1,11 @@
-import { HttpRequest } from "../../services/httpRequests"
+import { ApiRequest } from "../../services/ApiRequests"
 
 
 export const createOrder = (order) => async (dispatch) => {
     
     try {
         dispatch({type: 'CREATE_ORDER_REQUEST'})
-        const data = await new HttpRequest('POST', '', order).orders()
+        const data = await new ApiRequest('POST', '', order).orders()
         dispatch({type: 'CREATE_ORDER_SUCCESS', payload: data})
         dispatch({type: 'CART_EMPTY'})
     } catch (error) {
@@ -17,7 +17,7 @@ export const getOrders = () => async (dispatch) => {
     
     try {
         dispatch({type: 'GET_ORDER_REQUEST'})
-        const {data} = await new HttpRequest('GET').orders()
+        const {data} = await new ApiRequest('GET').orders()
         dispatch({type: 'GET_ORDER_SUCCESS', payload: data})
     } catch (error) {
         dispatch({type: 'GET_ORDER_FAIL', payload: error.message})
@@ -28,7 +28,7 @@ export const getOrderDetails = (orderId) => async (dispatch) => {
     
     try {
         dispatch({type: 'GET_ORDER_DETAILS_REQUEST'})
-        const {data} = await new HttpRequest('GET', orderId).orders()
+        const {data} = await new ApiRequest('GET', orderId).orders()
         dispatch({type: 'GET_ORDER_DETAILS_SUCCESS', payload: data})
     } catch (error) {
         dispatch({type: 'GET_ORDER_DETAILS_ERROR', payload: error.message})
