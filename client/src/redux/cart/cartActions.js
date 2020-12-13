@@ -1,5 +1,6 @@
 import { LocalStorage } from '../../services/LocalStorage'
 
+
 const localStr = new LocalStorage()
 
 export const addToCart = (productId, quantity) => {
