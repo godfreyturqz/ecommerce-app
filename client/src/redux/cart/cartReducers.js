@@ -1,4 +1,4 @@
-export function cartReducer(state= { loading: false, data: [], error: '' }, action){
+export const cartReducer = (state = { data: [] }, action) => {
     switch(action.type){
         case 'ADD_TO_CART_REQUEST':
             return {
@@ -9,20 +9,20 @@ export function cartReducer(state= { loading: false, data: [], error: '' }, acti
             const product = state.data.find(item => item.productId === action.payload.productId)
             if(product){
                 return {
+                    ...state,
                     loading: false,
                     data: state.data.map(item => item.productId === product.productId ? {...item, quantity: item.quantity + action.payload.quantity} : item),
-                    error: ''
                 }
             }
             return {
+                ...state,
                 loading: false,
-                data: [...state.data, action.payload],
-                error: ''
+                data: [...state.data, action.payload]
             }
         case 'ADD_TO_CART_FAIL':
             return {
+                ...state,
                 loading: false,
-                data: [...state.data],
                 error: action.payload
             }
         case 'REMOVE_FROM_CART':
