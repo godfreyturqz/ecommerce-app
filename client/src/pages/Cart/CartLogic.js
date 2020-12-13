@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { removeFromCart } from '../../redux/cart/cartActions'
 import { getTotalPrice } from '../../redux/order/orderActions'
-import { LocalStorage } from '../../services/LocalStorage'
+
 
 const CartLogic = (props) => {
 
