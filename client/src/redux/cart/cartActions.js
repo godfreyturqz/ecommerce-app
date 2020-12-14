@@ -8,7 +8,6 @@ export const addToCart = (productId, quantity) => {
     const data = localStr.getProductStorage(productId)
     if (data === null) return
     
-
     return {
         type: 'ADD_TO_CART_SUCCESS',
         payload: {

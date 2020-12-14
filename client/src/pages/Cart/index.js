@@ -13,7 +13,7 @@ const Cart = (props) => {
         handleRemoveFromCart,
         handleCheckout
     } = CartLogic(props)
-    
+
     
     return (
         cartReducer.loading ? <Loading /> :
