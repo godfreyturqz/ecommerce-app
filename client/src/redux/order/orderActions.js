@@ -35,6 +35,17 @@ export const getOrderDetails = (orderId) => async (dispatch) => {
     }
 }
 
+export const getUserOrders = (userId) => async (dispatch) => {
+    
+    try {
+        dispatch({type: 'GET_USER_ORDERS_REQUEST'})
+        const {data} = await new ApiRequest('GET', userId).userOrders()
+        dispatch({type: 'GET_USER_ORDERS_SUCCESS', payload: data})
+    } catch (error) {
+        dispatch({type: 'GET_USER_ORDERS_ERROR', payload: error.message})
+    }
+}
+
 
 export const getShippingData = (shippingData) => {
     return {type: 'GET_SHIPPING_DATA', payload: shippingData}
