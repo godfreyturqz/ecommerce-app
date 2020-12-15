@@ -1,4 +1,4 @@
-export function createOrderReducer(state= { loading: false, data: {}, error: '' }, action){
+export const createOrderReducer = (state= { loading: false, data: {}, error: '' }, action) => {
     switch(action.type){
         case 'CREATE_ORDER_REQUEST':
             return {
@@ -21,7 +21,7 @@ export function createOrderReducer(state= { loading: false, data: {}, error: '' 
     }
 }
 
-export function orderDetailsReducer(state= {}, action){
+export const orderDetailsReducer = (state= {}, action) => {
     switch(action.type){
         case 'GET_SHIPPING_DATA':
             return {
@@ -42,7 +42,7 @@ export function orderDetailsReducer(state= {}, action){
     }
 }
 
-export function getOrdersReducer(state= { loading: false, data:[], error: '' }, action){
+export const getOrdersReducer = (state= { loading: false, data:[], error: '' }, action) => {
     switch(action.type){
         case 'GET_ORDER_REQUEST':
             return {
@@ -65,7 +65,7 @@ export function getOrdersReducer(state= { loading: false, data:[], error: '' }, 
     }
 }
 
-export function getOrderDetailsReducer(state= {}, action){
+export const getOrderDetailsReducer = (state= {}, action) => {
     switch(action.type){
         case 'GET_ORDER_DETAILS_REQUEST':
             return {
@@ -82,6 +82,31 @@ export function getOrderDetailsReducer(state= {}, action){
             return {
                 ...state,
                 loading: false,
+                error: action.payload
+            }
+        default: return state
+    }
+}
+
+export const getUserOrdersReducer = (state = { loading: false, data: [], error: '' }, action) => {
+    switch(action.type){
+        case 'GET_USER_ORDERS_REQUEST':
+            return {
+                ...state,
+                loading: true
+            }
+        case 'GET_USER_ORDERS_SUCCESS':
+            return {
+                ...state,
+                loading: false,
+                data: action.payload,
+                error: ''
+            }
+        case 'GET_USER_ORDERS_ERROR':
+            return {
+                ...state,
+                loading: false,
+                data: [],
                 error: action.payload
             }
         default: return state
