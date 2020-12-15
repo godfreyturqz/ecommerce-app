@@ -45,7 +45,7 @@ module.exports.loginUser = async (req,res) => {
             res.status(200).json({userId: userData._id}) 
         }
         else {
-            res.status(400).json({password: 'Authentication error'})
+            res.status(400).json({password: 'Some of your information isn\'t correct. Please try again.'})
         }
 
     } catch (error) {
@@ -70,7 +70,7 @@ module.exports.deleteAllUsers = (req, res) => {
 //------------------------------------
 // ROUTE AUTHENTICATION
 //------------------------------------
-module.exports.requireAuth = (req,res)=>{
+module.exports.isAuth = (req,res)=>{
     // const token = req.headers.cookie.split('=')[1]
     const token = req.cookies.jwt
 
@@ -79,7 +79,6 @@ module.exports.requireAuth = (req,res)=>{
             if (error) return res.sendStatus(403)
             // decodedToken returns userId
             res.status(200).json(decodedToken)
-            console.log('authentication success')
         })
     }
     else {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { userAuth } from "./redux/auth/authActions";
+import { isAuth } from "./redux/auth/authActions";
 //styles
 import './App.css';
 //components
@@ -22,6 +22,7 @@ import Shipping from './pages/Shipping';
 import Authentication from './pages/Authentication';
 import ProductManagement from './pages/ProductManagement';
 import Payment from "./pages/Payment";
+import Profile from "./pages/Profile";
 
 
 function App() {
@@ -30,7 +31,7 @@ function App() {
 
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(userAuth())
+    dispatch(isAuth())
     
   }, [dispatch])
   
@@ -56,6 +57,7 @@ function App() {
               <Route path="/order/payment/:id" component={Payment} exact/>
               <Route path="/signin" component={Authentication} exact/>
               <Route path="/register" component={Authentication} exact/>
+              <Route path="/profile" component={Profile} exact/>
               <Route path="/" component={PageNotFound} />
             </Switch>
         </main>

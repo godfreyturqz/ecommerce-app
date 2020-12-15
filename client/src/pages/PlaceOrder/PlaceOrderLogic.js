@@ -1,4 +1,4 @@
-import { userAuth } from "../../redux/auth/authActions"
+import { isAuth } from "../../redux/auth/authActions"
 import { createOrder } from "../../redux/order/orderActions"
 import { useDispatch, useSelector } from "react-redux"
 
@@ -14,7 +14,7 @@ function PlaceOrderLogic(props) {
     const handlePlaceOrder = (e) => {
         e.preventDefault()
         // format of object should be the same with OrderModel in the backend
-        dispatch(userAuth())
+        dispatch(isAuth())
         if(authReducer.userId){
             dispatch(createOrder({
                 userId: authReducer.userId,

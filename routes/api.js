@@ -27,7 +27,7 @@ router.post('/signup', authController.createUser)
 router.post('/login', authController.loginUser)
 router.get('/logout', authController.logout)
 
-router.get('/requireAuth', authController.requireAuth)
+router.get('/isAuth', authController.isAuth)
 
 // for dev purposes
 router.delete('/deleteAll', authController.deleteAllUsers)
@@ -38,6 +38,7 @@ router.delete('/deleteAll', authController.deleteAllUsers)
 router.post('/orders', orderController.createOrder)
 router.get('/orders', orderController.getOrderList)
 router.get('/orders/:id', orderController.getOrderDetails)
+router.get('/orders/user/:id', orderController.getUserOrders)
 router.put('/orders/:id', orderController.updateOrder)
 router.delete('/orders/:id', orderController.deleteOrder)
 
