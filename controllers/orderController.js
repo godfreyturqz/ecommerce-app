@@ -41,6 +41,18 @@ module.exports.getOrderDetails = async (req, res) => {
     }
 }
 
+module.exports.getUserOrders = async (req, res) => {
+
+    const userId = req.params.id
+
+    try {
+        const data = await OrderModel.find({userId: userId}).lean()
+        res.status(200).json(data)
+    } catch (error) {
+        res.status(404).json({message: error.message})
+    }
+}
+
 //******************************************************************
 // UPDATE UPDATE UPDATE >>>>> ORDER
 //******************************************************************
