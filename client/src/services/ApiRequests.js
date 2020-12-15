@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 export class ApiRequest {
-    constructor(httpRequest, id = '', objectData = {}){
-        this.httpRequest = httpRequest
+    constructor(httpReqMethod, id = '', objectData = {}){
+        this.httpReqMethod = httpReqMethod
         this.id = id
         this.objectData = objectData
     }
@@ -10,7 +10,7 @@ export class ApiRequest {
     products(){
         return axios({
             url: `/api/products/${this.id}`,
-            method: this.httpRequest,
+            method: this.httpReqMethod,
             data: this.objectData
         })
     }
@@ -18,7 +18,15 @@ export class ApiRequest {
     orders(){
         return axios({
             url: `/api/orders/${this.id}`,
-            method: this.httpRequest,
+            method: this.httpReqMethod,
+            data: this.objectData
+        })
+    }
+
+    userOrders(){
+        return axios({
+            url: `/api/orders/user/${this.id}`,
+            method: this.httpReqMethod,
             data: this.objectData
         })
     }

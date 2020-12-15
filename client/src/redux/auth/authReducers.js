@@ -1,4 +1,11 @@
-export function authReducer(state= { isAuth: false, userId: '', error: '' }, action){
+const initialState = {
+    loading: false,
+    isAuth: false,
+    userId: '', 
+    error: ''
+}
+
+export const authReducer = (state = initialState, action) => {
     switch(action.type){
         case 'USER_AUTH_SUCCESS':
             return {

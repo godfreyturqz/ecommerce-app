@@ -42,7 +42,7 @@ function Navbar({authReducer, setFilteredProducts}) {
             authReducer.isAuth
             ?
             <>
-              <Link to='/account'>Account</Link>
+              <Link to='/profile'>Profile</Link>
               <Link to="/" onClick={handleLogout}>Logout</Link>
             </>
             :
