@@ -23,7 +23,7 @@ function PlaceOrderLogic(props) {
                 totalPrice: orderDetailsReducer.totalPrice,
                 paymentMethod: orderDetailsReducer.paymentMethod
             }))
-            props.history.push('/orderStatus?placeorder=success')
+            props.history.push('/profile')
         } else {
             props.history.push('/signin')
         }
