@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken')
 // ERROR HANDLER
 //------------------------------------
 module.exports.handleErrors = (error) => {
+    
     let errors = { email: '', password: '' }
 
     // signup duplicate error
@@ -13,18 +14,33 @@ module.exports.handleErrors = (error) => {
     }
 
     // signup errors
-    if(error.errors.email) {
-        if(error.errors.email.name === 'ValidatorError'){
-            // error message can be customized in UserModel
+    if (error.message.includes('users validation failed')) {
+        if(error.errors.email) {
             errors.email = error.errors.email.properties.message
         }
-    }
-    if(error.errors.password){
-        if(error.errors.password.name === 'ValidatorError'){
-            // error message can be customized in UserModel
+        if(error.errors.password){
             errors.password = error.errors.password.properties.message
         }
     }
+
+    // login errors
+    if(error.message === 'empty field'){
+        errors.email = 'Enter an email'
+        errors.password = 'Enter a password'
+    }
+    if(error.message === 'enter email'){
+        errors.email = 'Enter an email'
+    }
+    if(error.message === 'enter password'){
+        errors.password = 'Enter a password'
+    }
+    if(error.message === 'not registered'){
+        errors.email = 'Account does not exists'
+    }
+    if(error.message === 'authentication failed'){
+        errors.password = 'Some of your information isn\'t correct. Please try again'
+    }
+
     
     return errors
 }
