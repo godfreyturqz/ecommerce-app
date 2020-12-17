@@ -5,7 +5,14 @@ import { Link } from "react-router-dom";
 
 
 function Authentication(props) {
-    const { user, handleInputs, handleSubmit, errors, currentUrl } = AuthenticationLogic(props)
+    
+    const {
+        user, 
+        handleInputs, 
+        handleSubmit, 
+        errors, 
+        currentUrl
+    } = AuthenticationLogic(props)
 
 
     return (

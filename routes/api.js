@@ -14,8 +14,8 @@ const paymentController = require('../controllers/paymentController')
 // PRODUCTS RELATED
 //.............................................
 router.post('/products', productController.createProduct)
-router.get('/products', productController.getProductList) //Get all products
-router.get('/products/:id', productController.getProductDetails) //Get specific product details
+router.get('/products', productController.getProductList)
+router.get('/products/:id', productController.getProductDetails)
 router.put('/products/:id', productController.updateProduct)
 router.delete('/products/:id', productController.deleteProduct)
 
