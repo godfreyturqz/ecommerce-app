@@ -1,4 +1,4 @@
-import { ApiRequest } from '../../services/ApiRequests'
+import { ApiRequest } from '../../services/ApiRequest'
 import { LocalStorage } from '../../services/localStorage'
 
 

@@ -3,6 +3,8 @@ import axios from 'axios'
 export class ApiRequest {
     
     constructor(httpReqMethod, id = '', objectData = {}){
+        this.API_URL = '/api'
+        this.REACT_APP_CLOUDINARY_API_URL = process.env.REACT_APP_CLOUDINARY_API_URL
         this.httpReqMethod = httpReqMethod
         this.id = id
         this.objectData = objectData
@@ -10,7 +12,7 @@ export class ApiRequest {
 
     products(){
         return axios({
-            url: `/api/products/${this.id}`,
+            url: `${this.API_URL}/products/${this.id}`,
             method: this.httpReqMethod,
             data: this.objectData
         })
@@ -18,7 +20,7 @@ export class ApiRequest {
 
     orders(){
         return axios({
-            url: `/api/orders/${this.id}`,
+            url: `${this.API_URL}/orders/${this.id}`,
             method: this.httpReqMethod,
             data: this.objectData
         })
@@ -26,7 +28,7 @@ export class ApiRequest {
 
     userOrders(){
         return axios({
-            url: `/api/orders/user/${this.id}`,
+            url: `${this.API_URL}/orders/user/${this.id}`,
             method: this.httpReqMethod,
             data: this.objectData
         })
@@ -34,7 +36,7 @@ export class ApiRequest {
 
     signup(){
         return axios({
-            url: '/api/signup',
+            url: `${this.API_URL}/signup`,
             method: this.httpReqMethod,
             data: this.objectData
         })
@@ -42,9 +44,17 @@ export class ApiRequest {
 
     login(){
         return axios({
-            url: '/api/login',
+            url: `${this.API_URL}/login`,
             method: this.httpReqMethod,
             data: this.objectData
+        })
+    }
+
+    uploadImage(data){
+        return axios({
+            url: this.REACT_APP_CLOUDINARY_API_URL,
+            method: 'POST',
+            data: data
         })
     }
 

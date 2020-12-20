@@ -4,7 +4,7 @@ const ProductModel = require('../models/ProductModel')
 //******************************************************************
 // CREATE CREATE CREATE >>>>> PRODUCT
 //******************************************************************
-module.exports.createProduct = async (req, res, next)=>{
+module.exports.createProduct = async (req, res) => {
     try {
         const data = await ProductModel.create(req.body)
         res.status(201).json({message: 'created successfully', data})
@@ -20,7 +20,7 @@ module.exports.createProduct = async (req, res, next)=>{
 //.................................
 // GET LIST OF ALL PRODUCTS
 //.................................
-module.exports.getProductList = async (req, res, next)=>{
+module.exports.getProductList = async (req, res) => {
     try {
         const data = await ProductModel.find({}).lean()
         res.status(200).json(data)
@@ -32,7 +32,7 @@ module.exports.getProductList = async (req, res, next)=>{
 //.................................
 // GET PRODUCT DETAILS
 //.................................
-module.exports.getProductDetails = async (req, res, next)=>{
+module.exports.getProductDetails = async (req, res) => {
     try {
         const data = await ProductModel.findById(req.params.id).lean()
         res.status(200).json(data)
@@ -44,8 +44,7 @@ module.exports.getProductDetails = async (req, res, next)=>{
 //******************************************************************
 // UPDATE UPDATE UPDATE >>>>> PRODUCT
 //******************************************************************
-
-module.exports.updateProduct = async (req, res, next)=>{
+module.exports.updateProduct = async (req, res) => {
     try {
         const data = await ProductModel.findByIdAndUpdate(req.params.id, req.body)
         .then(() => ProductModel.findById(req.params.id))
@@ -58,7 +57,7 @@ module.exports.updateProduct = async (req, res, next)=>{
 //******************************************************************
 // DELETE DELETE DELETE >>>>> PRODUCT
 //******************************************************************
-module.exports.deleteProduct = async (req, res, next)=>{
+module.exports.deleteProduct = async (req, res) => {
     try {
         const data = await ProductModel.findByIdAndRemove(req.params.id)
         res.status(200).json({message: 'deleted successfully', data})
