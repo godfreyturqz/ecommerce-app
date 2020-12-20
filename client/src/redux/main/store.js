@@ -4,7 +4,7 @@ import { rootReducer } from "./rootReducer"
 import { LocalStorage } from '../../services/localStorage'
 
 const localStr = new LocalStorage()
-const persistedState = localStr.loadState()
+const persistedState = localStr.loadState() || {}
 
 const store = createStore(rootReducer, persistedState, compose(applyMiddleware(thunk)))
 
