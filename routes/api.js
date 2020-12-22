@@ -1,11 +1,10 @@
-const express = require('express')
-const router = express.Router()
+const router = require('express').Router()
 //controllers
-const productController = require('../controllers/productController')
 const authController = require('../controllers/authController')
 const imageController = require('../controllers/imageController')
 const orderController = require('../controllers/orderController')
 const paymentController = require('../controllers/paymentController')
+const productController = require('../controllers/productController')
 
 //********************************************************************
 // ROUTES FOR /api/...
@@ -14,19 +13,25 @@ const paymentController = require('../controllers/paymentController')
 //.............................................
 // PRODUCTS RELATED
 //.............................................
-router.post('/products', productController.createProduct)
-router.get('/products', productController.getProductList)
-router.get('/products/:id', productController.getProductDetails)
-router.put('/products/:id', productController.updateProduct)
-router.delete('/products/:id', productController.deleteProduct)
+router.route('/products')
+    .get(productController.getProductList)
+    .post(productController.createProduct)
+
+router.route('/products/:id')
+    .get(productController.getProductDetails)
+    .put(productController.updateProduct)
+    .delete(productController.deleteProduct)
+
 router.post('/upload', imageController.uploadImage)
 // router.post('/destroy', imageController.destroyImage)
 
 //.............................................
 // USERS RELATED
 //.............................................
-router.get('/signup', authController.getUsers)
-router.post('/signup', authController.createUser)
+router.route('/signup')
+    .get(authController.getUsers)
+    .post(authController.createUser)
+
 router.post('/login', authController.loginUser)
 router.get('/logout', authController.logout)
 
@@ -38,12 +43,17 @@ router.delete('/deleteAll', authController.deleteAllUsers)
 //.............................................
 // ORDERS RELATED
 //.............................................
-router.post('/orders', orderController.createOrder)
-router.get('/orders', orderController.getOrderList)
-router.get('/orders/:id', orderController.getOrderDetails)
-router.get('/orders/user/:id', orderController.getUserOrders)
-router.put('/orders/:id', orderController.updateOrder)
-router.delete('/orders/:id', orderController.deleteOrder)
+router.route('/orders')
+    .get(orderController.getOrderList)
+    .post(orderController.createOrder)
+
+router.route('/orders/:id')
+    .get(orderController.getOrderDetails)
+    .put(orderController.updateOrder)
+    .delete(orderController.deleteOrder)
+
+router.route('/orders/user/:id')
+    .get(orderController.getUserOrders)
 
 //.............................................
 // PAYMENT RELATED
