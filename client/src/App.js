@@ -1,31 +1,31 @@
-import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { isAuth } from "./redux/auth/authActions";
+import { useEffect, useState } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { isAuth } from "./redux/auth/authActions"
 //styles
-import './App.css';
+import './App.css'
 //components
-import Footer from './components/Footer';
-import Navbar from './components/Navbar';
-import Sidebar from './components/Sidebar';
-import PageNotFound from './components/404';
+import Footer from './components/Footer'
+import Navbar from './components/Navbar'
+import Sidebar from './components/Sidebar'
+import PageNotFound from './components/404'
 //dependencies
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom"
 //pages
-import Cart from './pages/Cart';
-import CreateProduct from './pages/CreateProduct';
-import Home from "./pages/Home";
-import PlaceOrder from './pages/PlaceOrder';
-import Orders from './pages/Orders';
+import Cart from './pages/Cart'
+import CreateProduct from './pages/CreateProduct'
+import Home from "./pages/Home"
+import PlaceOrder from './pages/PlaceOrder'
+import Orders from './pages/Orders'
 import OrderDetails from './pages/Orders/OrderDetails'
-import ProductDetails from './pages/ProductDetails';
-import Shipping from './pages/Shipping';
-import Authentication from './pages/Authentication';
-import ProductManagement from './pages/ProductManagement';
-import Payment from "./pages/Payment";
-import Profile from "./pages/Profile";
+import ProductDetails from './pages/ProductDetails'
+import Shipping from './pages/Shipping'
+import Authentication from './pages/Authentication'
+import ProductManagement from './pages/ProductManagement'
+import Payment from "./pages/Payment"
+import Profile from "./pages/Profile"
 
 
-function App() {
+const App = () => {
   const authReducer = useSelector(state => state.authReducer)
   const [filteredProducts, setFilteredProducts] = useState('')
 
@@ -67,4 +67,4 @@ function App() {
   );
 }
 
-export default App;
+export default App
