@@ -2,18 +2,17 @@ import React from 'react'
 import './styles.css'
 import CreateProductLogic from './CreateProductLogic'
 //components
-import Loading from '../../components/Loading';
+import Loading from '../../components/Loading'
 
 
-function CreateProduct() {
+const CreateProduct = () => {
 
     const {
         createProductReducer, 
         updateProductReducer, 
-        productId,
+        onUpdate,
         productData, 
-        setProductData,
-        handleInputs, 
+        handleInputs,
         handleSubmit 
     } = CreateProductLogic()
     
@@ -22,7 +21,7 @@ function CreateProduct() {
         createProductReducer.loading || updateProductReducer.loading ? <div><Loading/></div> :
         createProductReducer.error || updateProductReducer.error ? <div>{createProductReducer.error}{updateProductReducer.error}</div> :
             <form onSubmit={handleSubmit}>
-                <h1>{ productId ? 'Update' : 'Enter' } Product Information</h1>
+                <h1>{ onUpdate ? 'Update' : 'Enter' } Product Information</h1>
 
                 <div>main category</div>
                 <input type="text" name="mainCategory" value={productData.mainCategory} onChange={handleInputs}/>
