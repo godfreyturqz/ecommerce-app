@@ -3,6 +3,7 @@ const router = express.Router()
 //controllers
 const productController = require('../controllers/productController')
 const authController = require('../controllers/authController')
+const imageController = require('../controllers/imageController')
 const orderController = require('../controllers/orderController')
 const paymentController = require('../controllers/paymentController')
 
@@ -18,6 +19,8 @@ router.get('/products', productController.getProductList)
 router.get('/products/:id', productController.getProductDetails)
 router.put('/products/:id', productController.updateProduct)
 router.delete('/products/:id', productController.deleteProduct)
+router.post('/upload', imageController.uploadImage)
+// router.post('/destroy', imageController.destroyImage)
 
 //.............................................
 // USERS RELATED
