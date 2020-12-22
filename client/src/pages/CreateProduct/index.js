@@ -1,8 +1,6 @@
 import React from 'react'
 import './styles.css'
 import CreateProductLogic from './CreateProductLogic'
-//image
-import Filebase from "react-file-base64";
 //components
 import Loading from '../../components/Loading';
 
@@ -46,14 +44,6 @@ function CreateProduct() {
 
                 <div>Number of Stocks</div>
                 <input type="text" name="stockCount" value={productData.stockCount} onChange={handleInputs}/>
-                <div>
-                    <Filebase
-                        type="file"
-                        multiple={false}
-                        onDone={ ({base64})=> setProductData({...productData, image: base64})}
-                    />
-                </div>
-                <button type="submit">{ productId ? 'Update' : 'Submit' }</button>
             </form>
     )
 }
