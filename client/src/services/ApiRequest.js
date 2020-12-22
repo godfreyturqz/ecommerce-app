@@ -52,7 +52,7 @@ export class ApiRequest {
 
     uploadImage(data){
         return axios({
-            url: this.REACT_APP_CLOUDINARY_API_URL,
+            url: `${this.API_URL}/upload`,
             method: 'POST',
             data: data
         })
