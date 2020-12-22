@@ -18,7 +18,7 @@ const Cart = (props) => {
     return (
         cartReducer.loading ? <Loading /> :
         cartReducer.error ? <div>{cartReducer.error}</div> :
-        cartReducer.data === undefined ? <div>Data is undefined.</div> :
+        cartReducer.data &&
         <>
             <div className="header-container">
                 <div className="header-wrapper">
@@ -29,7 +29,7 @@ const Cart = (props) => {
                 cartReducer.data.length === 0
                 ? <div className="cart-empty">Cart is empty</div> 
                 : cartReducer.data.map( item => 
-                    <div className="cart-container" key={item.productId}>
+                    <div className="cart-container" key={item._id}>
                         <div className="cart-grid">
                             <div className="cart-image">
                                 <img src={item.image} alt="bike"/>
@@ -46,7 +46,7 @@ const Cart = (props) => {
                             </div>
                         </div>
                         <div className="button-wrapper">
-                            <button onClick={()=> handleRemoveFromCart(item.productId)}>Delete</button>
+                            <button onClick={()=> handleRemoveFromCart(item._id)}>Delete</button>
                         </div>
                     </div>
                 )

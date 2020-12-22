@@ -25,7 +25,7 @@ function PlaceOrder(props) {
                 cartReducer.data.length === 0
                 ? <div className="cart-empty">Cart is empty</div> 
                 : cartReducer.data.map( item => 
-                    <div className="cart-container" key={item.productId}>
+                    <div className="cart-container" key={item._id}>
                         <div className="cart-grid">
                             <div className="cart-image">
                                 <img src={item.image} alt="bike"/>

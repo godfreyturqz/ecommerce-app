@@ -33,12 +33,8 @@ router.route('/signup')
     .post(authController.createUser)
 
 router.post('/login', authController.loginUser)
-router.get('/logout', authController.logout)
-
+router.get('/logout', authController.logoutUser)
 router.get('/isAuth', authController.isAuth)
-
-// for dev purposes
-router.delete('/deleteAll', authController.deleteAllUsers)
 
 //.............................................
 // ORDERS RELATED

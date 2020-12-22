@@ -9,9 +9,7 @@ const AuthenticationLogic = () => {
     const [errors, setErrors] = useState({email: '', password: ''})
     const currentUrl = useLocation()
 
-
     const handleInputs = (e) => {
-        e.preventDefault()
         setUser({
             ...user,
             [e.target.name]: e.target.value
@@ -22,8 +20,8 @@ const AuthenticationLogic = () => {
         e.preventDefault()
         try {
             const data = currentUrl.pathname === '/register' ?
-                            await new ApiRequest('POST', '', user).signup() :
-                            await new ApiRequest('POST', '', user).login()
+                            await new ApiRequest().signup(user) :
+                            await new ApiRequest().login(user)
             // if success, data returns a userId - check variable in backend authcontroller
             if(data){
                 setUser({email: '', password:''})

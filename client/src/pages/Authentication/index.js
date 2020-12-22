@@ -27,17 +27,14 @@ function Authentication(props) {
             <input type="password" name="password" value={user.password} onChange={handleInputs}/>
             <p className="error-message">{errors.password}</p>
             {
-                currentUrl.pathname === '/register'
-                ? 
+                currentUrl.pathname === '/register' ?
                 <>
                     <button type="submit" className="button primary">Create Account</button>
                     <p>Already have an account?</p>
                     <div>
                         <Link to="/signin">Sign-in here</Link>
                     </div>
-                </>
-                
-                : 
+                </> : 
                 <>
                     <button type="submit" className="button primary">Sign in</button>
                     <p>New here?</p>

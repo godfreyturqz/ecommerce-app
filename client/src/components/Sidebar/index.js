@@ -29,8 +29,8 @@ function Sidebar({setFilteredProducts}) {
             <Link to="/" onClick={() => handleLinks('Country')}>
               <p>Country</p>
             </Link>
-            <Link to="/" onClick={() => handleLinks('E-bike')}>
-              <p>E-bike</p>
+            <Link to="/" onClick={() => handleLinks('E-Bike')}>
+              <p>E-Bike</p>
             </Link>
 
             <br/><br/><br/><br/><br/>
