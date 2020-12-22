@@ -13,6 +13,7 @@ const CreateProduct = () => {
         onUpdate,
         productData, 
         handleInputs,
+        handleFileImage,
         handleSubmit 
     } = CreateProductLogic()
     
@@ -43,6 +44,15 @@ const CreateProduct = () => {
 
                 <div>Number of Stocks</div>
                 <input type="text" name="stockCount" value={productData.stockCount} onChange={handleInputs}/>
+                
+                <input type="file" onChange={handleFileImage}/>
+                { productData.image &&
+                    <div className="upload-image">
+                        <img src={productData.image} alt="bike"/>
+                    </div>
+                }
+                
+                <button type="submit">{ onUpdate ? 'Update' : 'Submit' }</button>
             </form>
     )
 }

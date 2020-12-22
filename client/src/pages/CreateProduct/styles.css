@@ -14,3 +14,10 @@ form input, form textarea{
 form input:active{
     border: 1px solid #1d3557;
 }
+form .upload-image{
+    max-width: 250px;
+    margin-bottom: 50px;
+}
+form .upload-image img{
+    width: 100%;
+}

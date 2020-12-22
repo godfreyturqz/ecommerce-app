@@ -1,15 +1,19 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { createProduct, getProductDetails, updateProduct } from '../../redux/product/productActions'
-import { useParams } from "react-router-dom"
+import { ApiRequest } from '../../services/ApiRequest'
+import { useParams } from 'react-router-dom'
 
 
-function CreateProductLogic() {
+const CreateProductLogic = () => {
+
     const createProductReducer = useSelector(state => state.createProductReducer)
     const updateProductReducer = useSelector(state => state.updateProductReducer)
     const getProductDetailsReducer = useSelector(state => state.getProductDetailsReducer)
+    const dispatch = useDispatch()
+    const params = useParams()
 
-    const [productData, setProductData] = useState({
+    const initialState = {
         mainCategory: '',
         subCategory: '',
         brand: '',
@@ -18,60 +22,10 @@ function CreateProductLogic() {
         image: '',
         price: '',
         stockCount: ''
-    })
-
-    // fetch url parameters of route: updateProduct/:id
-    const {id: productId} = useParams()
-    const dispatch = useDispatch()
-    useEffect(() => {
-        if(productId){
-            dispatch(getProductDetails(productId))
-            setProductData({
-                mainCategory: getProductDetailsReducer.data.mainCategory,
-                subCategory: getProductDetailsReducer.data.subCategory,
-                brand: getProductDetailsReducer.data.brand,
-                name: getProductDetailsReducer.data.name,
-                description: getProductDetailsReducer.data.description,
-                image: getProductDetailsReducer.data.image,
-                price: getProductDetailsReducer.data.price,
-                stockCount: getProductDetailsReducer.data.stockCount
-            })
-        }
-    },
-    [
-        dispatch,
-        productId,
-        getProductDetailsReducer.data.mainCategory,
-        getProductDetailsReducer.data.subCategory,
-        getProductDetailsReducer.data.brand,
-        getProductDetailsReducer.data.name,
-        getProductDetailsReducer.data.description,
-        getProductDetailsReducer.data.image,
-        getProductDetailsReducer.data.price,
-        getProductDetailsReducer.data.stockCount
-    ])
-
-    
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        if(productId) {
-            dispatch(updateProduct(productId, productData))
-        }
-        else {
-            dispatch(createProduct(productData))
-        }
-        //clears the input fields after submission
-        setProductData({
-            mainCategory: '',
-            subCategory: '',
-            brand: '',
-            name: '',
-            description: '',
-            image: '',
-            price: '',
-            stockCount: ''
-        })
     }
+    const [productData, setProductData] = useState(initialState)
+    const [onUpdate, setOnUpdate] = useState(false)
+    const productId = params.id // url parameters for route: '/updateProduct/:id'
 
     const handleInputs = (e) => {
         setProductData({
@@ -80,14 +34,51 @@ function CreateProductLogic() {
         })
     }
 
+    const handleFileImage = async (e) => {
+        try {
+            const fileImage = e.target.files[0]
+            let formData = new FormData()
+            formData.append('image', fileImage)
+
+            const {data} = await new ApiRequest().uploadImage(formData)
+
+            setProductData({
+                ...productData,
+                image: data.secure_url
+            })
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        productId ? 
+        dispatch(updateProduct(productId, productData)) :
+        dispatch(createProduct(productData))
+        setProductData({...initialState})
+    }
+
+    useEffect(() => {
+        if(productId){
+            setOnUpdate(true)
+            dispatch(getProductDetails(productId))
+            setProductData(getProductDetailsReducer.data)
+        } else {
+            setOnUpdate(false)
+        }
+    // eslint-disable-next-line
+    }, [])
+
 
     return {
         createProductReducer, 
         updateProductReducer, 
-        productId,
+        onUpdate,
         productData, 
-        setProductData,
-        handleInputs, 
+        handleInputs,
+        handleFileImage,
         handleSubmit 
     }
 }
