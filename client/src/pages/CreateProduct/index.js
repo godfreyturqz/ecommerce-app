@@ -20,7 +20,7 @@ const CreateProduct = () => {
 
     return (
         createProductReducer.loading || updateProductReducer.loading ? <div><Loading/></div> :
-        createProductReducer.error || updateProductReducer.error ? <div>{createProductReducer.error}{updateProductReducer.error}</div> :
+        createProductReducer.error || updateProductReducer.error ? <div>Error! {createProductReducer.error}{updateProductReducer.error}</div> :
             <form onSubmit={handleSubmit}>
                 <h1>{ onUpdate ? 'Update' : 'Enter' } Product Information</h1>
 
