@@ -15,9 +15,7 @@ function Orders() {
         getOrdersReducer.error ? <div>{getOrdersReducer.error}</div> :
         getOrdersReducer.data.length === 0 ? <div>There are no orders</div> :
         <div className="order-status-container">
-            {
-                getOrdersReducer.data.map(item => <OrderRowCard key={item._id} {...item} />)
-            }
+            { getOrdersReducer.data.map(item => <OrderRowCard key={item._id} {...item} />) }
         </div>
     )
 }

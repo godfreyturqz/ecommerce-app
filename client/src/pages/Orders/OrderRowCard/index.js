@@ -24,7 +24,7 @@ function OrderRowCard({...props}) {
                         <div className="orderItems-container" key={item._id}>
                             <div className="imgWrapper">
                                 <Link to={`/order/details/${props._id}`}>
-                                    <img src={item.image} alt="product"/>
+                                    <img src={item.image} alt="product" loading="lazy"/>
                                 </Link>
                             </div>
                             <div>
