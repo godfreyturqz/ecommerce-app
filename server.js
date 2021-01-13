@@ -6,12 +6,14 @@ require('dotenv/config')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const fileupload = require('express-fileupload')
+const rateLimiter = require('express-rate-limit')
 
 const app = express()
 
 //--------------------------------------------------------------
 // MIDDLEWARES
 //--------------------------------------------------------------
+app.use(rateLimiter({max: 200, windowMs: 1 * 60 *1000}))
 app.use(express.json({limit: "10mb", extended: true}))
 app.use(express.urlencoded({limit: "10mb", extended: true}))
 app.use(cors())
