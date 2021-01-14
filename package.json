@@ -5,10 +5,10 @@
   "scripts": {
     "rundev": "concurrently \"yarn start-server\" \"yarn start-client\"",
     "start-server": "nodemon _SERVER.js",
-    "start-client": "cd CLIENT && yarn start",
+    "start-client": "cd client && yarn start",
     "start": "node _SERVER.js",
-    "build": "cd CLIENT && yarn build",
-    "install-client": "cd CLIENT && yarn install",
+    "build": "cd client && yarn build",
+    "install-client": "cd client && yarn install",
     "heroku-postbuild": "yarn install-client && yarn build"
   },
   "license": "MIT",
