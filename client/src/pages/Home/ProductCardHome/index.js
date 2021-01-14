@@ -2,7 +2,7 @@ import React from 'react'
 import './styles.css'
 import { Link } from "react-router-dom";
 
-function ProductCardHome({ _id, image, name, mainCategory, subCategory, brand, price}) {
+function ProductCardHome({ _id, image, name, mainCategory, subCategory, brand, price }) {
 
     const reactRouterLinkTo = `/product/details/${_id}`
 

@@ -18,7 +18,7 @@ function Home({filteredProducts}) {
     return ( 
         getProductsReducer.loading ? <Loading/> : 
         getProductsReducer.error ? <div>Error! {getProductsReducer.error}</div> :
-        getProductsReducer?.data.length === 0 ? <div>There are no products to display.</div> :
+        getProductsReducer?.data?.length === 0 ? <div>There are no products to display.</div> :
         <>
             <div className="filter-container">
                 <span>Sort by price: </span>

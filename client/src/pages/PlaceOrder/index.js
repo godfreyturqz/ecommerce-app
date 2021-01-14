@@ -22,13 +22,13 @@ function PlaceOrder(props) {
                 <p>Method: {orderDetailsReducer.paymentMethod}</p>
             </div>
             {   
-                cartReducer.data.length === 0
+                cartReducer?.data?.length === 0
                 ? <div className="cart-empty">Cart is empty</div> 
                 : cartReducer.data.map( item => 
                     <div className="cart-container" key={item._id}>
                         <div className="cart-grid">
                             <div className="cart-image">
-                                <img src={item.image} alt="bike"/>
+                                <img src={item.image} alt="bike" loading="lazy"/>
                             </div>
                             <div className="cart-data">
                                 <p className="cart-data-name">{item.name}</p>
@@ -45,7 +45,7 @@ function PlaceOrder(props) {
                 )
             }
             {   
-                cartReducer.data.length !== 0 && 
+                cartReducer?.data?.length !== 0 && 
                 <div className="cart-checkout">
                     <p><span>Total: </span>$ {orderDetailsReducer.totalPrice}</p>
                     <button onClick={handlePlaceOrder}>Place Order</button>

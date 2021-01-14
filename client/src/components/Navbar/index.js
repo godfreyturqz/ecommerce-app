@@ -33,23 +33,19 @@ function Navbar({authReducer, setFilteredProducts}) {
         </div>
         <div className="nav-links">
           <Link to='/cart' className="cart-icon">
-            {
-              cartReducer && cartReducer.data.length > 0 ? <span>{ cartReducer.data.length }</span> : null
-            }
+            { cartReducer?.data?.length > 0 ? <span>{ cartReducer.data.length }</span> : null }
             <FaCartArrowDown /> Cart
           </Link>
           {
             authReducer.isAuth
-            ?
-            <>
-              <Link to='/profile'>Profile</Link>
-              <Link to="/" onClick={handleLogout}>Logout</Link>
-            </>
-            :
-            <>
-              <Link to='/signin'>Sign-in</Link>
-              <Link to='/register'>Register</Link>
-            </>
+            ? <>
+                <Link to='/profile'>Profile</Link>
+                <Link to="/" onClick={handleLogout}>Logout</Link>
+              </>
+            : <>
+                <Link to='/signin'>Sign-in</Link>
+                <Link to='/register'>Register</Link>
+              </>
           }
         </div>
       </nav>

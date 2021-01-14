@@ -2,7 +2,7 @@ export const addToCart = (productId, quantity) => (dispatch, getState) => {
 
     const data = getState().getProductsReducer.data
                 .find(product => product._id === productId)
-    dispatch({type: 'ADD_TO_CART_SUCCESS', payload: {...data, quantity}})
+    dispatch({type: 'ADD_TO_CART_SUCCESS', payload: {...data, productId: data._id, quantity}})
 }
 
 export const removeFromCart = (productId) => {

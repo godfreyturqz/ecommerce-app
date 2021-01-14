@@ -4,23 +4,22 @@ import { getProducts } from '../../redux/product/productActions';
 
 function HomeLogic() {
 
-    const getProductsReducer = useSelector(state => state.getProductsReducer)
     const [sortByPrice, setSortByPrice] = useState(1)
+    // redux
+    const getProductsReducer = useSelector(state => state.getProductsReducer)
     const dispatch = useDispatch()
-    
+
+    // changes the sortByPrice State manually by selecting either highest or lowest
+    const handleSortByPrice = e => 
+        e.target.value === 'highest'
+        ? setSortByPrice(-1)
+        : setSortByPrice(1)
+
     useEffect(() => {
         dispatch(getProducts())
 
     }, [dispatch])
 
-    const handleSortByPrice = (e) => {
-        if(e.target.value === 'highest') {
-            setSortByPrice(-1)
-        } else {
-            setSortByPrice(1)
-        }
-    }
-    
 
     return { 
         getProductsReducer,
