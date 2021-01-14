@@ -1,25 +1,14 @@
-const express = require('express')
-const compression = require('compression')
-const mongoose = require('mongoose')
-const cors = require('cors')
 require('dotenv/config')
+const app = require('express')()
+const mongoose = require('mongoose')
 const path = require('path')
-const cookieParser = require('cookie-parser')
-const fileupload = require('express-fileupload')
-const rateLimiter = require('express-rate-limit')
 
-const app = express()
+const middlewares = require('./middlewares')
 
 //--------------------------------------------------------------
 // MIDDLEWARES
 //--------------------------------------------------------------
-app.use(rateLimiter({max: 200, windowMs: 1 * 60 *1000}))
-app.use(express.json({limit: "10mb", extended: true}))
-app.use(express.urlencoded({limit: "10mb", extended: true}))
-app.use(cors())
-app.use(compression())
-app.use(cookieParser())
-app.use(fileupload({useTempFiles : true}))
+app.use(...middlewares)
 
 //--------------------------------------------------------------
 // DATABASE CONNECTION
@@ -38,8 +27,11 @@ mongoose.connect(process.env.DB_CONNECTION, {
 //--------------------------------------------------------------
 // ROUTES
 //--------------------------------------------------------------
-app.use('/api', require('./routes/api'))
+app.use('/api/v1', require('./routes/api'))
 
+//--------------------------------------------------------------
+// PRODUCTION
+//--------------------------------------------------------------
 if(process.env.NODE_ENV === 'production'){
     app.use(express.static('client/build'))
     app.get('*', (req, res)=> {
