@@ -1,12 +1,12 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "main": "_SERVER.js",
+  "main": "server.js",
   "scripts": {
-    "rundev": "concurrently \"yarn start-server\" \"yarn start-client\"",
-    "start-server": "nodemon _SERVER.js",
+    "start": "node server.js",
+    "startDev": "concurrently \"yarn start-server\" \"yarn start-client\"",
+    "start-server": "nodemon server.js",
     "start-client": "cd client && yarn start",
-    "start": "node _SERVER.js",
     "build": "cd client && yarn build",
     "install-client": "cd client && yarn install",
     "heroku-postbuild": "yarn install-client && yarn build"
@@ -29,7 +29,6 @@
   },
   "devDependencies": {
     "concurrently": "^5.3.0",
-    "nodemon": "^2.0.6",
-    "object-sizeof": "^1.6.1"
+    "nodemon": "^2.0.6"
   }
 }
