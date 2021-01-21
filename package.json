@@ -1,7 +1,7 @@
 {
   "name": "ecommerce",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "start": "node server.js",
     "startDev": "concurrently \"yarn start-server\" \"yarn start-client\"",
@@ -30,5 +30,8 @@
   "devDependencies": {
     "concurrently": "^5.3.0",
     "nodemon": "^2.0.6"
+  },
+  "engines": {
+    "node": "12.19.0"
   }
 }
