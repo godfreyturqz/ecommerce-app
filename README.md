@@ -14,7 +14,7 @@ The goal of this project is to imitate an e-commerce platform like Amazon using 
 2. User Authentication
 
 ## Live Demo
-https://premium-bikes.herokuapp.com/
+(temporarily disabled)
 
 ## Technologies used
 1. Frontend - React
