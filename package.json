@@ -1,10 +1,10 @@
 {
-  "name": "ecommerce",
+  "name": "ecommerce-app",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "startDev": "concurrently \"yarn start-server\" \"yarn start-client\"",
+    "dev": "concurrently \"yarn start-server\" \"yarn start-client\"",
     "start-server": "nodemon server.js",
     "start-client": "cd client && yarn start",
     "build": "cd client && yarn build",

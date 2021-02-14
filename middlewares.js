@@ -12,5 +12,5 @@ module.exports = [
     cors(),
     cookieParser(),
     express.json({limit: "10mb", extended: true}),
-    express.urlencoded({limit: "10mb", extended: true}),
+    express.urlencoded({limit: "10mb", extended: true})
 ]
