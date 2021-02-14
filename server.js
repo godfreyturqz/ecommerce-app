@@ -28,6 +28,9 @@ mongoose.connect(process.env.DB_CONNECTION, {
 // ROUTES
 //--------------------------------------------------------------
 app.use('/api/v1', require('./routes/api'))
+app.use('/api/v1', (req, res) => {
+    res.send('shopbike API ver 1.0')
+})
 
 //--------------------------------------------------------------
 // PRODUCTION

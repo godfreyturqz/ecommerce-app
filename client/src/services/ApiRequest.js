@@ -3,7 +3,8 @@ import axios from 'axios'
 export class ApiRequest {
     
     constructor(httpReqMethod, id = '', objectData = {}){
-        this.API_BASE_URL = '/api/v1'
+        this.API_BASE_URL_LOCAL = 'http://localhost:5000/api/v1'
+        this.API_BASE_URL = 'https://shopbike.herokuapp.com/api/v1'
         this.httpReqMethod = httpReqMethod
         this.id = id
         this.objectData = objectData

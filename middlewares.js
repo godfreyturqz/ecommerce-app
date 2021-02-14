@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser')
 const express = require('express')
 
 module.exports = [
-    rateLimiter({max: 200, windowMs: 1 * 60 *1000}),
+    rateLimiter({max: 200, windowMs: 1 * 60 * 1000}),
     compression(),
     fileupload({useTempFiles : true}),
     cors(),
