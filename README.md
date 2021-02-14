@@ -1,4 +1,4 @@
-# ecommerce-bike-shop
+# ecommerce-app
 The goal of this project is to imitate an e-commerce platform like Amazon using MERN Stack
 
 ## Features
@@ -14,19 +14,26 @@ The goal of this project is to imitate an e-commerce platform like Amazon using 
 2. User Authentication
 
 ## Live Demo
-(temporarily disabled)
+https://shopbike.netlify.app/
 
 ## Technologies used
 1. Frontend - React
 2. Backend - Node/Express
 3. Cloud Database - MongoDB
+4. Deployment - Heroku and Netlify
 
 ## Essential Dependencies
 1. axios
 2. react-router-dom
 3. redux/ redux-thunk
-4. express
-5. mongoose
-6. jsonwebtoken
-7. bcrypt
-8. paypal-rest-sdk
+4. bcrypt
+5. cloudinary
+6. compression
+7. cors
+8. dotenv
+9. express
+10. express-fileupload
+11. express-rate-limit
+12. jsonwebtoken
+13. mongoose
+14. paypal-rest-sdk
