@@ -1,5 +1,7 @@
 import { ApiRequest } from '../../services/ApiRequest'
+import { LocalStorage } from '../../services/localStorage'
 
+const currentState = new LocalStorage().loadState()
 
 export const createProduct = (productData) => async (dispatch) => {
     try {
@@ -13,10 +15,16 @@ export const createProduct = (productData) => async (dispatch) => {
 }
 
 export const getProducts = () => async (dispatch) => {
+
+    dispatch({type: 'GET_PRODUCTS_REQUEST'})
+
     try {
-        dispatch({type: 'GET_PRODUCTS_REQUEST'})
-        const {data} = await new ApiRequest('GET').products()
-        dispatch({type: 'GET_PRODUCTS_SUCCESS', payload: data})
+        if(currentState.getProductsReducer.data.length > 0){
+            dispatch({type: 'GET_PRODUCTS_SUCCESS', payload: currentState.getProductsReducer.data})
+        } else {
+            const { data } = await new ApiRequest('GET').products()
+            dispatch({type: 'GET_PRODUCTS_SUCCESS', payload: data})
+        }
     }
     catch (error) {
         dispatch({type: 'GET_PRODUCTS_FAIL', payload: error.message})
@@ -24,10 +32,18 @@ export const getProducts = () => async (dispatch) => {
 }
 
 export const getProductDetails = (productId) => async (dispatch) => {
+
+    dispatch({type: 'GET_PRODUCT_DETAILS_REQUEST'})
+
     try {
-        dispatch({type: 'GET_PRODUCT_DETAILS_REQUEST'})
-        const {data} = await new ApiRequest('GET', productId).products()
-        dispatch({type: 'GET_PRODUCT_DETAILS_SUCCESS', payload: data})
+        if(currentState.getProductsReducer.data.length > 0){
+            const data = currentState.getProductsReducer.data.find(product => product._id === productId)
+            dispatch({type: 'GET_PRODUCT_DETAILS_SUCCESS', payload: data})
+        } else {
+            const { data } = await new ApiRequest('GET', productId).products()
+            dispatch({type: 'GET_PRODUCT_DETAILS_SUCCESS', payload: data})
+        }
+        
     }
     catch (error) {
         dispatch({type: 'GET_PRODUCT_DETAILS_FAIL', payload: error.message})

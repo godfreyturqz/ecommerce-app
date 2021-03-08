@@ -3,13 +3,13 @@ import thunk from 'redux-thunk'
 import { rootReducer } from "./rootReducer"
 import { LocalStorage } from '../../services/localStorage'
 
-const localStr = new LocalStorage()
-const persistedState = localStr.loadState() || {}
 
-const store = createStore(rootReducer, persistedState, compose(applyMiddleware(thunk)))
+const currentState = new LocalStorage().loadState() || {}
+
+const store = createStore(rootReducer, currentState, compose(applyMiddleware(thunk)))
 
 store.subscribe(() => {
-    localStr.saveState(store.getState())
+    new LocalStorage().saveState(store.getState())
 })
 
 export default store
