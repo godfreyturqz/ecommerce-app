@@ -13,6 +13,4 @@ const productSchema = new Schema({
     created: { type: Date, default: Date.now }
 })
 
-const ProductModel = mongoose.model('products', productSchema)
-
-module.exports = ProductModel
+module.exports = mongoose.model('products', productSchema)

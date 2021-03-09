@@ -1,9 +1,6 @@
 const ProductModel = require('../models/ProductModel')
 
 
-//******************************************************************
-// CREATE CREATE CREATE >>>>> PRODUCT
-//******************************************************************
 module.exports.createProduct = async (req, res) => {
     try {
         const data = await ProductModel.create(req.body)
@@ -13,13 +10,6 @@ module.exports.createProduct = async (req, res) => {
     }
 }
 
-//******************************************************************
-// GET GET GET >>>>> PRODUCT
-//******************************************************************
-
-//.................................
-// GET LIST OF ALL PRODUCTS
-//.................................
 module.exports.getProductList = async (req, res) => {
     try {
         const data = await ProductModel.find({}).lean()
@@ -29,9 +19,6 @@ module.exports.getProductList = async (req, res) => {
     }
 }
 
-//.................................
-// GET PRODUCT DETAILS
-//.................................
 module.exports.getProductDetails = async (req, res) => {
     try {
         const data = await ProductModel.findById(req.params.id).lean()
@@ -41,9 +28,6 @@ module.exports.getProductDetails = async (req, res) => {
     }
 }
 
-//******************************************************************
-// UPDATE UPDATE UPDATE >>>>> PRODUCT
-//******************************************************************
 module.exports.updateProduct = async (req, res) => {
     try {
         const data = await ProductModel.findByIdAndUpdate(req.params.id, req.body)
@@ -54,9 +38,6 @@ module.exports.updateProduct = async (req, res) => {
     }
 }
 
-//******************************************************************
-// DELETE DELETE DELETE >>>>> PRODUCT
-//******************************************************************
 module.exports.deleteProduct = async (req, res) => {
     try {
         const data = await ProductModel.findByIdAndRemove(req.params.id)
